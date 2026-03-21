@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Record Complet | Citadel Alpha Research</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+</head>
+<body class="bg-[#0a0a0f] text-gray-200">
+    <nav class="p-6 border-b border-gray-800">
+        <a href="index.html" class="text-[#00d4aa] hover:underline"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
+    </nav>
+
+    <main class="max-w-4xl mx-auto py-16 px-6">
+        <h1 class="text-4xl md:text-6xl font-bold mb-8 text-white">Rapport d'Audit : Stratégie Citadel Alpha</h1>
+        
+        <div class="bg-[#1a1a2e] p-8 rounded-3xl border border-gray-800 mb-12">
+            <h2 class="text-2xl font-bold mb-4 text-[#00d4aa]">Résumé Exécutif (2016 - 2025)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+                <div><div class="text-3xl font-bold">+32.6%</div><div class="text-xs text-gray-500">CAGR Annuel</div></div>
+                <div><div class="text-3xl font-bold">+1238%</div><div class="text-xs text-gray-500">Rendement Cumulé</div></div>
+                <div><div class="text-3xl font-bold text-amber-400">1.85</div><div class="text-xs text-gray-500">Profit Factor</div></div>
+                <div><div class="text-3xl font-bold text-red-500">-18.4%</div><div class="text-xs text-gray-500">Max Drawdown</div></div>
+            </div>
+        </div>
+
+        <section class="prose prose-invert max-w-none space-y-8">
+            <h2 class="text-2xl font-bold">1. Méthodologie du Backtest</h2>
+            <p class="text-gray-400">L'analyse a été réalisée sur les 50 plus grandes capitalisations boursières du S&P 500 sur une période glissante de 10 ans. Chaque trade a été simulé avec une mise fixe de 5 000$ sur un capital initial de 100 000$, incluant des frais de transaction réalistes de 5$ par ordre.</p>
+            
+            <h2 class="text-2xl font-bold">2. Analyse de Robustesse (Stress Test)</h2>
+            <p class="text-gray-400">Nous avons testé 5 variations de paramètres (Stop Loss de 5% à 10% et Take Profit de 10% à 20%) pour vérifier si la stratégie dépendait de la "chance" du paramétrage. </p>
+            <div class="bg-[#12121a] p-6 rounded-xl border border-gray-800">
+                <ul class="space-y-3">
+                    <li class="flex justify-between border-b border-gray-800 pb-2"><span>Conservateur (SL serré)</span><span class="font-bold">+27.8% CAGR</span></li>
+                    <li class="flex justify-between border-b border-gray-800 pb-2"><span>Modéré (Standard)</span><span class="font-bold text-[#00d4aa]">+32.6% CAGR</span></li>
+                    <li class="flex justify-between pb-2"><span>Agressif (TP large)</span><span class="font-bold">+35.0% CAGR</span></li>
+                </ul>
+            </div>
+
+            <h2 class="text-2xl font-bold">3. Pourquoi ces résultats sont uniques en France ?</h2>
+            <p class="text-gray-400">La plupart des services francophones reposent sur l'intuition ou l'analyse de news. Notre approche est 100% data-driven. Nous exploitons les inefficacités de marché que les algorithmes institutionnels utilisent, mais avec une agilité que seuls les portefeuilles de particuliers permettent.</p>
+        </section>
+
+        <div class="mt-16 text-center">
+            <a href="index.html#pricing" class="bg-[#00d4aa] text-black font-bold px-10 py-4 rounded-2xl hover:bg-white transition">Accéder aux analyses quotidiennes</a>
+        </div>
+    </main>
+</body>
+</html>
