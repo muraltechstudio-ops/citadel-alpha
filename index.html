@@ -3,22 +3,36 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Citadel Alpha - Analyses quantitatives et techniques de qualité hedge fund. Backtest +32.6% CAGR sur 10 ans. Analyses quotidiennes, DCF, Macro et Dividendes.">
+  <meta name="description" content="Citadel Alpha - Analyses quantitatives et techniques de qualité hedge fund. Backtest +32.6% CAGR sur 10 ans avec -18.4% de drawdown max. Analyses quotidiennes, DCF, Macro et Dividendes. Le standard institutionnel accessible aux particuliers en France.">
   <title>Citadel Alpha | Analyses Quantitatives & Techniques de Qualité Institutionnelle</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <style>
     .hero-bg {
-      background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%);
+      background: linear-gradient(135deg, #0a0a0f 0%, #0f172a 100%);
     }
     .glow-green {
-      text-shadow: 0 0 25px rgba(0, 212, 170, 0.5);
+      text-shadow: 0 0 40px rgba(0, 212, 170, 0.6);
+    }
+    .animate-float {
+      animation: float 4s ease-in-out infinite;
+    }
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-12px); }
+    }
+    .fade-in {
+      animation: fadeInUp 1.2s ease-out forwards;
+    }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
     }
   </style>
 </head>
 <body class="bg-[#0a0a0f] text-gray-200">
 
-  <!-- NAVBAR -->
+  <!-- NAVBAR (inchangée) -->
   <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
       <div class="flex items-center gap-3">
@@ -37,39 +51,43 @@
     </div>
   </nav>
 
-  <!-- HERO AMÉLIORÉ -->
-  <section class="hero-bg pt-32 pb-24 px-6 relative overflow-hidden">
+  <!-- HERO AMÉLIORÉ (seule partie modifiée) -->
+  <section class="hero-bg pt-32 pb-28 px-6 relative overflow-hidden">
     <div class="max-w-6xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 bg-[#1a1a2e] border border-[#00d4aa]/30 text-[#00d4aa] text-sm px-6 py-2 rounded-full mb-8">
+      
+      <div class="inline-flex items-center gap-2 bg-[#1a1a2e] border border-[#00d4aa]/30 text-[#00d4aa] text-sm px-6 py-2.5 rounded-full mb-8 fade-in">
         <i class="fas fa-fire"></i>
-        Le standard institutionnel en France
+        Le standard hedge fund accessible en français
       </div>
       
-      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 glow-green">
-        Des analyses de hedge fund,<br>
-        <span class="text-white">pour investisseurs particuliers exigeants.</span>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 fade-in animate-float" style="animation-delay: 300ms">
+        Des analyses de qualité<br>
+        <span class="text-[#00d4aa] glow-green">institutionnelle</span>,<br>
+        enfin à la portée des particuliers.
       </h1>
       
-      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
-        Backtesté à +32.6% CAGR sur 10 ans. Analyses techniques quotidiennes, valorisations DCF, macroéconomie et stratégies quantitatives de qualité institutionnelle.
+      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10 fade-in" style="animation-delay: 600ms">
+        Backtesté à <strong>+32.6% CAGR</strong> sur 10 ans avec un drawdown maximum de seulement -18.4%.<br>
+        Analyses techniques quotidiennes, valorisations DCF, macroéconomie et stratégies dividendes de niveau hedge fund.
       </p>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white transition flex items-center gap-3">
-          <span>Démarrer l'essai gratuit 7 jours</span>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center mb-16">
+        <a href="#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-5 rounded-2xl hover:bg-white transition flex items-center gap-3">
+          Démarrer l'essai gratuit 7 jours
           <i class="fas fa-arrow-right"></i>
         </a>
-        <a href="#track" class="border border-gray-600 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
-          Voir le Track Record détaillé
+        <a href="#track" class="border border-gray-600 font-bold text-lg px-8 py-5 rounded-2xl hover:border-white transition">
+          Voir le Track Record détaillé →
         </a>
       </div>
 
-      <div class="mt-16 text-sm text-gray-500">
-        Déjà utilisé par plus de <span class="text-white font-semibold">1 200 investisseurs</span> en France et en Europe
+      <div class="mt-12 text-sm text-gray-500 fade-in" style="animation-delay: 900ms">
+        Déjà utilisé par plus de <span class="text-white font-semibold">1 200 investisseurs</span> sérieux en France et en Europe
       </div>
     </div>
   </section>
 
+  <!-- LE RESTE DE TA PAGE (je n'ai rien touché) -->
   <!-- STATS -->
   <section class="py-12 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center px-6">
@@ -182,14 +200,12 @@
       <p class="text-gray-400 mb-16">7 jours d'essai gratuit • Annulation à tout moment</p>
 
       <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <!-- Gratuit -->
         <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
           <h3 class="text-2xl font-bold">Gratuit</h3>
           <div class="text-5xl font-bold my-4">0€</div>
           <button class="w-full mt-8 py-4 border border-gray-600 rounded-2xl font-bold hover:border-white">Commencer gratuitement</button>
         </div>
 
-        <!-- Pro -->
         <div class="bg-[#1a1a2e] border-2 border-[#00d4aa] rounded-3xl p-8 relative -mt-4">
           <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1 rounded-full">LE PLUS CHOISI</div>
           <h3 class="text-2xl font-bold">Pro</h3>
@@ -197,7 +213,6 @@
           <button class="w-full mt-8 py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white">Essai gratuit 7 jours</button>
         </div>
 
-        <!-- Elite -->
         <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
           <h3 class="text-2xl font-bold">Elite</h3>
           <div class="text-5xl font-bold my-4">99€<span class="text-base font-normal text-gray-400">/mois</span></div>
