@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citadel Alpha | Research Quantitative</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    .hero-bg { background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%); }
+    .accent-green { color: #00d4aa; }
+  </style>
+</head>
+<body class="bg-[#0a0a0f] text-gray-200">
+
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <span class="text-3xl text-[#00d4aa] font-bold">◆</span>
+        <span class="text-2xl font-bold tracking-tighter">CITADEL ALPHA</span>
+      </div>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="#methode" class="hover:text-white transition">Méthode</a>
+        <a href="#services" class="hover:text-white transition">Services</a>
+        <a href="#track" class="hover:text-white transition">Track Record</a>
+        <a href="#pricing" class="hover:text-white transition">Tarifs</a>
+      </div>
+      <a href="#pricing" class="bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
+        Essai Gratuit 7 jours
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg pt-32 pb-20 px-6">
+    <div class="max-w-5xl mx-auto text-center">
+      <div class="inline-flex items-center gap-2 bg-[#1a1a2e] border border-[#00d4aa]/30 text-[#00d4aa] text-sm px-5 py-2 rounded-full mb-8">
+        <i class="fas fa-chart-line"></i>
+        Quantitative Research Institutionnel
+      </div>
+      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6">
+        L'analyse de hedge fund,<br>
+        <span class="accent-green">accessible à tous</span>.
+      </h1>
+      <p class="text-xl text-gray-400 max-w-2xl mx-auto mb-10">
+        Analyses techniques, DCF, macroéconomie et stratégies quantitatives de qualité institutionnelle.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-xl hover:bg-white transition">
+          Commencer l'essai gratuit →
+        </a>
+        <a href="#track" class="border border-gray-600 font-bold text-lg px-8 py-4 rounded-xl hover:border-white transition">
+          Voir le Track Record
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="border-y border-gray-800 py-12 bg-[#12121a]">
+    <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center px-6">
+      <div>
+        <div class="text-4xl font-bold accent-green">+32.6%</div>
+        <div class="text-sm text-gray-500 mt-1">CAGR sur 10 ans</div>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">+1 238%</div>
+        <div class="text-sm text-gray-500 mt-1">Rendement cumulé</div>
+      </div>
+      <div>
+        <div class="text-4xl font-bold text-amber-400">1.85</div>
+        <div class="text-sm text-gray-500 mt-1">Profit Factor</div>
+      </div>
+      <div>
+        <div class="text-4xl font-bold">-18.4%</div>
+        <div class="text-sm text-gray-500 mt-1">Max Drawdown</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MÉTHODE -->
+  <section id="methode" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4">Notre Méthode</h2>
+      <p class="text-center text-gray-400 max-w-2xl mx-auto mb-16">4 conditions techniques doivent être réunies avant d'entrer en position.</p>
+      
+      <div class="grid md:grid-cols-4 gap-6">
+        <div class="bg-[#1a1a2e] p-8 rounded-2xl border border-gray-800 hover:border-[#00d4aa]/50 transition">
+          <div class="text-4xl mb-6">📈</div>
+          <h3 class="font-bold text-xl mb-3">Tendance Haussière</h3>
+          <p class="text-gray-400">Prix au-dessus de la SMA 200 jours</p>
+        </div>
+        <div class="bg-[#1a1a2e] p-8 rounded-2xl border border-gray-800 hover:border-[#00d4aa]/50 transition">
+          <div class="text-4xl mb-6">📉</div>
+          <h3 class="font-bold text-xl mb-3">Pullback Sain</h3>
+          <p class="text-gray-400">RSI entre 30-55 + zone Fibonacci</p>
+        </div>
+        <div class="bg-[#1a1a2e] p-8 rounded-2xl border border-gray-800 hover:border-[#00d4aa]/50 transition">
+          <div class="text-4xl mb-6">⚡</div>
+          <h3 class="font-bold text-xl mb-3">Momentum</h3>
+          <p class="text-gray-400">MACD Histogramme qui repasse positif</p>
+        </div>
+        <div class="bg-[#1a1a2e] p-8 rounded-2xl border border-gray-800 hover:border-[#00d4aa]/50 transition">
+          <div class="text-4xl mb-6">🛡️</div>
+          <h3 class="font-bold text-xl mb-3">Risk Management</h3>
+          <p class="text-gray-400">Stop Loss et Take Profit définis</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRACK RECORD -->
+  <section id="track" class="py-24 px-6 bg-[#12121a]">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-4xl font-bold text-center mb-4">Track Record 2016 - 2025</h2>
+      <p class="text-center text-gray-400 mb-12">11 748 trades backtestés • Top 50 S&P 500 • Frais inclus</p>
+      
+      <div class="max-w-4xl mx-auto bg-[#1a1a2e] rounded-3xl p-10 border border-gray-800">
+        <table class="w-full">
+          <tr class="border-b border-gray-700">
+            <td class="py-4 font-medium">CAGR Annuel</td>
+            <td class="py-4 text-gray-400 text-right">+16.4%</td>
+            <td class="py-4 text-[#00d4aa] font-bold text-right">+32.6%</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="py-4 font-medium">Rendement Cumulé</td>
+            <td class="py-4 text-gray-400 text-right">+303%</td>
+            <td class="py-4 text-[#00d4aa] font-bold text-right">+1 238%</td>
+          </tr>
+          <tr class="border-b border-gray-700">
+            <td class="py-4 font-medium">Max Drawdown</td>
+            <td class="py-4 text-gray-400 text-right">-33.9%</td>
+            <td class="py-4 text-[#00d4aa] font-bold text-right">-18.4%</td>
+          </tr>
+          <tr>
+            <td class="py-4 font-medium">Profit Factor</td>
+            <td class="py-4 text-gray-400 text-right">—</td>
+            <td class="py-4 text-[#00d4aa] font-bold text-right">1.85</td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section id="pricing" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto text-center">
+      <h2 class="text-4xl font-bold mb-4">Choisissez votre niveau</h2>
+      <p class="text-gray-400 mb-16">7 jours d'essai gratuit sur les plans payants</p>
+
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+        <!-- Gratuit -->
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
+          <h3 class="text-2xl font-bold">Gratuit</h3>
+          <div class="text-5xl font-bold my-4">0€</div>
+          <ul class="space-y-3 text-left text-sm">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> 3 analyses/semaine</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Macro résumé</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Contenu éducatif</li>
+          </ul>
+          <button class="w-full mt-8 py-4 border border-gray-600 rounded-2xl font-bold hover:border-white transition">Commencer gratuitement</button>
+        </div>
+
+        <!-- Pro -->
+        <div class="bg-[#1a1a2e] border-2 border-[#00d4aa] rounded-3xl p-8 relative -mt-4">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1 rounded-full">LE PLUS POPULAIRE</div>
+          <h3 class="text-2xl font-bold">Pro</h3>
+          <div class="text-5xl font-bold my-4">29€<span class="text-base font-normal text-gray-400">/mois</span></div>
+          <ul class="space-y-3 text-left text-sm">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Analyses quotidiennes</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Macro Brief complet</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> DCF + Dividendes + Screener</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Alertes Telegram</li>
+          </ul>
+          <button class="w-full mt-8 py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white transition">Essai gratuit 7 jours</button>
+        </div>
+
+        <!-- Elite -->
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
+          <h3 class="text-2xl font-bold">Elite</h3>
+          <div class="text-5xl font-bold my-4">99€<span class="text-base font-normal text-gray-400">/mois</span></div>
+          <ul class="space-y-3 text-left text-sm">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Tout le plan Pro</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Analyses intraday</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Webinaires Live</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-400"></i> Support prioritaire</li>
+          </ul>
+          <button class="w-full mt-8 py-4 border border-amber-400 text-amber-400 rounded-2xl font-bold hover:bg-amber-400 hover:text-black transition">Devenir Elite</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
+    <p>© 2026 Citadel Alpha Research — Tous droits réservés</p>
+    <p class="mt-4 max-w-3xl mx-auto">
+      ⚠️ Ce site fournit du contenu éducatif et informatif uniquement. Il ne constitue pas un conseil en investissement. 
+      Les performances passées (backtest 2016-2025) ne préjugent pas des résultats futurs. Le trading comporte des risques de perte en capital.
+    </p>
+  </footer>
+
+</body>
+</html>
