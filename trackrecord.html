@@ -1,51 +1,298 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Track Record Complet | Citadel Alpha Research</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Citadel Alpha Track Record — Backtest complet 2016-2025. +32.6% CAGR, 11 748 trades, Profit Factor 1.85.">
+  <title>Track Record | Citadel Alpha</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <style>
+    html { scroll-behavior: smooth; }
+    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.5); }
+    .stat-card { transition: transform 0.3s; }
+    .stat-card:hover { transform: translateY(-2px); }
+  </style>
 </head>
 <body class="bg-[#0a0a0f] text-gray-200">
-    <nav class="p-6 border-b border-gray-800">
-        <a href="index.html" class="text-[#00d4aa] hover:underline"><i class="fas fa-arrow-left"></i> Retour à l'accueil</a>
-    </nav>
 
-    <main class="max-w-4xl mx-auto py-16 px-6">
-        <h1 class="text-4xl md:text-6xl font-bold mb-8 text-white">Rapport d'Audit : Stratégie Citadel Alpha</h1>
-        
-        <div class="bg-[#1a1a2e] p-8 rounded-3xl border border-gray-800 mb-12">
-            <h2 class="text-2xl font-bold mb-4 text-[#00d4aa]">Résumé Exécutif (2016 - 2025)</h2>
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
-                <div><div class="text-3xl font-bold">+32.6%</div><div class="text-xs text-gray-500">CAGR Annuel</div></div>
-                <div><div class="text-3xl font-bold">+1238%</div><div class="text-xs text-gray-500">Rendement Cumulé</div></div>
-                <div><div class="text-3xl font-bold text-amber-400">1.85</div><div class="text-xs text-gray-500">Profit Factor</div></div>
-                <div><div class="text-3xl font-bold text-red-500">-18.4%</div><div class="text-xs text-gray-500">Max Drawdown</div></div>
-            </div>
+  <!-- NAVBAR -->
+  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <span class="text-3xl text-[#00d4aa] font-bold">◆</span>
+        <span class="text-2xl font-bold tracking-tighter">CITADEL ALPHA</span>
+      </a>
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="index.html#methode" class="hover:text-[#00d4aa] transition">Notre Méthode</a>
+        <a href="index.html#services" class="hover:text-[#00d4aa] transition">Services</a>
+        <a href="index.html#track" class="hover:text-[#00d4aa] transition text-[#00d4aa]">Track Record</a>
+        <a href="index.html#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
+      </div>
+      <a href="index.html#pricing" class="hidden sm:inline-block bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
+        Essai Gratuit 7 jours
+      </a>
+    </div>
+  </nav>
+
+  <!-- HEADER -->
+  <section class="pt-32 pb-16 px-6 text-center">
+    <div class="max-w-4xl mx-auto">
+      <a href="index.html" class="text-[#00d4aa] text-sm hover:underline mb-4 inline-block">
+        <i class="fas fa-arrow-left mr-2"></i>Retour à l'accueil
+      </a>
+      <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-green">Track Record</h1>
+      <p class="text-xl text-gray-400">Rapport de Backtest Complet — Citadel Strategy</p>
+      <p class="text-gray-500 mt-2">Capital : $100 000 · Mise par trade : $5 000 · Période : 2016–2025</p>
+    </div>
+  </section>
+
+  <!-- PERFORMANCE GLOBALE -->
+  <section class="pb-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <span class="text-[#00d4aa]">📊</span> Performance Globale
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-[#00d4aa]">$1.34M</div>
+          <div class="text-xs text-gray-400 mt-2">Capital Final</div>
         </div>
-
-        <section class="prose prose-invert max-w-none space-y-8">
-            <h2 class="text-2xl font-bold">1. Méthodologie du Backtest</h2>
-            <p class="text-gray-400">L'analyse a été réalisée sur les 50 plus grandes capitalisations boursières du S&P 500 sur une période glissante de 10 ans. Chaque trade a été simulé avec une mise fixe de 5 000$ sur un capital initial de 100 000$, incluant des frais de transaction réalistes de 5$ par ordre.</p>
-            
-            <h2 class="text-2xl font-bold">2. Analyse de Robustesse (Stress Test)</h2>
-            <p class="text-gray-400">Nous avons testé 5 variations de paramètres (Stop Loss de 5% à 10% et Take Profit de 10% à 20%) pour vérifier si la stratégie dépendait de la "chance" du paramétrage. </p>
-            <div class="bg-[#12121a] p-6 rounded-xl border border-gray-800">
-                <ul class="space-y-3">
-                    <li class="flex justify-between border-b border-gray-800 pb-2"><span>Conservateur (SL serré)</span><span class="font-bold">+27.8% CAGR</span></li>
-                    <li class="flex justify-between border-b border-gray-800 pb-2"><span>Modéré (Standard)</span><span class="font-bold text-[#00d4aa]">+32.6% CAGR</span></li>
-                    <li class="flex justify-between pb-2"><span>Agressif (TP large)</span><span class="font-bold">+35.0% CAGR</span></li>
-                </ul>
-            </div>
-
-            <h2 class="text-2xl font-bold">3. Pourquoi ces résultats sont uniques en France ?</h2>
-            <p class="text-gray-400">La plupart des services francophones reposent sur l'intuition ou l'analyse de news. Notre approche est 100% data-driven. Nous exploitons les inefficacités de marché que les algorithmes institutionnels utilisent, mais avec une agilité que seuls les portefeuilles de particuliers permettent.</p>
-        </section>
-
-        <div class="mt-16 text-center">
-            <a href="index.html#pricing" class="bg-[#00d4aa] text-black font-bold px-10 py-4 rounded-2xl hover:bg-white transition">Accéder aux analyses quotidiennes</a>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-[#00d4aa]">+1 238%</div>
+          <div class="text-xs text-gray-400 mt-2">Rendement Total</div>
         </div>
-    </main>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-[#00d4aa]">+32.6%</div>
+          <div class="text-xs text-gray-400 mt-2">CAGR Annuel</div>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-amber-400">+16.2%</div>
+          <div class="text-xs text-gray-400 mt-2">Alpha vs S&P 500</div>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold">-18.4%</div>
+          <div class="text-xs text-gray-400 mt-2">Max Drawdown</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATISTIQUES TRADES -->
+  <section class="pb-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <span class="text-[#00d4aa]">🎯</span> Statistiques des Trades
+      </h2>
+
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold">56.9%</div>
+          <div class="text-xs text-gray-400 mt-2">Win Rate</div>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold">11 748</div>
+          <div class="text-xs text-gray-400 mt-2">Nombre de Trades</div>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-amber-400">1.85</div>
+          <div class="text-xs text-gray-400 mt-2">Profit Factor</div>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
+          <div class="text-3xl font-bold text-[#00d4aa]">$105.42</div>
+          <div class="text-xs text-gray-400 mt-2">Gain Moyen / Trade</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENCHMARK -->
+  <section class="pb-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <span class="text-[#00d4aa]">📈</span> Benchmark — Citadel Strategy vs S&P 500
+      </h2>
+
+      <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl overflow-hidden">
+        <table class="w-full text-sm">
+          <thead>
+            <tr class="border-b border-gray-700 text-left">
+              <th class="px-6 py-4 text-gray-400 font-medium">Métrique</th>
+              <th class="px-6 py-4 text-[#00d4aa] font-bold">Citadel Strategy</th>
+              <th class="px-6 py-4 text-gray-400 font-medium">S&P 500 (SPY)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-800">
+              <td class="px-6 py-4">Rendement Total</td>
+              <td class="px-6 py-4 text-[#00d4aa] font-bold">+1 238.4%</td>
+              <td class="px-6 py-4">+303.2%</td>
+            </tr>
+            <tr class="border-b border-gray-800">
+              <td class="px-6 py-4">CAGR</td>
+              <td class="px-6 py-4 text-[#00d4aa] font-bold">+32.6%</td>
+              <td class="px-6 py-4">+16.4%</td>
+            </tr>
+            <tr>
+              <td class="px-6 py-4">Alpha généré</td>
+              <td class="px-6 py-4 text-amber-400 font-bold" colspan="2">+16.2 points par an</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEST DE SENSIBILITE -->
+  <section class="pb-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
+        <span class="text-[#00d4aa]">🔬</span> Analyse de Robustesse — Test de Sensibilité
+      </h2>
+      <p class="text-gray-400 mb-8 text-sm">Scénario réaliste $5k/trade. La stratégie est testée sous 5 configurations différentes pour prouver sa stabilité.</p>
+
+      <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl overflow-x-auto">
+        <table class="w-full text-sm whitespace-nowrap">
+          <thead>
+            <tr class="border-b border-gray-700 text-left">
+              <th class="px-4 py-4 text-gray-400 font-medium">Configuration</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">Trades</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">Win%</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">Capital Final</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">CAGR</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">Alpha</th>
+              <th class="px-4 py-4 text-gray-400 font-medium">PF</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="border-b border-gray-800">
+              <td class="px-4 py-4">Conservateur (TP:10% SL:5%)</td>
+              <td class="px-4 py-4">11 748</td>
+              <td class="px-4 py-4">53.3%</td>
+              <td class="px-4 py-4">$955 870</td>
+              <td class="px-4 py-4">27.8%</td>
+              <td class="px-4 py-4">+11.4%</td>
+              <td class="px-4 py-4">1.69</td>
+            </tr>
+            <tr class="border-b border-gray-800">
+              <td class="px-4 py-4">Modéré-Bas (TP:12% SL:6%)</td>
+              <td class="px-4 py-4">11 748</td>
+              <td class="px-4 py-4">55.3%</td>
+              <td class="px-4 py-4">$1 139 492</td>
+              <td class="px-4 py-4">30.3%</td>
+              <td class="px-4 py-4">+13.9%</td>
+              <td class="px-4 py-4">1.76</td>
+            </tr>
+            <tr class="border-b border-gray-800 bg-[#00d4aa]/5">
+              <td class="px-4 py-4 font-bold text-[#00d4aa]">◆ BASE (TP:15% SL:7%)</td>
+              <td class="px-4 py-4 font-bold">11 748</td>
+              <td class="px-4 py-4 font-bold">56.9%</td>
+              <td class="px-4 py-4 font-bold text-[#00d4aa]">$1 338 436</td>
+              <td class="px-4 py-4 font-bold text-[#00d4aa]">32.6%</td>
+              <td class="px-4 py-4 font-bold text-amber-400">+16.2%</td>
+              <td class="px-4 py-4 font-bold">1.85</td>
+            </tr>
+            <tr class="border-b border-gray-800">
+              <td class="px-4 py-4">Modéré-Haut (TP:18% SL:8%)</td>
+              <td class="px-4 py-4">11 748</td>
+              <td class="px-4 py-4">58.4%</td>
+              <td class="px-4 py-4">$1 509 687</td>
+              <td class="px-4 py-4">34.3%</td>
+              <td class="px-4 py-4">+17.9%</td>
+              <td class="px-4 py-4">1.92</td>
+            </tr>
+            <tr>
+              <td class="px-4 py-4">Agressif (TP:20% SL:10%)</td>
+              <td class="px-4 py-4">11 748</td>
+              <td class="px-4 py-4">59.6%</td>
+              <td class="px-4 py-4">$1 574 584</td>
+              <td class="px-4 py-4">35.0%</td>
+              <td class="px-4 py-4">+18.6%</td>
+              <td class="px-4 py-4">1.90</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- Conclusion robustesse -->
+      <div class="mt-6 bg-[#00d4aa]/10 border border-[#00d4aa]/30 rounded-2xl p-6">
+        <h3 class="font-bold text-[#00d4aa] mb-2">✅ Conclusion du test de robustesse</h3>
+        <p class="text-gray-300 text-sm">
+          Le Profit Factor reste supérieur à 1.69 dans toutes les configurations. La stratégie ne s'effondre dans aucun scénario — même le mode Conservateur génère un alpha de +11.4% par rapport au S&P 500. Cela confirme une edge statistique réelle et reproductible.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- GLOSSAIRE -->
+  <section class="pb-16 px-6">
+    <div class="max-w-5xl mx-auto">
+      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
+        <span class="text-[#00d4aa]">📖</span> Glossaire
+      </h2>
+
+      <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">CAGR</div>
+          <p class="text-gray-400 text-sm mt-1">Taux de croissance annuel composé. Mesure la performance annualisée sur toute la période.</p>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">Alpha</div>
+          <p class="text-gray-400 text-sm mt-1">Surperformance par rapport au benchmark (S&P 500). Un alpha positif = on fait mieux que le marché.</p>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">Profit Factor</div>
+          <p class="text-gray-400 text-sm mt-1">Ratio gains totaux / pertes totales. Au-dessus de 1.5 = stratégie solide. Au-dessus de 1.75 = excellente.</p>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">Max Drawdown</div>
+          <p class="text-gray-400 text-sm mt-1">Perte maximale depuis un plus haut. Mesure le pire scénario historique traversé par la stratégie.</p>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">Win Rate</div>
+          <p class="text-gray-400 text-sm mt-1">Pourcentage de trades gagnants. Combiné à un bon Profit Factor, 56.9% est excellent.</p>
+        </div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
+          <div class="font-bold text-sm text-[#00d4aa]">TP / SL</div>
+          <p class="text-gray-400 text-sm mt-1">Take Profit / Stop Loss. Les niveaux de sortie automatique pour sécuriser les gains ou limiter les pertes.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section class="py-20 px-6 bg-[#12121a] border-t border-gray-800">
+    <div class="max-w-3xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Convaincu par les chiffres ?</h2>
+      <p class="text-gray-400 mb-8">Rejoignez Citadel Alpha et accédez à nos analyses de qualité institutionnelle.</p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="index.html#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white transition inline-flex items-center gap-3">
+          Voir les tarifs
+          <i class="fas fa-arrow-right"></i>
+        </a>
+        <a href="index.html" class="border border-gray-600 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
+          Retour à l'accueil
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex justify-center gap-6 mb-6">
+        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-twitter text-xl"></i></a>
+        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-youtube text-xl"></i></a>
+        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-discord text-xl"></i></a>
+      </div>
+      <p>© 2026 Citadel Alpha Research — Analyses Quantitatives & Techniques</p>
+      <p class="mt-4 max-w-3xl mx-auto">
+        ⚠️ Ce site fournit du contenu éducatif uniquement. Il ne constitue pas un conseil en investissement personnalisé. 
+        Les performances passées issues de backtests ne préjugent pas des résultats futurs. Tout investissement comporte un risque de perte en capital.
+      </p>
+    </div>
+  </footer>
+
 </body>
 </html>
