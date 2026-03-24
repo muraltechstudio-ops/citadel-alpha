@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Contact — Citadel Alpha (Opportunity)." />
+  <title>Contact | Citadel Alpha</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    .hero-bg { background: linear-gradient(135deg, #07070b 0%, #12121a 100%); }
+    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.45); }
+    .logo-mark { filter: drop-shadow(0 0 18px rgba(0, 212, 170, 0.18)); }
+  </style>
+</head>
+
+<body class="bg-[#0a0a0f] text-gray-200">
+
+  <!-- NAV -->
+  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
+    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+      <a href="index.html" class="flex items-center gap-3">
+        <svg class="logo-mark" width="34" height="34" viewBox="0 0 64 64" fill="none" aria-label="Logo Citadel Alpha" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/>
+          <path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 36 L32 48 L44 36" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          <path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+        </svg>
+        <div class="leading-tight">
+          <div class="text-xl md:text-2xl font-bold tracking-tight">CITADEL ALPHA</div>
+          <div class="text-[11px] text-gray-400 -mt-0.5">Contact</div>
+        </div>
+      </a>
+
+      <div class="hidden md:flex items-center gap-8 text-sm">
+        <a href="index.html#methode" class="hover:text-[#00d4aa] transition">Notre Méthode</a>
+        <a href="index.html#services" class="hover:text-[#00d4aa] transition">Services</a>
+        <a href="trackrecord.html" class="hover:text-[#00d4aa] transition">Track Record</a>
+        <a href="index.html#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
+        <a href="contact.html" class="hover:text-[#00d4aa] transition text-[#00d4aa] font-bold">Contact</a>
+      </div>
+
+      <a href="index.html#pricing" class="hidden sm:inline-block bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
+        Essai Gratuit 7 jours
+      </a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero-bg pt-32 pb-10 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h1 class="text-4xl md:text-6xl font-bold mb-3 glow-green">Contact</h1>
+      <p class="text-gray-400 text-lg">Une question sur les plans, le track record, ou l’accès Pro ?</p>
+
+      <div class="mt-8 flex flex-col sm:flex-row gap-3 justify-center">
+        <a class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2"
+           href="https://wa.me/33636226987" target="_blank" rel="noopener">
+          <i class="fab fa-whatsapp"></i> WhatsApp
+        </a>
+        <a class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
+           href="tel:+33636226987">
+          <i class="fas fa-phone"></i> Appeler
+        </a>
+        <a class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
+           href="mentions-legales.html">
+          <i class="fas fa-scale-balanced"></i> Mentions légales
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FORM -->
+  <section class="py-12 px-6">
+    <div class="max-w-3xl mx-auto">
+      <div class="bg-[#12121a] border border-gray-800 rounded-2xl p-6">
+        <h2 class="text-2xl font-bold mb-2">Envoyer un message</h2>
+        <p class="text-gray-500 text-sm mb-6">
+          Ce formulaire ouvre WhatsApp avec ton message pré-rempli (aucun serveur, 100% fiable).
+        </p>
+
+        <form id="contactForm" class="space-y-4">
+          <div class="grid md:grid-cols-2 gap-4">
+            <div>
+              <label class="text-sm text-gray-400">Nom</label>
+              <input id="name" class="w-full mt-1 bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-3 outline-none" placeholder="Ton nom" />
+            </div>
+            <div>
+              <label class="text-sm text-gray-400">Objet</label>
+              <input id="subject" class="w-full mt-1 bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-3 outline-none" placeholder="Ex: Abonnement Pro / Track record" />
+            </div>
+          </div>
+
+          <div>
+            <label class="text-sm text-gray-400">Message</label>
+            <textarea id="message" rows="6" class="w-full mt-1 bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-3 outline-none" placeholder="Explique ta demande…"></textarea>
+          </div>
+
+          <div class="flex flex-col sm:flex-row gap-3">
+            <button type="submit" class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2">
+              <i class="fab fa-whatsapp"></i> Envoyer via WhatsApp
+            </button>
+            <button id="copyBtn" type="button" class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2">
+              <i class="fas fa-copy"></i> Copier le message
+            </button>
+          </div>
+
+          <div id="status" class="text-xs text-gray-500"></div>
+        </form>
+      </div>
+
+      <div class="mt-8 text-sm text-gray-500">
+        <div class="font-bold text-gray-200 mb-2">Coordonnées</div>
+        <div>Opportunity — SIREN 403345317</div>
+        <div>4 rue du Labech, 34250 Palavas-les-Flots, France</div>
+        <div>Tél : <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
+        <div>Directeur de la publication : Cyril Rancurel</div>
+        <div>Hébergeur : Vercel</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="border-t border-gray-800 py-12 px-6 text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Citadel Alpha</div>
+        <div class="text-xs leading-relaxed">
+          Contenu éducatif — pas de conseil en investissement personnalisé.<br />
+          Les performances passées issues de backtests ne préjugent pas des résultats futurs.
+        </div>
+      </div>
+
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Légal</div>
+        <ul class="space-y-2 text-sm">
+          <li><a class="hover:text-[#00d4aa] transition" href="mentions-legales.html">Mentions légales</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-confidentialite.html">Politique de confidentialité</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-cookies.html">Politique cookies</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">CGU</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">CGV</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Éditeur</div>
+        <div class="text-sm leading-relaxed">
+          Opportunity — SIREN 403345317<br />
+          4 rue du Labech, 34250 Palavas-les-Flots, France<br />
+          Tél : <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a><br />
+          Directeur de la publication : Cyril Rancurel<br />
+          Hébergeur : Vercel
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800 text-xs text-gray-600 flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+      <div>© 2026 Opportunity</div>
+      <div><a class="hover:text-[#00d4aa] transition" href="index.html">Accueil</a></div>
+    </div>
+  </footer>
+
+  <script>
+    const PHONE = "33636226987"; // format WhatsApp sans +
+    const form = document.getElementById("contactForm");
+    const status = document.getElementById("status");
+
+    function buildMessage() {
+      const name = (document.getElementById("name").value || "").trim();
+      const subject = (document.getElementById("subject").value || "").trim();
+      const message = (document.getElementById("message").value || "").trim();
+
+      const parts = [];
+      if (name) parts.push(`Nom: ${name}`);
+      if (subject) parts.push(`Objet: ${subject}`);
+      parts.push("");
+      parts.push(message || "(message vide)");
+
+      return parts.join("\n");
+    }
+
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const text = encodeURIComponent(buildMessage());
+      const url = `https://wa.me/${PHONE}?text=${text}`;
+      window.open(url, "_blank", "noopener");
+      status.textContent = "Ouverture de WhatsApp…";
+    });
+
+    document.getElementById("copyBtn").addEventListener("click", async () => {
+      try {
+        await navigator.clipboard.writeText(buildMessage());
+        status.textContent = "Message copié dans le presse-papier.";
+      } catch (e) {
+        status.textContent = "Impossible de copier automatiquement. Sélectionne le texte et copie manuellement.";
+      }
+    });
+  </script>
+</body>
+</html>
