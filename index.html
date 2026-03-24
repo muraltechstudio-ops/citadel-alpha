@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Citadel Alpha - Analyses quantitatives et techniques. Track record backtesté, equity curve, et détail des trades." />
+  <meta name="description" content="Citadel Alpha — Analyses quantitatives et techniques de qualité institutionnelle. Track record public avec equity curve et détail des trades." />
   <title>Citadel Alpha | Analyses Quantitatives & Techniques</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -13,12 +13,14 @@
     html { scroll-behavior: smooth; }
     section[id] { scroll-margin-top: 110px; }
 
-    .hero-bg { background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%); }
-    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.5); }
+    .hero-bg { background: linear-gradient(135deg, #07070b 0%, #12121a 100%); }
+    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.45); }
     .mono { font-variant-numeric: tabular-nums; }
 
     .card-hover { transition: transform 0.25s, border-color 0.25s; }
     .card-hover:hover { transform: translateY(-2px); border-color: rgba(0,212,170,0.55); }
+
+    .logo-mark { filter: drop-shadow(0 0 18px rgba(0, 212, 170, 0.18)); }
   </style>
 </head>
 
@@ -28,8 +30,27 @@
   <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-3">
-        <span class="text-3xl text-[#00d4aa] font-bold">◆</span>
-        <span class="text-2xl font-bold tracking-tighter">CITADEL ALPHA</span>
+        <!-- LOGO SVG (moderne) -->
+        <svg class="logo-mark" width="34" height="34" viewBox="0 0 64 64" fill="none" aria-label="Logo Citadel Alpha" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00d4aa"/>
+              <stop offset="1" stop-color="#00b894"/>
+            </linearGradient>
+          </defs>
+          <!-- Diamond -->
+          <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/>
+          <!-- Inner chevron -->
+          <path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 36 L32 48 L44 36" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          <!-- Center bar -->
+          <path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+        </svg>
+
+        <div class="leading-tight">
+          <div class="text-xl md:text-2xl font-bold tracking-tight">CITADEL ALPHA</div>
+          <div class="text-[11px] text-gray-400 -mt-0.5">Research • Quant • Technique</div>
+        </div>
       </a>
 
       <div class="hidden md:flex items-center gap-8 text-sm">
@@ -37,6 +58,7 @@
         <a href="#services" class="hover:text-[#00d4aa] transition">Services</a>
         <a href="#track" class="hover:text-[#00d4aa] transition">Track Record</a>
         <a href="#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
+        <a href="contact.html" class="hover:text-[#00d4aa] transition">Contact</a>
       </div>
 
       <a href="#pricing" class="bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
@@ -48,8 +70,8 @@
   <!-- HERO -->
   <section class="hero-bg pt-32 pb-20 px-6 relative overflow-hidden">
     <div class="max-w-6xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 bg-[#1a1a2e] border border-[#00d4aa]/30 text-[#00d4aa] text-sm px-6 py-2 rounded-full mb-8">
-        <i class="fas fa-fire"></i>
+      <div class="inline-flex items-center gap-2 bg-[#141426] border border-[#00d4aa]/25 text-[#00d4aa] text-sm px-6 py-2 rounded-full mb-8">
+        <i class="fas fa-sparkles"></i>
         Le standard institutionnel en France
       </div>
 
@@ -59,7 +81,7 @@
       </h1>
 
       <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
-        Analyse technique, quant et fondamentale. Track record public avec equity curve et détail de tous les trades.
+        Analyse technique + quant + fundamental. Track record public (equity curve + table complète des trades).
       </p>
 
       <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
@@ -67,10 +89,14 @@
           <span>Démarrer l'essai gratuit 7 jours</span>
           <i class="fas fa-arrow-right"></i>
         </a>
-        <a href="trackrecord.html" class="border border-gray-600 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
+        <a href="trackrecord.html" class="border border-gray-700 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
           Voir le Track Record détaillé
         </a>
       </div>
+
+      <p class="text-xs text-gray-500 mt-8 max-w-3xl mx-auto">
+        Contenu éducatif. Pas de conseil en investissement personnalisé. Les performances passées issues de backtests ne préjugent pas des résultats futurs.
+      </p>
     </div>
   </section>
 
@@ -78,26 +104,31 @@
   <section id="methode" class="py-20 px-6">
     <div class="max-w-6xl mx-auto">
       <h2 class="text-4xl font-bold text-center mb-6">Notre Méthode</h2>
-      <p class="text-center text-gray-400 max-w-3xl mx-auto mb-10">
-        Une approche multi-facteurs : tendance long-terme (SMA200), pullbacks contrôlés (RSI/Fibo),
-        et confirmation momentum (MACD) — avec règles de sortie strictes (TP/SL/Time stop).
+      <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
+        Une approche multi-facteurs qui combine tendance long-terme, pullbacks contrôlés et confirmation momentum.
       </p>
 
       <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="text-3xl mb-3">🔬</div>
-          <div class="font-bold mb-2">Quant</div>
-          <div class="text-sm text-gray-400">Règles explicites, backtests, mesures de robustesse.</div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
+          <div class="text-3xl mb-4">🔬</div>
+          <div class="text-lg font-bold mb-2">Quant & Discipline</div>
+          <div class="text-sm text-gray-400">
+            Règles explicites, backtests, sensibilité TP/SL, logs complets et transparence.
+          </div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="text-3xl mb-3">📈</div>
-          <div class="font-bold mb-2">Technique</div>
-          <div class="text-sm text-gray-400">Tendance, niveaux, scénarios et plan de trade.</div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
+          <div class="text-3xl mb-4">📈</div>
+          <div class="text-lg font-bold mb-2">Technique “Actionnable”</div>
+          <div class="text-sm text-gray-400">
+            Tendance multi-timeframe, niveaux, invalidation, ratio risque/rendement, plan d’exécution.
+          </div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="text-3xl mb-3">🏦</div>
-          <div class="font-bold mb-2">Fondamental</div>
-          <div class="text-sm text-gray-400">Résultats, valorisation, risques, catalyseurs.</div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
+          <div class="text-3xl mb-4">🏦</div>
+          <div class="text-lg font-bold mb-2">Fondamental & Catalyseurs</div>
+          <div class="text-sm text-gray-400">
+            Earnings, DCF, qualité du bilan, catalyseurs 3–12 mois et risques majeurs.
+          </div>
         </div>
       </div>
     </div>
@@ -106,39 +137,84 @@
   <!-- SERVICES -->
   <section id="services" class="py-20 px-6 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-6">Nos Services</h2>
-      <p class="text-center text-gray-400 mb-10">
-        Analyses publiques + contenu Pro (plans de trades complets, portefeuille modèle, risk management).
-      </p>
+      <h2 class="text-4xl font-bold text-center mb-6">Services</h2>
+      <p class="text-center text-gray-400 mb-12">Du contenu public pour découvrir la méthode + du contenu Pro pour exécuter avec rigueur.</p>
 
       <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="font-bold mb-2">Analyse Technique</div>
-          <div class="text-sm text-gray-400">Setups, niveaux clés, plan d’exécution.</div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Stock Screener</div>
+            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+          </div>
+          <div class="text-sm text-gray-400">Idées d’actions + lecture risque/qualité.</div>
         </div>
+
         <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="font-bold mb-2">Stock Screener</div>
-          <div class="text-sm text-gray-400">Idées d’actions + filtres qualité/risque.</div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Analyse Technique (Express)</div>
+            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+          </div>
+          <div class="text-sm text-gray-400">Tendance + niveaux + scénario rapide.</div>
         </div>
+
         <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="font-bold mb-2">Earnings</div>
-          <div class="text-sm text-gray-400">Pré-publication résultats + scénarios.</div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Earnings Preview</div>
+            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+          </div>
+          <div class="text-sm text-gray-400">Ce que le marché attend + scénarios.</div>
         </div>
+
         <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="font-bold mb-2">Macro</div>
-          <div class="text-sm text-gray-400">Taux, inflation, rotation sectorielle.</div>
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Macro Brief</div>
+            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+          </div>
+          <div class="text-sm text-gray-400">Taux, inflation, rotation, risques.</div>
+        </div>
+
+        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Analyse Technique (Complète)</div>
+            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
+          </div>
+          <div class="text-sm text-gray-400">Plan de trade complet + invalidation + sizing.</div>
+        </div>
+
+        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">DCF & Valorisation</div>
+            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
+          </div>
+          <div class="text-sm text-gray-400">WACC, terminal value, sensibilité, verdict.</div>
+        </div>
+
+        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Risk Management</div>
+            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
+          </div>
+          <div class="text-sm text-gray-400">Corrélations, stress tests, couverture.</div>
+        </div>
+
+        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
+          <div class="flex items-center justify-between mb-3">
+            <div class="font-bold">Portefeuille Modèle</div>
+            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
+          </div>
+          <div class="text-sm text-gray-400">Allocation, MAJ, règles, benchmark.</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- TRACK RECORD (DYNAMIQUE via summary.json) -->
+  <!-- TRACK RECORD (mini cards dynamiques) -->
   <section id="track" class="py-20 px-6">
     <div class="max-w-6xl mx-auto">
       <div class="text-center">
         <h2 class="text-4xl font-bold mb-3">Track Record</h2>
         <p class="text-gray-400 mb-10">
-          Track record public : equity curve, drawdown, et détail de tous les trades.
+          Backtest public : equity curve, drawdown et table de trades.
         </p>
       </div>
 
@@ -173,49 +249,166 @@
       </div>
 
       <p class="text-xs text-gray-500 text-center mt-6 max-w-3xl mx-auto">
-        Les performances passées issues de backtests ne préjugent pas des résultats futurs. Données daily et hypothèses d’exécution.
+        Transparence : logs et exports disponibles sur la page Track Record. Les backtests ont des limites (données daily, hypothèses d’exécution, etc.).
       </p>
     </div>
   </section>
 
-  <!-- PRICING -->
+  <!-- PRICING (détaillé) -->
   <section id="pricing" class="py-20 px-6 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4">Choisissez votre plan</h2>
-      <p class="text-gray-400 mb-12">7 jours d'essai gratuit · Annulation à tout moment</p>
+      <h2 class="text-4xl font-bold mb-4">Tarifs</h2>
+      <p class="text-gray-400 mb-12">7 jours d'essai gratuit • Annulation à tout moment</p>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
-          <h3 class="text-2xl font-bold">Gratuit</h3>
+      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+
+        <!-- FREE -->
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8 card-hover">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold">Gratuit</h3>
+            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+          </div>
           <div class="text-5xl font-bold my-4">0€</div>
-          <button class="w-full mt-8 py-4 border border-gray-600 rounded-2xl font-bold hover:border-white transition">Commencer gratuitement</button>
+          <p class="text-gray-400 text-sm mb-6">Pour découvrir la méthode et le track record.</p>
+
+          <ul class="text-sm space-y-3 mb-8">
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Accès Track Record (equity curve + table)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Stock Screener (sélection)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Analyses techniques “express”</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Brief Macro (mensuel)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Alerts résultats (résumé)</li>
+            <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Plans de trade complets</li>
+            <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Portefeuille modèle</li>
+            <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Communauté (Discord/Telegram)</li>
+          </ul>
+
+          <a href="trackrecord.html" class="w-full inline-flex justify-center py-4 border border-gray-600 rounded-2xl font-bold hover:border-white transition">
+            Voir le track record
+          </a>
         </div>
 
-        <div class="bg-[#1a1a2e] border-2 border-[#00d4aa] rounded-3xl p-8 relative md:-mt-4">
-          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1.5 rounded-full">LE PLUS CHOISI</div>
-          <h3 class="text-2xl font-bold">Pro</h3>
+        <!-- PRO -->
+        <div class="bg-[#1a1a2e] border-2 border-[#00d4aa] rounded-3xl p-8 relative card-hover">
+          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1.5 rounded-full">
+            LE PLUS CHOISI
+          </div>
+
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold">Pro</h3>
+            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
+          </div>
+
           <div class="text-5xl font-bold my-4">39€<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <button class="w-full mt-8 py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white transition">Essai gratuit 7 jours</button>
+          <p class="text-gray-400 text-sm mb-6">Pour exécuter avec rigueur et un cadre complet.</p>
+
+          <ul class="text-sm space-y-3 mb-8">
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Tout le plan Gratuit</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Analyses techniques complètes (plan de trade)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Valorisations DCF (mémos)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Earnings previews complètes (scénarios)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Risk report mensuel (corrélation / stress test)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Portefeuille modèle + règles + MAJ</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Accès communauté (Discord/Telegram)</li>
+          </ul>
+
+          <a href="contact.html" class="w-full inline-flex justify-center py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white transition">
+            Essai gratuit 7 jours
+          </a>
         </div>
 
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8">
-          <h3 class="text-2xl font-bold">Elite</h3>
+        <!-- ELITE -->
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8 card-hover">
+          <div class="flex items-center justify-between">
+            <h3 class="text-2xl font-bold">Elite</h3>
+            <span class="text-xs px-2 py-1 rounded bg-amber-400/15 text-amber-300 border border-amber-400/25">ELITE</span>
+          </div>
+
           <div class="text-5xl font-bold my-4">99€<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <button class="w-full mt-8 py-4 border border-amber-400 text-amber-400 rounded-2xl font-bold hover:bg-amber-400 hover:text-black transition">Devenir Elite</button>
+          <p class="text-gray-400 text-sm mb-6">Pour un accompagnement plus personnalisé.</p>
+
+          <ul class="text-sm space-y-3 mb-8">
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Tout le plan Pro</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Analyses sur demande (jusqu’à 2/mois)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Portefeuille “Dividendes/Income” (séries)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Canal privé Elite</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Session Q&A / mois (live)</li>
+          </ul>
+
+          <a href="contact.html" class="w-full inline-flex justify-center py-4 border border-amber-400 text-amber-300 rounded-2xl font-bold hover:bg-amber-400 hover:text-black transition">
+            Contacter (Elite)
+          </a>
         </div>
       </div>
+
+      <p class="text-xs text-gray-500 mt-10 max-w-4xl mx-auto">
+        Les offres et contenus peuvent évoluer. Aucune promesse de performance. Tout investissement comporte un risque de perte en capital.
+      </p>
     </div>
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
-    <p>© 2026 Citadel Alpha Research — Analyses Quantitatives & Techniques</p>
-    <p class="mt-4 max-w-3xl mx-auto">
-      Ce site fournit du contenu éducatif uniquement. Il ne constitue pas un conseil en investissement.
-      Les performances passées issues de backtests ne préjugent pas des résultats futurs.
-    </p>
+  <footer class="border-t border-gray-800 py-12 px-6 text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+      <!-- Brand -->
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="logo-mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g2" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g2)" stroke-width="3.5" opacity="0.95"/>
+            <path d="M20 28 L32 16 L44 28" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 36 L32 48 L44 36" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+            <path d="M22 32 H42" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+          <div class="font-bold text-gray-200">Citadel Alpha</div>
+        </div>
+        <div class="text-gray-500 text-xs leading-relaxed">
+          Contenu éducatif — pas de conseil en investissement personnalisé.<br />
+          Les performances passées (backtests) ne préjugent pas des résultats futurs.
+        </div>
+
+        <div class="flex gap-4 mt-4 text-gray-400">
+          <a href="contact.html" class="hover:text-[#00d4aa] transition" aria-label="Contact"><i class="fas fa-envelope"></i></a>
+          <a href="https://wa.me/33636226987" class="hover:text-[#00d4aa] transition" aria-label="WhatsApp" target="_blank" rel="noopener"><i class="fab fa-whatsapp"></i></a>
+        </div>
+      </div>
+
+      <!-- Legal links -->
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Légal</div>
+        <ul class="space-y-2 text-sm">
+          <li><a class="hover:text-[#00d4aa] transition" href="mentions-legales.html">Mentions légales</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-confidentialite.html">Politique de confidentialité</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-cookies.html">Politique cookies</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">Conditions générales d’utilisation (CGU)</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">Conditions générales de vente (CGV)</a></li>
+        </ul>
+      </div>
+
+      <!-- Company -->
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Éditeur</div>
+        <div class="text-sm leading-relaxed">
+          <div><span class="text-gray-400">Société :</span> Opportunity</div>
+          <div><span class="text-gray-400">SIREN :</span> 403345317</div>
+          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots, France</div>
+          <div><span class="text-gray-400">Téléphone :</span> <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
+          <div class="mt-2"><span class="text-gray-400">Directeur de la publication :</span> Cyril Rancurel</div>
+          <div><span class="text-gray-400">Hébergeur :</span> Vercel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800 text-xs text-gray-600 flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+      <div>© 2026 Opportunity — Citadel Alpha Research</div>
+      <div><a class="hover:text-[#00d4aa] transition" href="contact.html">Contact</a></div>
+    </div>
   </footer>
 
+  <!-- Home: Track record mini-cards dynamiques -->
   <script>
     const SUMMARY_URL = './backtest/summary.json';
     const moneyUS = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
