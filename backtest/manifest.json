@@ -3,9 +3,7 @@
     "all_trades_json": "all_trades.json",
     "all_trades_csv": "all_trades.csv",
     "equity_curve_json": "equity_curve.json",
-    "equity_curve_csv": "equity_curve.csv",
     "spy_curve_json": "spy_curve.json",
-    "spy_curve_csv": "spy_curve.csv",
     "summary_json": "summary.json"
   }
 }

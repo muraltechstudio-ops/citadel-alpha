@@ -2,16 +2,16 @@
   "capital_initial": 100000.0,
   "trade_value": 5000.0,
   "period": {
-    "start": "2016-01-04",
-    "end": "2025-12-31"
+    "start": "2016-10-19",
+    "end": "2026-03-23"
   },
-  "trades": 11990,
-  "final_equity": 1392638.08,
-  "total_return_pct": 1292.64,
-  "cagr_pct": 30.16,
-  "spy_cagr_pct": 14.89,
-  "alpha_vs_spy_pts": 15.27,
+  "trades": 11980,
+  "final_equity": 1399902.0,
+  "total_return_pct": 1299.9,
+  "cagr_pct": 32.32,
+  "spy_cagr_pct": 14.44,
+  "alpha_vs_spy_pts": 17.88,
   "max_drawdown_pct": -20.95,
-  "win_rate_pct": 56.26,
+  "win_rate_pct": 56.3,
   "profit_factor": 1.88
 }
