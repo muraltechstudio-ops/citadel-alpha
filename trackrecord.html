@@ -1,19 +1,29 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Citadel Alpha Track Record — Backtest complet 2016-2025. +32.6% CAGR, 11 748 trades, Profit Factor 1.85.">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Citadel Alpha Track Record — Equity curve, drawdown, et détail de tous les trades (backtest 2016–2025)." />
   <title>Track Record | Citadel Alpha</title>
+
   <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
   <style>
     html { scroll-behavior: smooth; }
+    section[id] { scroll-margin-top: 110px; }
+
     .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.5); }
-    .stat-card { transition: transform 0.3s; }
-    .stat-card:hover { transform: translateY(-2px); }
+    .hero-bg { background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%); }
+
+    .stat-card { transition: transform 0.25s, border-color 0.25s; }
+    .stat-card:hover { transform: translateY(-2px); border-color: rgba(0,212,170,0.55); }
+
+    .mono { font-variant-numeric: tabular-nums; }
   </style>
 </head>
+
 <body class="bg-[#0a0a0f] text-gray-200">
 
   <!-- NAVBAR -->
@@ -23,12 +33,14 @@
         <span class="text-3xl text-[#00d4aa] font-bold">◆</span>
         <span class="text-2xl font-bold tracking-tighter">CITADEL ALPHA</span>
       </a>
+
       <div class="hidden md:flex items-center gap-8 text-sm">
         <a href="index.html#methode" class="hover:text-[#00d4aa] transition">Notre Méthode</a>
         <a href="index.html#services" class="hover:text-[#00d4aa] transition">Services</a>
-        <a href="index.html#track" class="hover:text-[#00d4aa] transition text-[#00d4aa]">Track Record</a>
+        <a href="#top" class="hover:text-[#00d4aa] transition text-[#00d4aa] font-bold">Track Record</a>
         <a href="index.html#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
       </div>
+
       <a href="index.html#pricing" class="hidden sm:inline-block bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
         Essai Gratuit 7 jours
       </a>
@@ -36,236 +48,239 @@
   </nav>
 
   <!-- HEADER -->
-  <section class="pt-32 pb-16 px-6 text-center">
-    <div class="max-w-4xl mx-auto">
+  <section id="top" class="hero-bg pt-32 pb-10 px-6">
+    <div class="max-w-5xl mx-auto text-center">
       <a href="index.html" class="text-[#00d4aa] text-sm hover:underline mb-4 inline-block">
         <i class="fas fa-arrow-left mr-2"></i>Retour à l'accueil
       </a>
-      <h1 class="text-4xl md:text-6xl font-bold mb-4 glow-green">Track Record</h1>
-      <p class="text-xl text-gray-400">Rapport de Backtest Complet — Citadel Strategy</p>
-      <p class="text-gray-500 mt-2">Capital : $100 000 · Mise par trade : $5 000 · Période : 2016–2025</p>
-    </div>
-  </section>
 
-  <!-- PERFORMANCE GLOBALE -->
-  <section class="pb-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
-        <span class="text-[#00d4aa]">📊</span> Performance Globale
-      </h2>
+      <h1 class="text-4xl md:text-6xl font-bold mb-3 glow-green">Track Record</h1>
+      <p class="text-xl text-gray-400">Equity curve + drawdown + détail complet des trades</p>
 
-      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-[#00d4aa]">$1.34M</div>
-          <div class="text-xs text-gray-400 mt-2">Capital Final</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-[#00d4aa]">+1 238%</div>
-          <div class="text-xs text-gray-400 mt-2">Rendement Total</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-[#00d4aa]">+32.6%</div>
-          <div class="text-xs text-gray-400 mt-2">CAGR Annuel</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-amber-400">+16.2%</div>
-          <div class="text-xs text-gray-400 mt-2">Alpha vs S&P 500</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold">-18.4%</div>
-          <div class="text-xs text-gray-400 mt-2">Max Drawdown</div>
-        </div>
+      <p class="text-gray-500 mt-2 mono">
+        <span id="periodLine">Chargement de la période…</span>
+        <span class="mx-2">·</span>
+        Capital : <span id="capitalLine">—</span>
+        <span class="mx-2">·</span>
+        Mise/trade : <span id="tradeValueLine">—</span>
+      </p>
+
+      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
+        <a id="downloadCSV" class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2"
+           href="./backtest/all_trades.csv" download>
+          <i class="fas fa-download"></i>
+          Télécharger CSV (tous les trades)
+        </a>
+
+        <a id="downloadJSON" class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
+           href="./backtest/all_trades.json" download>
+          <i class="fas fa-code"></i>
+          Télécharger JSON
+        </a>
+
+        <a href="#trades" class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2">
+          <i class="fas fa-table"></i>
+          Voir la table
+        </a>
+      </div>
+
+      <div class="mt-6 text-xs text-gray-500 max-w-3xl mx-auto">
+        Les données de backtest sont publiées pour transparence. Backtest ≠ performance future. Le modèle repose sur des données daily et des hypothèses d’exécution.
       </div>
     </div>
   </section>
 
-  <!-- STATISTIQUES TRADES -->
-  <section class="pb-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
-        <span class="text-[#00d4aa]">🎯</span> Statistiques des Trades
-      </h2>
+  <!-- ERRORS -->
+  <section class="py-6 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div id="globalError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300"></div>
+    </div>
+  </section>
+
+  <!-- SUMMARY -->
+  <section id="summary" class="pb-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex items-end justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-2xl font-bold">Résumé</h2>
+          <p class="text-gray-500 text-sm">Chargé depuis <span class="mono">./backtest/summary.json</span></p>
+        </div>
+        <a href="#charts" class="text-sm text-[#00d4aa] hover:underline">Aller aux graphiques →</a>
+      </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold">56.9%</div>
-          <div class="text-xs text-gray-400 mt-2">Win Rate</div>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+          <div class="text-xs text-gray-400">Capital final</div>
+          <div id="s_final" class="text-2xl font-bold text-[#00d4aa] mt-1 mono">—</div>
+          <div id="s_total" class="text-xs text-gray-500 mt-1 mono">—</div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold">11 748</div>
-          <div class="text-xs text-gray-400 mt-2">Nombre de Trades</div>
+
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+          <div class="text-xs text-gray-400">CAGR</div>
+          <div id="s_cagr" class="text-2xl font-bold mt-1 mono">—</div>
+          <div id="s_alpha" class="text-xs text-gray-500 mt-1 mono">—</div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-amber-400">1.85</div>
-          <div class="text-xs text-gray-400 mt-2">Profit Factor</div>
+
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+          <div class="text-xs text-gray-400">Max Drawdown</div>
+          <div id="s_dd" class="text-2xl font-bold mt-1 mono">—</div>
+          <div class="text-xs text-gray-500 mt-1">Plus bas historique depuis un plus haut</div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-6 text-center stat-card">
-          <div class="text-3xl font-bold text-[#00d4aa]">$105.42</div>
-          <div class="text-xs text-gray-400 mt-2">Gain Moyen / Trade</div>
+
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+          <div class="text-xs text-gray-400">Trades / Win rate / PF</div>
+          <div id="s_misc" class="text-sm font-bold mt-2 mono">—</div>
+          <div class="text-xs text-gray-500 mt-1">Mesures agrégées sur la période</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- BENCHMARK -->
-  <section class="pb-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
-        <span class="text-[#00d4aa]">📈</span> Benchmark — Citadel Strategy vs S&P 500
-      </h2>
+  <!-- CHARTS -->
+  <section id="charts" class="py-12 px-6 bg-[#12121a] border-y border-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-2xl font-bold">Graphiques</h2>
+          <p class="text-gray-500 text-sm">
+            Equity curve depuis <span class="mono">./backtest/equity_curve.json</span> et benchmark depuis <span class="mono">./backtest/spy_curve.json</span>
+          </p>
+        </div>
 
-      <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl overflow-hidden">
-        <table class="w-full text-sm">
-          <thead>
-            <tr class="border-b border-gray-700 text-left">
-              <th class="px-6 py-4 text-gray-400 font-medium">Métrique</th>
-              <th class="px-6 py-4 text-[#00d4aa] font-bold">Citadel Strategy</th>
-              <th class="px-6 py-4 text-gray-400 font-medium">S&P 500 (SPY)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-gray-800">
-              <td class="px-6 py-4">Rendement Total</td>
-              <td class="px-6 py-4 text-[#00d4aa] font-bold">+1 238.4%</td>
-              <td class="px-6 py-4">+303.2%</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="px-6 py-4">CAGR</td>
-              <td class="px-6 py-4 text-[#00d4aa] font-bold">+32.6%</td>
-              <td class="px-6 py-4">+16.4%</td>
-            </tr>
-            <tr>
-              <td class="px-6 py-4">Alpha généré</td>
-              <td class="px-6 py-4 text-amber-400 font-bold" colspan="2">+16.2 points par an</td>
-            </tr>
-          </tbody>
-        </table>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <button id="toggleScale" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-white transition text-sm font-bold">
+            Échelle : Linéaire
+          </button>
+          <button id="toggleSpy" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-white transition text-sm font-bold">
+            SPY : Affiché
+          </button>
+        </div>
+      </div>
+
+      <div class="grid lg:grid-cols-2 gap-6">
+        <div class="bg-[#0a0a0f] border border-gray-800 rounded-2xl p-4">
+          <div class="text-sm text-gray-400 mb-2">Equity Curve (Stratégie vs SPY)</div>
+          <canvas id="equityChart" height="140"></canvas>
+        </div>
+
+        <div class="bg-[#0a0a0f] border border-gray-800 rounded-2xl p-4">
+          <div class="text-sm text-gray-400 mb-2">Drawdown (Stratégie)</div>
+          <canvas id="ddChart" height="140"></canvas>
+        </div>
+      </div>
+
+      <div class="mt-4 text-xs text-gray-500">
+        Note : le drawdown est calculé à partir de l’equity curve exportée. Les backtests sur données daily ne capturent pas parfaitement l’ordre intra‑journée (TP/SL).
       </div>
     </div>
   </section>
 
-  <!-- TEST DE SENSIBILITE -->
-  <section class="pb-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4 flex items-center gap-3">
-        <span class="text-[#00d4aa]">🔬</span> Analyse de Robustesse — Test de Sensibilité
-      </h2>
-      <p class="text-gray-400 mb-8 text-sm">Scénario réaliste $5k/trade. La stratégie est testée sous 5 configurations différentes pour prouver sa stabilité.</p>
+  <!-- METHODO -->
+  <section id="methodo" class="py-12 px-6">
+    <div class="max-w-6xl mx-auto">
+      <h2 class="text-2xl font-bold mb-4">Méthodologie (résumé)</h2>
 
-      <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl overflow-x-auto">
-        <table class="w-full text-sm whitespace-nowrap">
-          <thead>
-            <tr class="border-b border-gray-700 text-left">
-              <th class="px-4 py-4 text-gray-400 font-medium">Configuration</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">Trades</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">Win%</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">Capital Final</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">CAGR</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">Alpha</th>
-              <th class="px-4 py-4 text-gray-400 font-medium">PF</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="border-b border-gray-800">
-              <td class="px-4 py-4">Conservateur (TP:10% SL:5%)</td>
-              <td class="px-4 py-4">11 748</td>
-              <td class="px-4 py-4">53.3%</td>
-              <td class="px-4 py-4">$955 870</td>
-              <td class="px-4 py-4">27.8%</td>
-              <td class="px-4 py-4">+11.4%</td>
-              <td class="px-4 py-4">1.69</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="px-4 py-4">Modéré-Bas (TP:12% SL:6%)</td>
-              <td class="px-4 py-4">11 748</td>
-              <td class="px-4 py-4">55.3%</td>
-              <td class="px-4 py-4">$1 139 492</td>
-              <td class="px-4 py-4">30.3%</td>
-              <td class="px-4 py-4">+13.9%</td>
-              <td class="px-4 py-4">1.76</td>
-            </tr>
-            <tr class="border-b border-gray-800 bg-[#00d4aa]/5">
-              <td class="px-4 py-4 font-bold text-[#00d4aa]">◆ BASE (TP:15% SL:7%)</td>
-              <td class="px-4 py-4 font-bold">11 748</td>
-              <td class="px-4 py-4 font-bold">56.9%</td>
-              <td class="px-4 py-4 font-bold text-[#00d4aa]">$1 338 436</td>
-              <td class="px-4 py-4 font-bold text-[#00d4aa]">32.6%</td>
-              <td class="px-4 py-4 font-bold text-amber-400">+16.2%</td>
-              <td class="px-4 py-4 font-bold">1.85</td>
-            </tr>
-            <tr class="border-b border-gray-800">
-              <td class="px-4 py-4">Modéré-Haut (TP:18% SL:8%)</td>
-              <td class="px-4 py-4">11 748</td>
-              <td class="px-4 py-4">58.4%</td>
-              <td class="px-4 py-4">$1 509 687</td>
-              <td class="px-4 py-4">34.3%</td>
-              <td class="px-4 py-4">+17.9%</td>
-              <td class="px-4 py-4">1.92</td>
-            </tr>
-            <tr>
-              <td class="px-4 py-4">Agressif (TP:20% SL:10%)</td>
-              <td class="px-4 py-4">11 748</td>
-              <td class="px-4 py-4">59.6%</td>
-              <td class="px-4 py-4">$1 574 584</td>
-              <td class="px-4 py-4">35.0%</td>
-              <td class="px-4 py-4">+18.6%</td>
-              <td class="px-4 py-4">1.90</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
+      <div class="grid md:grid-cols-3 gap-4">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
+          <div class="font-bold text-[#00d4aa] mb-2">Entrées</div>
+          <ul class="text-sm text-gray-300 space-y-2">
+            <li>• Tendance : prix proche/au-dessus SMA200</li>
+            <li>• Pullback : RSI entre 30 et 55</li>
+            <li>• Zone : retracement Fibonacci (Swing 60j)</li>
+            <li>• Momentum : MACD hist en amélioration</li>
+          </ul>
+        </div>
 
-      <!-- Conclusion robustesse -->
-      <div class="mt-6 bg-[#00d4aa]/10 border border-[#00d4aa]/30 rounded-2xl p-6">
-        <h3 class="font-bold text-[#00d4aa] mb-2">✅ Conclusion du test de robustesse</h3>
-        <p class="text-gray-300 text-sm">
-          Le Profit Factor reste supérieur à 1.69 dans toutes les configurations. La stratégie ne s'effondre dans aucun scénario — même le mode Conservateur génère un alpha de +11.4% par rapport au S&P 500. Cela confirme une edge statistique réelle et reproductible.
-        </p>
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
+          <div class="font-bold text-[#00d4aa] mb-2">Sorties</div>
+          <ul class="text-sm text-gray-300 space-y-2">
+            <li>• Take Profit : +15%</li>
+            <li>• Stop Loss : -7%</li>
+            <li>• Time stop : 40 jours max (close)</li>
+          </ul>
+        </div>
+
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
+          <div class="font-bold text-[#00d4aa] mb-2">Limites (honnêtes)</div>
+          <ul class="text-sm text-gray-300 space-y-2">
+            <li>• Données daily (OHLC) : ordre TP/SL intra‑journée non garanti</li>
+            <li>• Frais/slippage : peuvent réduire la perf</li>
+            <li>• Backtest ≠ futur : régime de marché changeant</li>
+          </ul>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- GLOSSAIRE -->
-  <section class="pb-16 px-6">
-    <div class="max-w-5xl mx-auto">
-      <h2 class="text-2xl font-bold mb-8 flex items-center gap-3">
-        <span class="text-[#00d4aa]">📖</span> Glossaire
-      </h2>
+  <!-- TRADES TABLE -->
+  <section id="trades" class="py-12 px-6 bg-[#12121a] border-y border-gray-800">
+    <div class="max-w-6xl mx-auto">
+      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
+        <div>
+          <h2 class="text-2xl font-bold">Tous les trades</h2>
+          <p class="text-gray-500 text-sm">Chargé depuis <span class="mono">./backtest/all_trades.json</span> — recherche + pagination.</p>
+        </div>
 
-      <div class="grid md:grid-cols-2 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">CAGR</div>
-          <p class="text-gray-400 text-sm mt-1">Taux de croissance annuel composé. Mesure la performance annualisée sur toute la période.</p>
+        <div class="flex flex-col sm:flex-row gap-2">
+          <input id="q" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-2 text-sm outline-none"
+                 placeholder="Rechercher (ticker, raison, date)..." />
+          <select id="reason" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-3 py-2 text-sm outline-none">
+            <option value="">Toutes raisons</option>
+            <option value="TAKE PROFIT">TAKE PROFIT</option>
+            <option value="STOP LOSS">STOP LOSS</option>
+            <option value="TIME STOP">TIME STOP</option>
+          </select>
+          <select id="pageSize" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-3 py-2 text-sm outline-none">
+            <option value="50">50 / page</option>
+            <option value="100" selected>100 / page</option>
+            <option value="200">200 / page</option>
+          </select>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">Alpha</div>
-          <p class="text-gray-400 text-sm mt-1">Surperformance par rapport au benchmark (S&P 500). Un alpha positif = on fait mieux que le marché.</p>
+      </div>
+
+      <div id="tradesLoading" class="bg-[#00d4aa]/10 border border-[#00d4aa]/30 rounded-2xl p-5 text-sm text-gray-200">
+        Chargement des trades…
+      </div>
+
+      <div id="tradesError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300"></div>
+
+      <div class="mt-4 bg-[#0a0a0f] border border-gray-800 rounded-2xl overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="min-w-full text-sm">
+            <thead class="bg-[#0a0a0f] border-b border-gray-800">
+              <tr class="text-left text-gray-400">
+                <th class="px-4 py-3">#</th>
+                <th class="px-4 py-3">Ticker</th>
+                <th class="px-4 py-3">Entrée</th>
+                <th class="px-4 py-3">Prix entrée</th>
+                <th class="px-4 py-3">Sortie</th>
+                <th class="px-4 py-3">Prix sortie</th>
+                <th class="px-4 py-3">Raison</th>
+                <th class="px-4 py-3">PnL %</th>
+                <th class="px-4 py-3">PnL $</th>
+                <th class="px-4 py-3">Durée</th>
+              </tr>
+            </thead>
+            <tbody id="tbody" class="divide-y divide-gray-800"></tbody>
+          </table>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">Profit Factor</div>
-          <p class="text-gray-400 text-sm mt-1">Ratio gains totaux / pertes totales. Au-dessus de 1.5 = stratégie solide. Au-dessus de 1.75 = excellente.</p>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">Max Drawdown</div>
-          <p class="text-gray-400 text-sm mt-1">Perte maximale depuis un plus haut. Mesure le pire scénario historique traversé par la stratégie.</p>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">Win Rate</div>
-          <p class="text-gray-400 text-sm mt-1">Pourcentage de trades gagnants. Combiné à un bon Profit Factor, 56.9% est excellent.</p>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-xl p-5">
-          <div class="font-bold text-sm text-[#00d4aa]">TP / SL</div>
-          <p class="text-gray-400 text-sm mt-1">Take Profit / Stop Loss. Les niveaux de sortie automatique pour sécuriser les gains ou limiter les pertes.</p>
+
+        <div class="flex items-center justify-between px-4 py-3 border-t border-gray-800 text-xs text-gray-400">
+          <div id="pageInfo">—</div>
+          <div class="flex items-center gap-2">
+            <button id="prev" class="px-3 py-2 rounded-lg border border-gray-800 hover:border-white transition">Prev</button>
+            <button id="next" class="px-3 py-2 rounded-lg border border-gray-800 hover:border-white transition">Next</button>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
   <!-- CTA FINAL -->
-  <section class="py-20 px-6 bg-[#12121a] border-t border-gray-800">
-    <div class="max-w-3xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Convaincu par les chiffres ?</h2>
-      <p class="text-gray-400 mb-8">Rejoignez Citadel Alpha et accédez à nos analyses de qualité institutionnelle.</p>
+  <section class="py-16 px-6">
+    <div class="max-w-4xl mx-auto text-center">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Prêt à passer en conditions réelles ?</h2>
+      <p class="text-gray-400 mb-8">Accède au contenu Pro : analyses complètes, portefeuille modèle, risk management.</p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <a href="index.html#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white transition inline-flex items-center gap-3">
           Voir les tarifs
@@ -281,18 +296,354 @@
   <!-- FOOTER -->
   <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
     <div class="max-w-6xl mx-auto">
-      <div class="flex justify-center gap-6 mb-6">
-        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-twitter text-xl"></i></a>
-        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-youtube text-xl"></i></a>
-        <a href="#" class="hover:text-[#00d4aa] transition"><i class="fab fa-discord text-xl"></i></a>
-      </div>
-      <p>© 2026 Citadel Alpha Research — Analyses Quantitatives & Techniques</p>
+      <p>© 2026 Citadel Alpha Research — Track Record</p>
       <p class="mt-4 max-w-3xl mx-auto">
-        ⚠️ Ce site fournit du contenu éducatif uniquement. Il ne constitue pas un conseil en investissement personnalisé. 
+        Ce site fournit du contenu éducatif uniquement. Il ne constitue pas un conseil en investissement personnalisé.
         Les performances passées issues de backtests ne préjugent pas des résultats futurs. Tout investissement comporte un risque de perte en capital.
       </p>
     </div>
   </footer>
+
+  <script>
+    // -------------------------
+    // URLs (relatifs = fonctionne sur Vercel et sur un sous-dossier)
+    // -------------------------
+    const BASE = './backtest';
+    const SUMMARY_URL = `${BASE}/summary.json`;
+    const EQUITY_URL  = `${BASE}/equity_curve.json`;
+    const SPY_URL     = `${BASE}/spy_curve.json`;
+    const TRADES_URL  = `${BASE}/all_trades.json`;
+
+    // -------------------------
+    // Formatters
+    // -------------------------
+    const moneyUS = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
+    const intFR   = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
+
+    function fmtMoney(x) {
+      if (!isFinite(Number(x))) return '—';
+      return '$' + moneyUS.format(Number(x));
+    }
+
+    function pct(x, digits = 2) {
+      if (!isFinite(Number(x))) return '—';
+      return Number(x).toFixed(digits) + '%';
+    }
+
+    function showGlobalError(msg) {
+      const box = document.getElementById('globalError');
+      box.classList.remove('hidden');
+      box.textContent = msg;
+    }
+
+    // -------------------------
+    // Load summary.json
+    // -------------------------
+    let summary = null;
+
+    async function loadSummary() {
+      const r = await fetch(SUMMARY_URL, { cache: 'no-store' });
+      if (!r.ok) throw new Error(`summary.json HTTP ${r.status}`);
+      summary = await r.json();
+
+      // Lines
+      const start = summary?.period?.start ?? '—';
+      const end   = summary?.period?.end ?? '—';
+      document.getElementById('periodLine').textContent = `Période : ${start} → ${end}`;
+      document.getElementById('capitalLine').textContent = fmtMoney(summary?.capital_initial ?? NaN);
+      document.getElementById('tradeValueLine').textContent = fmtMoney(summary?.trade_value ?? NaN);
+
+      // Cards
+      document.getElementById('s_final').textContent = fmtMoney(summary?.final_equity ?? NaN);
+      document.getElementById('s_total').textContent = `Rendement cumulé : ${pct(summary?.total_return_pct ?? NaN, 2)}`;
+
+      document.getElementById('s_cagr').textContent = pct(summary?.cagr_pct ?? NaN, 2);
+      document.getElementById('s_alpha').textContent = `Alpha vs SPY : ${pct(summary?.alpha_vs_spy_pts ?? NaN, 2).replace('%',' pts')}`;
+
+      document.getElementById('s_dd').textContent = pct(summary?.max_drawdown_pct ?? NaN, 2);
+
+      const misc = `${intFR.format(summary?.trades ?? 0)} trades · Win ${pct(summary?.win_rate_pct ?? NaN, 2)} · PF ${summary?.profit_factor ?? '—'}`;
+      document.getElementById('s_misc').textContent = misc;
+    }
+
+    // -------------------------
+    // Charts
+    // -------------------------
+    let equityChart = null;
+    let ddChart = null;
+    let yScaleType = 'linear';
+    let spyVisible = true;
+
+    async function loadCharts() {
+      const [eqRes, spyRes] = await Promise.all([
+        fetch(EQUITY_URL, { cache: 'no-store' }),
+        fetch(SPY_URL, { cache: 'no-store' })
+      ]);
+      if (!eqRes.ok) throw new Error(`equity_curve.json HTTP ${eqRes.status}`);
+      if (!spyRes.ok) throw new Error(`spy_curve.json HTTP ${spyRes.status}`);
+
+      const eq = await eqRes.json();
+      const sp = await spyRes.json();
+
+      const spyMap = new Map(sp.map(x => [x.date, Number(x.spy_equity)]));
+
+      const labels = eq.map(x => x.date);
+      const strategy = eq.map(x => Number(x.equity));
+      const spyScaled = eq.map(x => spyMap.get(x.date) ?? null);
+
+      // Drawdown %
+      const dd = eq.map(x => {
+        const v = (x.drawdown ?? null);
+        if (v === null || v === undefined) return null;
+        return Number(v) * 100.0;
+      });
+
+      // Equity chart
+      const ctx1 = document.getElementById('equityChart');
+      equityChart = new Chart(ctx1, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Stratégie (Equity)',
+              data: strategy,
+              borderColor: '#00d4aa',
+              backgroundColor: 'rgba(0, 212, 170, 0.10)',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.15
+            },
+            {
+              label: 'SPY (scaled)',
+              data: spyScaled,
+              borderColor: '#9ca3af',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.15,
+              hidden: !spyVisible
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#e5e7eb' } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}`
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#9ca3af', maxTicksLimit: 8 },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            },
+            y: {
+              type: yScaleType,
+              ticks: { color: '#9ca3af' },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            }
+          }
+        }
+      });
+
+      // Drawdown chart
+      const ctx2 = document.getElementById('ddChart');
+      ddChart = new Chart(ctx2, {
+        type: 'line',
+        data: {
+          labels,
+          datasets: [
+            {
+              label: 'Drawdown (%)',
+              data: dd,
+              borderColor: '#f59e0b',
+              backgroundColor: 'rgba(245, 158, 11, 0.12)',
+              borderWidth: 2,
+              pointRadius: 0,
+              tension: 0.15
+            }
+          ]
+        },
+        options: {
+          responsive: true,
+          interaction: { mode: 'index', intersect: false },
+          plugins: {
+            legend: { labels: { color: '#e5e7eb' } },
+            tooltip: {
+              callbacks: {
+                label: (ctx) => `Drawdown: ${Number(ctx.raw).toFixed(2)}%`
+              }
+            }
+          },
+          scales: {
+            x: {
+              ticks: { color: '#9ca3af', maxTicksLimit: 8 },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            },
+            y: {
+              ticks: { color: '#9ca3af' },
+              grid: { color: 'rgba(255,255,255,0.04)' }
+            }
+          }
+        }
+      });
+    }
+
+    document.getElementById('toggleScale').addEventListener('click', () => {
+      yScaleType = (yScaleType === 'linear') ? 'logarithmic' : 'linear';
+      document.getElementById('toggleScale').textContent = `Échelle : ${yScaleType === 'linear' ? 'Linéaire' : 'Log'}`;
+      if (equityChart) {
+        equityChart.options.scales.y.type = yScaleType;
+        equityChart.update();
+      }
+    });
+
+    document.getElementById('toggleSpy').addEventListener('click', () => {
+      spyVisible = !spyVisible;
+      document.getElementById('toggleSpy').textContent = `SPY : ${spyVisible ? 'Affiché' : 'Masqué'}`;
+      if (equityChart) {
+        equityChart.data.datasets[1].hidden = !spyVisible;
+        equityChart.update();
+      }
+    });
+
+    // -------------------------
+    // Trades table
+    // -------------------------
+    let allTrades = [];
+    let filtered = [];
+    let page = 1;
+
+    const qEl = document.getElementById('q');
+    const reasonEl = document.getElementById('reason');
+    const pageSizeEl = document.getElementById('pageSize');
+    const tbody = document.getElementById('tbody');
+    const pageInfo = document.getElementById('pageInfo');
+
+    function getPageSize() { return Number(pageSizeEl.value || 100); }
+
+    function computePnlDollarIfMissing(t) {
+      // Si pnl_$ existe déjà dans ton export Colab, on l'utilise.
+      if (t["pnl_$"] !== undefined && t["pnl_$"] !== null && t["pnl_$"] !== "") return Number(t["pnl_$"]);
+
+      const pctVal = Number(t.pnl_pct);
+      const tradeValue = Number(summary?.trade_value ?? 5000);
+      if (!isFinite(pctVal) || !isFinite(tradeValue)) return NaN;
+      return (pctVal / 100.0) * tradeValue;
+    }
+
+    function applyFilter() {
+      const q = (qEl.value || '').trim().toLowerCase();
+      const r = (reasonEl.value || '').trim();
+
+      filtered = allTrades.filter(t => {
+        if (r && String(t.exit_reason || '').toUpperCase() !== r.toUpperCase()) return false;
+        if (!q) return true;
+
+        const hay = [
+          t.ticker,
+          t.entry_date,
+          t.exit_date,
+          t.exit_reason
+        ].join(' ').toLowerCase();
+
+        return hay.includes(q);
+      });
+
+      // Sort: entry_date desc
+      filtered.sort((a, b) => (String(b.entry_date || '')).localeCompare(String(a.entry_date || '')));
+
+      page = 1;
+      render();
+    }
+
+    function render() {
+      const pageSize = getPageSize();
+      const total = filtered.length;
+      const totalPages = Math.max(1, Math.ceil(total / pageSize));
+
+      page = Math.min(Math.max(1, page), totalPages);
+      const start = (page - 1) * pageSize;
+      const end = Math.min(start + pageSize, total);
+
+      const slice = filtered.slice(start, end);
+
+      tbody.innerHTML = '';
+      const frag = document.createDocumentFragment();
+
+      slice.forEach((t, i) => {
+        const pnlPct = Number(t.pnl_pct);
+        const pnlDollar = computePnlDollarIfMissing(t);
+
+        const pnlClass = isFinite(pnlPct) && pnlPct >= 0 ? 'text-green-400' : 'text-red-400';
+
+        const trEl = document.createElement('tr');
+        trEl.innerHTML = `
+          <td class="px-4 py-3 text-gray-500 mono">${start + i + 1}</td>
+          <td class="px-4 py-3 font-bold mono">${t.ticker ?? ''}</td>
+          <td class="px-4 py-3 mono">${t.entry_date ?? ''}</td>
+          <td class="px-4 py-3 mono">${isFinite(Number(t.entry_price)) ? Number(t.entry_price).toFixed(2) : ''}</td>
+          <td class="px-4 py-3 mono">${t.exit_date ?? ''}</td>
+          <td class="px-4 py-3 mono">${isFinite(Number(t.exit_price)) ? Number(t.exit_price).toFixed(2) : ''}</td>
+          <td class="px-4 py-3 text-gray-300">${t.exit_reason ?? ''}</td>
+          <td class="px-4 py-3 font-bold ${pnlClass} mono">${isFinite(pnlPct) ? pnlPct.toFixed(2) : ''}%</td>
+          <td class="px-4 py-3 ${pnlClass} mono">${isFinite(pnlDollar) ? pnlDollar.toFixed(2) : ''}</td>
+          <td class="px-4 py-3 text-gray-400 mono">${t.holding_days ?? t.holding_days === 0 ? t.holding_days : ''}</td>
+        `;
+        frag.appendChild(trEl);
+      });
+
+      tbody.appendChild(frag);
+
+      pageInfo.textContent = `Page ${page}/${totalPages} · ${intFR.format(total)} trades (affichés ${total ? (start + 1) : 0}-${end})`;
+    }
+
+    async function loadTrades() {
+      const loading = document.getElementById('tradesLoading');
+      const errBox = document.getElementById('tradesError');
+
+      try {
+        const r = await fetch(TRADES_URL, { cache: 'no-store' });
+        if (!r.ok) throw new Error(`all_trades.json HTTP ${r.status}`);
+        const data = await r.json();
+
+        allTrades = data;
+        filtered = allTrades.slice();
+
+        loading.classList.add('hidden');
+        applyFilter();
+      } catch (e) {
+        loading.classList.add('hidden');
+        errBox.classList.remove('hidden');
+        errBox.textContent = `Erreur chargement all_trades.json : ${e.message} — vérifie ${TRADES_URL}`;
+      }
+    }
+
+    document.getElementById('prev').addEventListener('click', () => { page--; render(); });
+    document.getElementById('next').addEventListener('click', () => { page++; render(); });
+
+    qEl.addEventListener('input', () => applyFilter());
+    reasonEl.addEventListener('change', () => applyFilter());
+    pageSizeEl.addEventListener('change', () => applyFilter());
+
+    // -------------------------
+    // Init
+    // -------------------------
+    (async function init() {
+      try {
+        await loadSummary();
+        await loadCharts();
+        await loadTrades();
+      } catch (e) {
+        showGlobalError(`Erreur initialisation : ${e.message}. Vérifie que le dossier ./backtest contient bien les JSON exportés par Colab.`);
+        console.error(e);
+      }
+    })();
+  </script>
 
 </body>
 </html>
