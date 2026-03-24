@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="256" height="256" viewBox="0 0 256 256" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Citadel Alpha">
+  <defs>
+    <linearGradient id="g" x1="36" y1="22" x2="220" y2="234" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00D4AA"/>
+      <stop offset="1" stop-color="#00B894"/>
+    </linearGradient>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="b"/>
+      <feMerge>
+        <feMergeNode in="b"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- background (transparent by default) -->
+  <!-- outer diamond -->
+  <path d="M128 16 L220 72 V184 L128 240 L36 184 V72 Z"
+        stroke="url(#g)" stroke-width="14" opacity="0.95" filter="url(#glow)"/>
+
+  <!-- inner chevrons -->
+  <path d="M84 108 L128 64 L172 108"
+        stroke="url(#g)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.98"/>
+  <path d="M84 148 L128 192 L172 148"
+        stroke="url(#g)" stroke-width="14" stroke-linecap="round" stroke-linejoin="round" opacity="0.92"/>
+
+  <!-- center bar -->
+  <path d="M90 128 H166"
+        stroke="url(#g)" stroke-width="14" stroke-linecap="round" opacity="0.85"/>
+</svg>
