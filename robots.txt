@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Évite que Google indexe les gros fichiers JSON/CSV de trades (crawl budget / SEO).
+Disallow: /backtest/
+
+Sitemap: https://YOUR-DOMAIN.TLD/sitemap.xml
