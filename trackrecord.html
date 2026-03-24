@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Citadel Alpha Track Record — Equity curve, drawdown, et détail de tous les trades (backtest 2016–2025)." />
+  <meta name="description" content="Citadel Alpha Track Record — Equity curve, drawdown, et détail de tous les trades." />
   <title>Track Record | Citadel Alpha</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -66,13 +66,13 @@
       </p>
 
       <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-        <a id="downloadCSV" class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2"
+        <a class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2"
            href="./backtest/all_trades.csv" download>
           <i class="fas fa-download"></i>
           Télécharger CSV (tous les trades)
         </a>
 
-        <a id="downloadJSON" class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
+        <a class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
            href="./backtest/all_trades.json" download>
           <i class="fas fa-code"></i>
           Télécharger JSON
@@ -175,43 +175,6 @@
     </div>
   </section>
 
-  <!-- METHODO -->
-  <section id="methodo" class="py-12 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-2xl font-bold mb-4">Méthodologie (résumé)</h2>
-
-      <div class="grid md:grid-cols-3 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="font-bold text-[#00d4aa] mb-2">Entrées</div>
-          <ul class="text-sm text-gray-300 space-y-2">
-            <li>• Tendance : prix proche/au-dessus SMA200</li>
-            <li>• Pullback : RSI entre 30 et 55</li>
-            <li>• Zone : retracement Fibonacci (Swing 60j)</li>
-            <li>• Momentum : MACD hist en amélioration</li>
-          </ul>
-        </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="font-bold text-[#00d4aa] mb-2">Sorties</div>
-          <ul class="text-sm text-gray-300 space-y-2">
-            <li>• Take Profit : +15%</li>
-            <li>• Stop Loss : -7%</li>
-            <li>• Time stop : 40 jours max (close)</li>
-          </ul>
-        </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="font-bold text-[#00d4aa] mb-2">Limites (honnêtes)</div>
-          <ul class="text-sm text-gray-300 space-y-2">
-            <li>• Données daily (OHLC) : ordre TP/SL intra‑journée non garanti</li>
-            <li>• Frais/slippage : peuvent réduire la perf</li>
-            <li>• Backtest ≠ futur : régime de marché changeant</li>
-          </ul>
-        </div>
-      </div>
-    </div>
-  </section>
-
   <!-- TRADES TABLE -->
   <section id="trades" class="py-12 px-6 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto">
@@ -224,12 +187,6 @@
         <div class="flex flex-col sm:flex-row gap-2">
           <input id="q" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-2 text-sm outline-none"
                  placeholder="Rechercher (ticker, raison, date)..." />
-          <select id="reason" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-3 py-2 text-sm outline-none">
-            <option value="">Toutes raisons</option>
-            <option value="TAKE PROFIT">TAKE PROFIT</option>
-            <option value="STOP LOSS">STOP LOSS</option>
-            <option value="TIME STOP">TIME STOP</option>
-          </select>
           <select id="pageSize" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-3 py-2 text-sm outline-none">
             <option value="50">50 / page</option>
             <option value="100" selected>100 / page</option>
@@ -276,23 +233,6 @@
     </div>
   </section>
 
-  <!-- CTA FINAL -->
-  <section class="py-16 px-6">
-    <div class="max-w-4xl mx-auto text-center">
-      <h2 class="text-3xl md:text-4xl font-bold mb-4">Prêt à passer en conditions réelles ?</h2>
-      <p class="text-gray-400 mb-8">Accède au contenu Pro : analyses complètes, portefeuille modèle, risk management.</p>
-      <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a href="index.html#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white transition inline-flex items-center gap-3">
-          Voir les tarifs
-          <i class="fas fa-arrow-right"></i>
-        </a>
-        <a href="index.html" class="border border-gray-600 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
-          Retour à l'accueil
-        </a>
-      </div>
-    </div>
-  </section>
-
   <!-- FOOTER -->
   <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
     <div class="max-w-6xl mx-auto">
@@ -305,18 +245,12 @@
   </footer>
 
   <script>
-    // -------------------------
-    // URLs (relatifs = fonctionne sur Vercel et sur un sous-dossier)
-    // -------------------------
     const BASE = './backtest';
     const SUMMARY_URL = `${BASE}/summary.json`;
     const EQUITY_URL  = `${BASE}/equity_curve.json`;
     const SPY_URL     = `${BASE}/spy_curve.json`;
     const TRADES_URL  = `${BASE}/all_trades.json`;
 
-    // -------------------------
-    // Formatters
-    // -------------------------
     const moneyUS = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
     const intFR   = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
 
@@ -324,21 +258,16 @@
       if (!isFinite(Number(x))) return '—';
       return '$' + moneyUS.format(Number(x));
     }
-
     function pct(x, digits = 2) {
       if (!isFinite(Number(x))) return '—';
       return Number(x).toFixed(digits) + '%';
     }
-
     function showGlobalError(msg) {
       const box = document.getElementById('globalError');
       box.classList.remove('hidden');
       box.textContent = msg;
     }
 
-    // -------------------------
-    // Load summary.json
-    // -------------------------
     let summary = null;
 
     async function loadSummary() {
@@ -346,19 +275,18 @@
       if (!r.ok) throw new Error(`summary.json HTTP ${r.status}`);
       summary = await r.json();
 
-      // Lines
       const start = summary?.period?.start ?? '—';
       const end   = summary?.period?.end ?? '—';
+
       document.getElementById('periodLine').textContent = `Période : ${start} → ${end}`;
       document.getElementById('capitalLine').textContent = fmtMoney(summary?.capital_initial ?? NaN);
       document.getElementById('tradeValueLine').textContent = fmtMoney(summary?.trade_value ?? NaN);
 
-      // Cards
       document.getElementById('s_final').textContent = fmtMoney(summary?.final_equity ?? NaN);
       document.getElementById('s_total').textContent = `Rendement cumulé : ${pct(summary?.total_return_pct ?? NaN, 2)}`;
 
       document.getElementById('s_cagr').textContent = pct(summary?.cagr_pct ?? NaN, 2);
-      document.getElementById('s_alpha').textContent = `Alpha vs SPY : ${pct(summary?.alpha_vs_spy_pts ?? NaN, 2).replace('%',' pts')}`;
+      document.getElementById('s_alpha').textContent = `Alpha vs SPY : ${Number(summary?.alpha_vs_spy_pts ?? NaN).toFixed(2)} pts`;
 
       document.getElementById('s_dd').textContent = pct(summary?.max_drawdown_pct ?? NaN, 2);
 
@@ -366,9 +294,6 @@
       document.getElementById('s_misc').textContent = misc;
     }
 
-    // -------------------------
-    // Charts
-    // -------------------------
     let equityChart = null;
     let ddChart = null;
     let yScaleType = 'linear';
@@ -391,14 +316,12 @@
       const strategy = eq.map(x => Number(x.equity));
       const spyScaled = eq.map(x => spyMap.get(x.date) ?? null);
 
-      // Drawdown %
       const dd = eq.map(x => {
         const v = (x.drawdown ?? null);
         if (v === null || v === undefined) return null;
         return Number(v) * 100.0;
       });
 
-      // Equity chart
       const ctx1 = document.getElementById('equityChart');
       equityChart = new Chart(ctx1, {
         type: 'line',
@@ -431,26 +354,16 @@
           plugins: {
             legend: { labels: { color: '#e5e7eb' } },
             tooltip: {
-              callbacks: {
-                label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}`
-              }
+              callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}` }
             }
           },
           scales: {
-            x: {
-              ticks: { color: '#9ca3af', maxTicksLimit: 8 },
-              grid: { color: 'rgba(255,255,255,0.04)' }
-            },
-            y: {
-              type: yScaleType,
-              ticks: { color: '#9ca3af' },
-              grid: { color: 'rgba(255,255,255,0.04)' }
-            }
+            x: { ticks: { color: '#9ca3af', maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { type: yScaleType, ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.04)' } }
           }
         }
       });
 
-      // Drawdown chart
       const ctx2 = document.getElementById('ddChart');
       ddChart = new Chart(ctx2, {
         type: 'line',
@@ -473,21 +386,11 @@
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: { labels: { color: '#e5e7eb' } },
-            tooltip: {
-              callbacks: {
-                label: (ctx) => `Drawdown: ${Number(ctx.raw).toFixed(2)}%`
-              }
-            }
+            tooltip: { callbacks: { label: (ctx) => `Drawdown: ${Number(ctx.raw).toFixed(2)}%` } }
           },
           scales: {
-            x: {
-              ticks: { color: '#9ca3af', maxTicksLimit: 8 },
-              grid: { color: 'rgba(255,255,255,0.04)' }
-            },
-            y: {
-              ticks: { color: '#9ca3af' },
-              grid: { color: 'rgba(255,255,255,0.04)' }
-            }
+            x: { ticks: { color: '#9ca3af', maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
+            y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.04)' } }
           }
         }
       });
@@ -496,30 +399,21 @@
     document.getElementById('toggleScale').addEventListener('click', () => {
       yScaleType = (yScaleType === 'linear') ? 'logarithmic' : 'linear';
       document.getElementById('toggleScale').textContent = `Échelle : ${yScaleType === 'linear' ? 'Linéaire' : 'Log'}`;
-      if (equityChart) {
-        equityChart.options.scales.y.type = yScaleType;
-        equityChart.update();
-      }
+      if (equityChart) { equityChart.options.scales.y.type = yScaleType; equityChart.update(); }
     });
 
     document.getElementById('toggleSpy').addEventListener('click', () => {
       spyVisible = !spyVisible;
       document.getElementById('toggleSpy').textContent = `SPY : ${spyVisible ? 'Affiché' : 'Masqué'}`;
-      if (equityChart) {
-        equityChart.data.datasets[1].hidden = !spyVisible;
-        equityChart.update();
-      }
+      if (equityChart) { equityChart.data.datasets[1].hidden = !spyVisible; equityChart.update(); }
     });
 
-    // -------------------------
     // Trades table
-    // -------------------------
     let allTrades = [];
     let filtered = [];
     let page = 1;
 
     const qEl = document.getElementById('q');
-    const reasonEl = document.getElementById('reason');
     const pageSizeEl = document.getElementById('pageSize');
     const tbody = document.getElementById('tbody');
     const pageInfo = document.getElementById('pageInfo');
@@ -527,9 +421,7 @@
     function getPageSize() { return Number(pageSizeEl.value || 100); }
 
     function computePnlDollarIfMissing(t) {
-      // Si pnl_$ existe déjà dans ton export Colab, on l'utilise.
       if (t["pnl_$"] !== undefined && t["pnl_$"] !== null && t["pnl_$"] !== "") return Number(t["pnl_$"]);
-
       const pctVal = Number(t.pnl_pct);
       const tradeValue = Number(summary?.trade_value ?? 5000);
       if (!isFinite(pctVal) || !isFinite(tradeValue)) return NaN;
@@ -538,25 +430,17 @@
 
     function applyFilter() {
       const q = (qEl.value || '').trim().toLowerCase();
-      const r = (reasonEl.value || '').trim();
 
-      filtered = allTrades.filter(t => {
-        if (r && String(t.exit_reason || '').toUpperCase() !== r.toUpperCase()) return false;
-        if (!q) return true;
+      if (!q) {
+        filtered = allTrades.slice();
+      } else {
+        filtered = allTrades.filter(t => {
+          const hay = [t.ticker, t.entry_date, t.exit_date, t.exit_reason].join(' ').toLowerCase();
+          return hay.includes(q);
+        });
+      }
 
-        const hay = [
-          t.ticker,
-          t.entry_date,
-          t.exit_date,
-          t.exit_reason
-        ].join(' ').toLowerCase();
-
-        return hay.includes(q);
-      });
-
-      // Sort: entry_date desc
       filtered.sort((a, b) => (String(b.entry_date || '')).localeCompare(String(a.entry_date || '')));
-
       page = 1;
       render();
     }
@@ -578,7 +462,6 @@
       slice.forEach((t, i) => {
         const pnlPct = Number(t.pnl_pct);
         const pnlDollar = computePnlDollarIfMissing(t);
-
         const pnlClass = isFinite(pnlPct) && pnlPct >= 0 ? 'text-green-400' : 'text-red-400';
 
         const trEl = document.createElement('tr');
@@ -592,13 +475,12 @@
           <td class="px-4 py-3 text-gray-300">${t.exit_reason ?? ''}</td>
           <td class="px-4 py-3 font-bold ${pnlClass} mono">${isFinite(pnlPct) ? pnlPct.toFixed(2) : ''}%</td>
           <td class="px-4 py-3 ${pnlClass} mono">${isFinite(pnlDollar) ? pnlDollar.toFixed(2) : ''}</td>
-          <td class="px-4 py-3 text-gray-400 mono">${t.holding_days ?? t.holding_days === 0 ? t.holding_days : ''}</td>
+          <td class="px-4 py-3 text-gray-400 mono">${t.holding_days ?? ''}</td>
         `;
         frag.appendChild(trEl);
       });
 
       tbody.appendChild(frag);
-
       pageInfo.textContent = `Page ${page}/${totalPages} · ${intFR.format(total)} trades (affichés ${total ? (start + 1) : 0}-${end})`;
     }
 
@@ -625,21 +507,16 @@
 
     document.getElementById('prev').addEventListener('click', () => { page--; render(); });
     document.getElementById('next').addEventListener('click', () => { page++; render(); });
-
     qEl.addEventListener('input', () => applyFilter());
-    reasonEl.addEventListener('change', () => applyFilter());
     pageSizeEl.addEventListener('change', () => applyFilter());
 
-    // -------------------------
-    // Init
-    // -------------------------
     (async function init() {
       try {
         await loadSummary();
         await loadCharts();
         await loadTrades();
       } catch (e) {
-        showGlobalError(`Erreur initialisation : ${e.message}. Vérifie que le dossier ./backtest contient bien les JSON exportés par Colab.`);
+        showGlobalError(`Erreur initialisation : ${e.message}. Vérifie que ./backtest contient bien les JSON exportés par Colab.`);
         console.error(e);
       }
     })();
