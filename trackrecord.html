@@ -14,13 +14,10 @@
     html { scroll-behavior: smooth; }
     section[id] { scroll-margin-top: 110px; }
 
-    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.5); }
-    .hero-bg { background: linear-gradient(135deg, #0a0a0f 0%, #12121a 100%); }
-
-    .stat-card { transition: transform 0.25s, border-color 0.25s; }
-    .stat-card:hover { transform: translateY(-2px); border-color: rgba(0,212,170,0.55); }
-
+    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.45); }
+    .hero-bg { background: linear-gradient(135deg, #07070b 0%, #12121a 100%); }
     .mono { font-variant-numeric: tabular-nums; }
+    .logo-mark { filter: drop-shadow(0 0 18px rgba(0, 212, 170, 0.18)); }
   </style>
 </head>
 
@@ -30,15 +27,30 @@
   <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
     <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-3">
-        <span class="text-3xl text-[#00d4aa] font-bold">◆</span>
-        <span class="text-2xl font-bold tracking-tighter">CITADEL ALPHA</span>
+        <svg class="logo-mark" width="34" height="34" viewBox="0 0 64 64" fill="none" aria-label="Logo Citadel Alpha" xmlns="http://www.w3.org/2000/svg">
+          <defs>
+            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+              <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
+            </linearGradient>
+          </defs>
+          <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/>
+          <path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M20 36 L32 48 L44 36" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+          <path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+        </svg>
+
+        <div class="leading-tight">
+          <div class="text-xl md:text-2xl font-bold tracking-tight">CITADEL ALPHA</div>
+          <div class="text-[11px] text-gray-400 -mt-0.5">Track Record</div>
+        </div>
       </a>
 
       <div class="hidden md:flex items-center gap-8 text-sm">
         <a href="index.html#methode" class="hover:text-[#00d4aa] transition">Notre Méthode</a>
         <a href="index.html#services" class="hover:text-[#00d4aa] transition">Services</a>
-        <a href="#top" class="hover:text-[#00d4aa] transition text-[#00d4aa] font-bold">Track Record</a>
+        <a href="trackrecord.html" class="hover:text-[#00d4aa] transition text-[#00d4aa] font-bold">Track Record</a>
         <a href="index.html#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
+        <a href="contact.html" class="hover:text-[#00d4aa] transition">Contact</a>
       </div>
 
       <a href="index.html#pricing" class="hidden sm:inline-block bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
@@ -47,7 +59,7 @@
     </div>
   </nav>
 
-  <!-- HEADER -->
+  <!-- HERO -->
   <section id="top" class="hero-bg pt-32 pb-10 px-6">
     <div class="max-w-5xl mx-auto text-center">
       <a href="index.html" class="text-[#00d4aa] text-sm hover:underline mb-4 inline-block">
@@ -85,12 +97,12 @@
       </div>
 
       <div class="mt-6 text-xs text-gray-500 max-w-3xl mx-auto">
-        Les données de backtest sont publiées pour transparence. Backtest ≠ performance future. Le modèle repose sur des données daily et des hypothèses d’exécution.
+        Backtest ≠ performance future. Données daily et hypothèses d’exécution.
       </div>
     </div>
   </section>
 
-  <!-- ERRORS -->
+  <!-- ERROR -->
   <section class="py-6 px-6">
     <div class="max-w-6xl mx-auto">
       <div id="globalError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300"></div>
@@ -109,28 +121,28 @@
       </div>
 
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
           <div class="text-xs text-gray-400">Capital final</div>
           <div id="s_final" class="text-2xl font-bold text-[#00d4aa] mt-1 mono">—</div>
           <div id="s_total" class="text-xs text-gray-500 mt-1 mono">—</div>
         </div>
 
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
           <div class="text-xs text-gray-400">CAGR</div>
           <div id="s_cagr" class="text-2xl font-bold mt-1 mono">—</div>
           <div id="s_alpha" class="text-xs text-gray-500 mt-1 mono">—</div>
         </div>
 
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
           <div class="text-xs text-gray-400">Max Drawdown</div>
           <div id="s_dd" class="text-2xl font-bold mt-1 mono">—</div>
-          <div class="text-xs text-gray-500 mt-1">Plus bas historique depuis un plus haut</div>
+          <div class="text-xs text-gray-500 mt-1">Plus bas depuis un plus haut</div>
         </div>
 
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 stat-card">
+        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
           <div class="text-xs text-gray-400">Trades / Win rate / PF</div>
           <div id="s_misc" class="text-sm font-bold mt-2 mono">—</div>
-          <div class="text-xs text-gray-500 mt-1">Mesures agrégées sur la période</div>
+          <div class="text-xs text-gray-500 mt-1">Sur la période</div>
         </div>
       </div>
     </div>
@@ -143,7 +155,7 @@
         <div>
           <h2 class="text-2xl font-bold">Graphiques</h2>
           <p class="text-gray-500 text-sm">
-            Equity curve depuis <span class="mono">./backtest/equity_curve.json</span> et benchmark depuis <span class="mono">./backtest/spy_curve.json</span>
+            Equity curve <span class="mono">./backtest/equity_curve.json</span> • SPY <span class="mono">./backtest/spy_curve.json</span>
           </p>
         </div>
 
@@ -170,7 +182,7 @@
       </div>
 
       <div class="mt-4 text-xs text-gray-500">
-        Note : le drawdown est calculé à partir de l’equity curve exportée. Les backtests sur données daily ne capturent pas parfaitement l’ordre intra‑journée (TP/SL).
+        Note : les backtests sur données daily ne garantissent pas l’ordre intra‑journée (TP/SL).
       </div>
     </div>
   </section>
@@ -234,13 +246,57 @@
   </section>
 
   <!-- FOOTER -->
-  <footer class="border-t border-gray-800 py-12 px-6 text-center text-sm text-gray-500">
-    <div class="max-w-6xl mx-auto">
-      <p>© 2026 Citadel Alpha Research — Track Record</p>
-      <p class="mt-4 max-w-3xl mx-auto">
-        Ce site fournit du contenu éducatif uniquement. Il ne constitue pas un conseil en investissement personnalisé.
-        Les performances passées issues de backtests ne préjugent pas des résultats futurs. Tout investissement comporte un risque de perte en capital.
-      </p>
+  <footer class="border-t border-gray-800 py-12 px-6 text-sm text-gray-500">
+    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
+      <div>
+        <div class="flex items-center gap-3 mb-3">
+          <svg class="logo-mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="g2" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
+                <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
+              </linearGradient>
+            </defs>
+            <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g2)" stroke-width="3.5" opacity="0.95"/>
+            <path d="M20 28 L32 16 L44 28" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M20 36 L32 48 L44 36" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
+            <path d="M22 32 H42" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+          </svg>
+          <div class="font-bold text-gray-200">Citadel Alpha</div>
+        </div>
+        <div class="text-gray-500 text-xs leading-relaxed">
+          Contenu éducatif — pas de conseil en investissement personnalisé.<br />
+          Backtests : limites, hypothèses et incertitudes.
+        </div>
+      </div>
+
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Légal</div>
+        <ul class="space-y-2 text-sm">
+          <li><a class="hover:text-[#00d4aa] transition" href="mentions-legales.html">Mentions légales</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-confidentialite.html">Politique de confidentialité</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="politique-cookies.html">Politique cookies</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">CGU</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">CGV</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <div class="font-bold text-gray-200 mb-3">Éditeur</div>
+        <div class="text-sm leading-relaxed">
+          <div><span class="text-gray-400">Société :</span> Opportunity</div>
+          <div><span class="text-gray-400">SIREN :</span> 403345317</div>
+          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots, France</div>
+          <div><span class="text-gray-400">Téléphone :</span> <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
+          <div class="mt-2"><span class="text-gray-400">Directeur de la publication :</span> Cyril Rancurel</div>
+          <div><span class="text-gray-400">Hébergeur :</span> Vercel</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800 text-xs text-gray-600 flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+      <div>© 2026 Opportunity — Citadel Alpha Research</div>
+      <div><a class="hover:text-[#00d4aa] transition" href="#top">Retour en haut</a></div>
     </div>
   </footer>
 
@@ -353,9 +409,7 @@
           interaction: { mode: 'index', intersect: false },
           plugins: {
             legend: { labels: { color: '#e5e7eb' } },
-            tooltip: {
-              callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}` }
-            }
+            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}` } }
           },
           scales: {
             x: { ticks: { color: '#9ca3af', maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
