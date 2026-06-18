@@ -5,558 +5,187 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Citadel Alpha Track Record — Equity curve, drawdown, et détail de tous les trades." />
   <title>Track Record | Citadel Alpha</title>
-
-  <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    html { scroll-behavior: smooth; }
-    section[id] { scroll-margin-top: 110px; }
-
-    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.45); }
-    .hero-bg { background: linear-gradient(135deg, #07070b 0%, #12121a 100%); }
-    .mono { font-variant-numeric: tabular-nums; }
-    .logo-mark { filter: drop-shadow(0 0 18px rgba(0, 212, 170, 0.18)); }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; background: #050508; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #050508; color: #e3e3e3; margin: 0; }
+    .font-display { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    .count-up { font-variant-numeric: tabular-nums; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb { background: #1a1a2e; border-radius: 2px; }
   </style>
 </head>
-
-<body class="bg-[#0a0a0f] text-gray-200">
-
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
-      <a href="index.html" class="flex items-center gap-3">
-        <svg class="logo-mark" width="34" height="34" viewBox="0 0 64 64" fill="none" aria-label="Logo Citadel Alpha" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
-            </linearGradient>
-          </defs>
-          <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/>
-          <path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-          <path d="M20 36 L32 48 L44 36" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-          <path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
-        </svg>
-
-        <div class="leading-tight">
-          <div class="text-xl md:text-2xl font-bold tracking-tight">CITADEL ALPHA</div>
-          <div class="text-[11px] text-gray-400 -mt-0.5">Track Record</div>
-        </div>
+<body>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.04);">
+    <div style="max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="index.html" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <span style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#fff;">CITADEL</span>
+        <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:#6b7280;letter-spacing:2px;text-transform:uppercase;border-left:1px solid rgba(255,255,255,0.1);padding-left:10px;">Track Record</span>
       </a>
-
-      <div class="hidden md:flex items-center gap-8 text-sm">
-        <a href="index.html#methode" class="hover:text-[#00d4aa] transition">Notre Méthode</a>
-        <a href="index.html#services" class="hover:text-[#00d4aa] transition">Services</a>
-        <a href="trackrecord.html" class="hover:text-[#00d4aa] transition text-[#00d4aa] font-bold">Track Record</a>
-        <a href="index.html#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
-        <a href="contact.html" class="hover:text-[#00d4aa] transition">Contact</a>
-      </div>
-
-      <a href="index.html#pricing" class="hidden sm:inline-block bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
-        Essai Gratuit 7 jours
-      </a>
+      <a href="index.html" style="color:#6b7280;font-size:13px;text-decoration:none;">&larr; Retour</a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section id="top" class="hero-bg pt-32 pb-10 px-6">
-    <div class="max-w-5xl mx-auto text-center">
-      <a href="index.html" class="text-[#00d4aa] text-sm hover:underline mb-4 inline-block">
-        <i class="fas fa-arrow-left mr-2"></i>Retour &agrave; l'accueil
-      </a>
-
-      <h1 class="text-4xl md:text-6xl font-bold mb-3 glow-green">Track Record</h1>
-      <p class="text-xl text-gray-400">Equity curve + drawdown + d&eacute;tail complet des trades</p>
-
-      <p class="text-gray-500 mt-2 mono">
-        <span id="periodLine">Chargement de la p&eacute;riode...</span>
-        <span class="mx-2">&middot;</span>
-        Capital : <span id="capitalLine">&mdash;</span>
-        <span class="mx-2">&middot;</span>
-        Mise/trade : <span id="tradeValueLine">&mdash;</span>
-      </p>
-
-      <div class="mt-6 flex flex-col sm:flex-row gap-3 justify-center">
-        <a class="bg-[#00d4aa] text-black font-bold px-6 py-3 rounded-xl hover:bg-white transition inline-flex items-center justify-center gap-2"
-           href="./backtest/all_trades.csv" download>
-          <i class="fas fa-download"></i>
-          T&eacute;l&eacute;charger CSV (tous les trades)
-        </a>
-
-        <a class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2"
-           href="./backtest/all_trades.json" download>
-          <i class="fas fa-code"></i>
-          T&eacute;l&eacute;charger JSON
-        </a>
-
-        <a href="#trades" class="border border-gray-700 font-bold px-6 py-3 rounded-xl hover:border-white transition inline-flex items-center justify-center gap-2">
-          <i class="fas fa-table"></i>
-          Voir la table
-        </a>
+  <div style="padding-top:80px;">
+    <div style="max-width:1280px;margin:0 auto;padding:40px 24px;">
+      <div style="text-align:center;margin-bottom:40px;">
+        <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,4vw,3.5rem);font-weight:800;color:#fff;margin:0 0 12px;">Track Record</h1>
+        <p style="color:#6b7280;font-size:14px;">Equity curve <span style="color:#4b5563;">/</span> Drawdown <span style="color:#4b5563;">/</span> Trades</p>
       </div>
 
-      <div class="mt-6 text-xs text-gray-500 max-w-3xl mx-auto">
-        Backtest &ne; performance future. Donn&eacute;es daily et hypoth&egrave;ses d&rsquo;ex&eacute;cution.
-      </div>
-    </div>
-  </section>
-
-  <!-- ERROR -->
-  <section class="py-6 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div id="globalError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300"></div>
-    </div>
-  </section>
-
-  <!-- SUMMARY -->
-  <section id="summary" class="pb-12 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex items-end justify-between gap-4 mb-4">
-        <div>
-          <h2 class="text-2xl font-bold">R&eacute;sum&eacute;</h2>
-          <p class="text-gray-500 text-sm">Charg&eacute; depuis <span class="mono">./backtest/summary.json</span></p>
+      <div id="summary-cards" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:4px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;margin-bottom:40px;">
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Capital final</div>
+          <div class="font-mono" style="font-size:24px;font-weight:700;color:#22c55e;" id="s_final">&mdash;</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;" id="s_total">&mdash;</div>
         </div>
-        <a href="#charts" class="text-sm text-[#00d4aa] hover:underline">Aller aux graphiques &rarr;</a>
-      </div>
-
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="text-xs text-gray-400">Capital final</div>
-          <div id="s_final" class="text-2xl font-bold text-[#00d4aa] mt-1 mono">—</div>
-          <div id="s_total" class="text-xs text-gray-500 mt-1 mono">—</div>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">CAGR</div>
+          <div class="font-mono" style="font-size:24px;font-weight:700;color:#fff;" id="s_cagr">&mdash;</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;" id="s_alpha">&mdash;</div>
         </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="text-xs text-gray-400">CAGR</div>
-          <div id="s_cagr" class="text-2xl font-bold mt-1 mono">—</div>
-          <div id="s_alpha" class="text-xs text-gray-500 mt-1 mono">—</div>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Max Drawdown</div>
+          <div class="font-mono" style="font-size:24px;font-weight:700;color:#fb923c;" id="s_dd">&mdash;</div>
         </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="text-xs text-gray-400">Max Drawdown</div>
-          <div id="s_dd" class="text-2xl font-bold mt-1 mono">—</div>
-          <div class="text-xs text-gray-500 mt-1">Plus bas depuis un plus haut</div>
-        </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5">
-          <div class="text-xs text-gray-400">Trades / Win rate / PF</div>
-          <div id="s_misc" class="text-sm font-bold mt-2 mono">—</div>
-          <div class="text-xs text-gray-500 mt-1">Sur la période</div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- CHARTS -->
-  <section id="charts" class="py-12 px-6 bg-[#12121a] border-y border-gray-800">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
-        <div>
-          <h2 class="text-2xl font-bold">Graphiques</h2>
-          <p class="text-gray-500 text-sm">
-            Equity curve <span class="mono">./backtest/equity_curve.json</span> • SPY <span class="mono">./backtest/spy_curve.json</span>
-          </p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-2">
-          <button id="toggleScale" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-white transition text-sm font-bold">
-            Échelle : Linéaire
-          </button>
-          <button id="toggleSpy" class="px-4 py-2 rounded-xl border border-gray-700 hover:border-white transition text-sm font-bold">
-            SPY : Affiché
-          </button>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px;">Trades / WR / PF</div>
+          <div style="font-size:14px;font-weight:600;color:#fff;margin-top:4px;" id="s_misc">&mdash;</div>
         </div>
       </div>
 
-      <div class="grid lg:grid-cols-2 gap-6">
-        <div class="bg-[#0a0a0f] border border-gray-800 rounded-2xl p-4">
-          <div class="text-sm text-gray-400 mb-2">Equity Curve (Stratégie vs SPY)</div>
+      <div id="error-box" style="display:none;background:rgba(239,68,68,0.05);border:1px solid rgba(239,68,68,0.15);border-radius:4px;padding:16px;font-size:13px;color:#fca5a5;margin-bottom:24px;"></div>
+
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:4px;margin-bottom:40px;">
+        <div style="background:#08080d;padding:20px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+          <div style="font-size:11px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Equity Curve vs SPY</div>
           <canvas id="equityChart" height="140"></canvas>
         </div>
-
-        <div class="bg-[#0a0a0f] border border-gray-800 rounded-2xl p-4">
-          <div class="text-sm text-gray-400 mb-2">Drawdown (Stratégie)</div>
+        <div style="background:#08080d;padding:20px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+          <div style="font-size:11px;color:#6b7280;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px;">Drawdown</div>
           <canvas id="ddChart" height="140"></canvas>
         </div>
       </div>
 
-      <div class="mt-4 text-xs text-gray-500">
-        Note : les backtests sur données daily ne garantissent pas l’ordre intra‑journée (TP/SL).
+      <div style="margin-bottom:16px;display:flex;gap:8px;flex-wrap:wrap;">
+        <input id="q" placeholder="Rechercher ticker, date..." style="flex:1;min-width:200px;background:#08080d;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:10px 14px;font-size:13px;color:#e3e3e3;outline:none;">
+        <select id="pageSize" style="background:#08080d;border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:10px;font-size:13px;color:#e3e3e3;outline:none;">
+          <option value="50">50/page</option><option value="100" selected>100/page</option><option value="200">200/page</option>
+        </select>
       </div>
-    </div>
-  </section>
-
-  <!-- TRADES TABLE -->
-  <section id="trades" class="py-12 px-6 bg-[#12121a] border-y border-gray-800">
-    <div class="max-w-6xl mx-auto">
-      <div class="flex flex-col md:flex-row md:items-end md:justify-between gap-4 mb-4">
-        <div>
-          <h2 class="text-2xl font-bold">Tous les trades</h2>
-          <p class="text-gray-500 text-sm">Chargé depuis <span class="mono">./backtest/all_trades.json</span> — recherche + pagination.</p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-2">
-          <input id="q" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-4 py-2 text-sm outline-none"
-                 placeholder="Rechercher (ticker, raison, date)..." />
-          <select id="pageSize" class="bg-[#0a0a0f] border border-gray-800 rounded-xl px-3 py-2 text-sm outline-none">
-            <option value="50">50 / page</option>
-            <option value="100" selected>100 / page</option>
-            <option value="200">200 / page</option>
-          </select>
-        </div>
-      </div>
-
-      <div id="tradesLoading" class="bg-[#00d4aa]/10 border border-[#00d4aa]/30 rounded-2xl p-5 text-sm text-gray-200">
-        Chargement des trades…
-      </div>
-
-      <div id="tradesError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300"></div>
-
-      <div class="mt-4 bg-[#0a0a0f] border border-gray-800 rounded-2xl overflow-hidden">
-        <div class="overflow-x-auto">
-          <table class="min-w-full text-sm">
-            <thead class="bg-[#0a0a0f] border-b border-gray-800">
-              <tr class="text-left text-gray-400">
-                <th class="px-4 py-3">#</th>
-                <th class="px-4 py-3">Ticker</th>
-                <th class="px-4 py-3">Entrée</th>
-                <th class="px-4 py-3">Prix entrée</th>
-                <th class="px-4 py-3">Sortie</th>
-                <th class="px-4 py-3">Prix sortie</th>
-                <th class="px-4 py-3">Raison</th>
-                <th class="px-4 py-3">PnL %</th>
-                <th class="px-4 py-3">PnL $</th>
-                <th class="px-4 py-3">Durée</th>
-              </tr>
-            </thead>
-            <tbody id="tbody" class="divide-y divide-gray-800"></tbody>
+      <div style="background:#08080d;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+        <div style="overflow-x:auto;">
+          <table style="width:100%;font-size:12px;border-collapse:collapse;">
+            <thead><tr style="background:#050508;color:#6b7280;text-align:left;"><th style="padding:12px 14px;font-weight:600;">#</th><th style="padding:12px 14px;font-weight:600;">Ticker</th><th style="padding:12px 14px;font-weight:600;">Entr&eacute;e</th><th style="padding:12px 14px;font-weight:600;">Prix E</th><th style="padding:12px 14px;font-weight:600;">Sortie</th><th style="padding:12px 14px;font-weight:600;">Prix S</th><th style="padding:12px 14px;font-weight:600;">Raison</th><th style="padding:12px 14px;font-weight:600;">PnL%</th><th style="padding:12px 14px;font-weight:600;">PnL$</th><th style="padding:12px 14px;font-weight:600;">Dur&eacute;e</th></tr></thead>
+            <tbody id="tbody" style="color:#d1d5db;"></tbody>
           </table>
         </div>
-
-        <div class="flex items-center justify-between px-4 py-3 border-t border-gray-800 text-xs text-gray-400">
-          <div id="pageInfo">—</div>
-          <div class="flex items-center gap-2">
-            <button id="prev" class="px-3 py-2 rounded-lg border border-gray-800 hover:border-white transition">Prev</button>
-            <button id="next" class="px-3 py-2 rounded-lg border border-gray-800 hover:border-white transition">Next</button>
+        <div style="display:flex;justify-content:space-between;align-items:center;padding:12px 14px;border-top:1px solid rgba(255,255,255,0.04);font-size:12px;color:#6b7280;">
+          <div id="pageInfo">&mdash;</div>
+          <div style="display:flex;gap:8px;">
+            <button id="prev" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:6px 14px;color:#e3e3e3;cursor:pointer;font-size:12px;">Prev</button>
+            <button id="next" style="background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.08);border-radius:4px;padding:6px 14px;color:#e3e3e3;cursor:pointer;font-size:12px;">Next</button>
           </div>
         </div>
       </div>
     </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-gray-800 py-12 px-6 text-sm text-gray-500">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-      <div>
-        <div class="flex items-center gap-3 mb-3">
-          <svg class="logo-mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g2" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
-              </linearGradient>
-            </defs>
-            <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g2)" stroke-width="3.5" opacity="0.95"/>
-            <path d="M20 28 L32 16 L44 28" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 36 L32 48 L44 36" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-            <path d="M22 32 H42" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
-          </svg>
-          <div class="font-bold text-gray-200">Citadel Alpha</div>
-        </div>
-        <div class="text-gray-500 text-xs leading-relaxed">
-          Contenu éducatif — pas de conseil en investissement personnalisé.<br />
-          Backtests : limites, hypothèses et incertitudes.
-        </div>
-      </div>
-
-      <div>
-        <div class="font-bold text-gray-200 mb-3">Légal</div>
-        <ul class="space-y-2 text-sm">
-          <li><a class="hover:text-[#00d4aa] transition" href="mentions-legales.html">Mentions légales</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="politique-confidentialite.html">Politique de confidentialité</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="politique-cookies.html">Politique cookies</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">CGU</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">CGV</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="contact.html">Contact</a></li>
-        </ul>
-      </div>
-
-      <div>
-        <div class="font-bold text-gray-200 mb-3">Éditeur</div>
-        <div class="text-sm leading-relaxed">
-          <div><span class="text-gray-400">Société :</span> Opportunity</div>
-          <div><span class="text-gray-400">SIREN :</span> 403345317</div>
-          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots, France</div>
-          <div><span class="text-gray-400">Téléphone :</span> <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
-          <div class="mt-2"><span class="text-gray-400">Directeur de la publication :</span> Cyril Rancurel</div>
-          <div><span class="text-gray-400">Hébergeur :</span> Vercel</div>
-        </div>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800 text-xs text-gray-600 flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
-      <div>© 2026 Opportunity — Citadel Alpha Research</div>
-      <div><a class="hover:text-[#00d4aa] transition" href="#top">Retour en haut</a></div>
-    </div>
-  </footer>
+  </div>
 
   <script>
-    const BASE = './backtest';
-    const SUMMARY_URL = `${BASE}/summary.json`;
-    const EQUITY_URL  = `${BASE}/equity_curve.json`;
-    const SPY_URL     = `${BASE}/spy_curve.json`;
-    const TRADES_URL  = `${BASE}/all_trades.json`;
-
-    const moneyUS = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
-    const intFR   = new Intl.NumberFormat('fr-FR', { maximumFractionDigits: 0 });
-
-    function fmtMoney(x) {
-      if (!isFinite(Number(x))) return '—';
-      return '$' + moneyUS.format(Number(x));
-    }
-    function pct(x, digits = 2) {
-      if (!isFinite(Number(x))) return '—';
-      return Number(x).toFixed(digits) + '%';
-    }
-    function showGlobalError(msg) {
-      const box = document.getElementById('globalError');
-      box.classList.remove('hidden');
-      box.textContent = msg;
-    }
-
-    let summary = null;
+    const SUMMARY_URL = './backtest/summary.json';
+    const EQUITY_URL = './backtest/equity_curve.json';
+    const SPY_URL = './backtest/spy_curve.json';
+    const TRADES_URL = './backtest/all_trades.json';
 
     async function loadSummary() {
       const r = await fetch(SUMMARY_URL, { cache: 'no-store' });
-      if (!r.ok) throw new Error(`summary.json HTTP ${r.status}`);
-      summary = await r.json();
-
-      const start = summary?.period?.start ?? '—';
-      const end   = summary?.period?.end ?? '—';
-
-      document.getElementById('periodLine').textContent = `Période : ${start} → ${end}`;
-      document.getElementById('capitalLine').textContent = fmtMoney(summary?.capital_initial ?? NaN);
-      document.getElementById('tradeValueLine').textContent = fmtMoney(summary?.trade_value ?? NaN);
-
-      document.getElementById('s_final').textContent = fmtMoney(summary?.final_equity ?? NaN);
-      document.getElementById('s_total').textContent = `Rendement cumulé : ${pct(summary?.total_return_pct ?? NaN, 2)}`;
-
-      document.getElementById('s_cagr').textContent = pct(summary?.cagr_pct ?? NaN, 2);
-      document.getElementById('s_alpha').textContent = `Alpha vs SPY : ${Number(summary?.alpha_vs_spy_pts ?? NaN).toFixed(2)} pts`;
-
-      document.getElementById('s_dd').textContent = pct(summary?.max_drawdown_pct ?? NaN, 2);
-
-      const misc = `${intFR.format(summary?.trades ?? 0)} trades · Win ${pct(summary?.win_rate_pct ?? NaN, 2)} · PF ${summary?.profit_factor ?? '—'}`;
-      document.getElementById('s_misc').textContent = misc;
+      if (!r.ok) throw new Error('HTTP ' + r.status);
+      const s = await r.json();
+      document.getElementById('s_final').textContent = Number(s.final_equity).toLocaleString('fr-FR',{maximumFractionDigits:0})+' €';
+      document.getElementById('s_total').textContent = 'ROI +'+Number(s.total_return_pct).toFixed(0)+'%';
+      document.getElementById('s_cagr').textContent = Number(s.cagr_pct).toFixed(1)+'%';
+      document.getElementById('s_alpha').textContent = 'Alpha '+Number(s.alpha_vs_spy_pts).toFixed(1)+' pts';
+      document.getElementById('s_dd').textContent = '-'+Math.abs(Number(s.max_drawdown_pct)).toFixed(1)+'%';
+      document.getElementById('s_misc').textContent = s.trades+' trades · '+Number(s.win_rate_pct).toFixed(1)+'% · PF '+Number(s.profit_factor).toFixed(2);
+      return s;
     }
 
-    let equityChart = null;
-    let ddChart = null;
-    let yScaleType = 'linear';
-    let spyVisible = true;
-
+    let equityChart = null, ddChart = null;
     async function loadCharts() {
       const [eqRes, spyRes] = await Promise.all([
         fetch(EQUITY_URL, { cache: 'no-store' }),
         fetch(SPY_URL, { cache: 'no-store' })
       ]);
-      if (!eqRes.ok) throw new Error(`equity_curve.json HTTP ${eqRes.status}`);
-      if (!spyRes.ok) throw new Error(`spy_curve.json HTTP ${spyRes.status}`);
-
+      if (!eqRes.ok) throw new Error('equity HTTP '+eqRes.status);
+      if (!spyRes.ok) throw new Error('spy HTTP '+spyRes.status);
       const eq = await eqRes.json();
       const sp = await spyRes.json();
-
       const spyMap = new Map(sp.map(x => [x.date, Number(x.spy_equity)]));
-
       const labels = eq.map(x => x.date);
       const strategy = eq.map(x => Number(x.equity));
       const spyScaled = eq.map(x => spyMap.get(x.date) ?? null);
+      const dd = eq.map(x => { const v = x.drawdown ?? x.drawdown_pct ?? null; return v !== null ? Number(v) : null; });
 
-      const dd = eq.map(x => {
-        const v = (x.drawdown ?? null);
-        if (v === null || v === undefined) return null;
-        return Number(v) * 100.0;
-      });
+      if (equityChart) { equityChart.destroy(); }
+      if (ddChart) { ddChart.destroy(); }
 
       const ctx1 = document.getElementById('equityChart');
       equityChart = new Chart(ctx1, {
         type: 'line',
-        data: {
-          labels,
-          datasets: [
-            {
-              label: 'Stratégie (Equity)',
-              data: strategy,
-              borderColor: '#00d4aa',
-              backgroundColor: 'rgba(0, 212, 170, 0.10)',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.15
-            },
-            {
-              label: 'SPY (scaled)',
-              data: spyScaled,
-              borderColor: '#9ca3af',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.15,
-              hidden: !spyVisible
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          interaction: { mode: 'index', intersect: false },
-          plugins: {
-            legend: { labels: { color: '#e5e7eb' } },
-            tooltip: { callbacks: { label: (ctx) => `${ctx.dataset.label}: ${fmtMoney(ctx.raw)}` } }
-          },
-          scales: {
-            x: { ticks: { color: '#9ca3af', maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-            y: { type: yScaleType, ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.04)' } }
-          }
-        }
+        data: { labels, datasets: [
+          { label: 'Stratégie', data: strategy, borderColor: '#22c55e', backgroundColor: 'rgba(34,197,94,0.06)', borderWidth: 1.5, pointRadius: 0, tension: 0.15 },
+          { label: 'SPY (scaled)', data: spyScaled, borderColor: '#6b7280', borderWidth: 1, pointRadius: 0, tension: 0.15, borderDash: [4,4] }
+        ]},
+        options: { responsive: true, interaction: { mode: 'index', intersect: false }, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => ctx.dataset.label+': '+Number(ctx.raw).toLocaleString('fr-FR',{maximumFractionDigits:0})+' €' } } }, scales: { x: { ticks: { color: '#6b7280', maxTicksLimit: 8, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.03)' } }, y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.03)' } } } }
       });
 
       const ctx2 = document.getElementById('ddChart');
       ddChart = new Chart(ctx2, {
         type: 'line',
-        data: {
-          labels,
-          datasets: [
-            {
-              label: 'Drawdown (%)',
-              data: dd,
-              borderColor: '#f59e0b',
-              backgroundColor: 'rgba(245, 158, 11, 0.12)',
-              borderWidth: 2,
-              pointRadius: 0,
-              tension: 0.15
-            }
-          ]
-        },
-        options: {
-          responsive: true,
-          interaction: { mode: 'index', intersect: false },
-          plugins: {
-            legend: { labels: { color: '#e5e7eb' } },
-            tooltip: { callbacks: { label: (ctx) => `Drawdown: ${Number(ctx.raw).toFixed(2)}%` } }
-          },
-          scales: {
-            x: { ticks: { color: '#9ca3af', maxTicksLimit: 8 }, grid: { color: 'rgba(255,255,255,0.04)' } },
-            y: { ticks: { color: '#9ca3af' }, grid: { color: 'rgba(255,255,255,0.04)' } }
-          }
-        }
+        data: { labels, datasets: [{ label: 'Drawdown', data: dd, borderColor: '#fb923c', backgroundColor: 'rgba(251,146,60,0.08)', borderWidth: 1.5, pointRadius: 0, tension: 0.15 }] },
+        options: { responsive: true, interaction: { mode: 'index', intersect: false }, plugins: { legend: { labels: { color: '#9ca3af', font: { size: 11 } } }, tooltip: { callbacks: { label: ctx => 'Drawdown: '+Number(ctx.raw).toFixed(2)+'%' } } }, scales: { x: { ticks: { color: '#6b7280', maxTicksLimit: 8, font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.03)' } }, y: { ticks: { color: '#6b7280', font: { size: 10 } }, grid: { color: 'rgba(255,255,255,0.03)' } } } }
       });
     }
 
-    document.getElementById('toggleScale').addEventListener('click', () => {
-      yScaleType = (yScaleType === 'linear') ? 'logarithmic' : 'linear';
-      document.getElementById('toggleScale').textContent = `Échelle : ${yScaleType === 'linear' ? 'Linéaire' : 'Log'}`;
-      if (equityChart) { equityChart.options.scales.y.type = yScaleType; equityChart.update(); }
-    });
-
-    document.getElementById('toggleSpy').addEventListener('click', () => {
-      spyVisible = !spyVisible;
-      document.getElementById('toggleSpy').textContent = `SPY : ${spyVisible ? 'Affiché' : 'Masqué'}`;
-      if (equityChart) { equityChart.data.datasets[1].hidden = !spyVisible; equityChart.update(); }
-    });
-
-    // Trades table
-    let allTrades = [];
-    let filtered = [];
-    let page = 1;
-
-    const qEl = document.getElementById('q');
-    const pageSizeEl = document.getElementById('pageSize');
-    const tbody = document.getElementById('tbody');
-    const pageInfo = document.getElementById('pageInfo');
-
+    let allTrades = [], filtered = [], page = 1;
+    const qEl = document.getElementById('q'), pageSizeEl = document.getElementById('pageSize'), tbody = document.getElementById('tbody'), pageInfo = document.getElementById('pageInfo');
     function getPageSize() { return Number(pageSizeEl.value || 100); }
-
-    function computePnlDollarIfMissing(t) {
-      if (t["pnl_$"] !== undefined && t["pnl_$"] !== null && t["pnl_$"] !== "") return Number(t["pnl_$"]);
-      const pctVal = Number(t.pnl_pct);
-      const tradeValue = Number(summary?.trade_value ?? 5000);
-      if (!isFinite(pctVal) || !isFinite(tradeValue)) return NaN;
-      return (pctVal / 100.0) * tradeValue;
-    }
-
     function applyFilter() {
-      const q = (qEl.value || '').trim().toLowerCase();
-
-      if (!q) {
-        filtered = allTrades.slice();
-      } else {
-        filtered = allTrades.filter(t => {
-          const hay = [t.ticker, t.entry_date, t.exit_date, t.exit_reason].join(' ').toLowerCase();
-          return hay.includes(q);
-        });
-      }
-
-      filtered.sort((a, b) => (String(b.entry_date || '')).localeCompare(String(a.entry_date || '')));
-      page = 1;
-      render();
+      const q = (qEl.value||'').trim().toLowerCase();
+      filtered = q ? allTrades.filter(t => [t.ticker,t.entry_date,t.exit_date,t.exit_reason].join(' ').toLowerCase().includes(q)) : allTrades.slice();
+      filtered.sort((a,b) => (String(b.entry_date||'')).localeCompare(String(a.entry_date||'')));
+      page = 1; render();
     }
-
     function render() {
-      const pageSize = getPageSize();
-      const total = filtered.length;
-      const totalPages = Math.max(1, Math.ceil(total / pageSize));
-
-      page = Math.min(Math.max(1, page), totalPages);
-      const start = (page - 1) * pageSize;
-      const end = Math.min(start + pageSize, total);
-
+      const ps = getPageSize(), total = filtered.length, tp = Math.max(1, Math.ceil(total/ps));
+      page = Math.min(Math.max(1,page), tp);
+      const start = (page-1)*ps, end = Math.min(start+ps, total);
       const slice = filtered.slice(start, end);
-
       tbody.innerHTML = '';
       const frag = document.createDocumentFragment();
-
-      slice.forEach((t, i) => {
-        const pnlPct = Number(t.pnl_pct);
-        const pnlDollar = computePnlDollarIfMissing(t);
-        const pnlClass = isFinite(pnlPct) && pnlPct >= 0 ? 'text-green-400' : 'text-red-400';
-
+      slice.forEach((t,i) => {
+        const pnl = Number(t.pnl_pct), pnlD = t.pnl_$ !== undefined ? Number(t.pnl_$) : (pnl/100)*5000;
+        const cls = isFinite(pnl) && pnl >= 0 ? '#22c55e' : '#ef4444';
         const trEl = document.createElement('tr');
-        trEl.innerHTML = `
-          <td class="px-4 py-3 text-gray-500 mono">${start + i + 1}</td>
-          <td class="px-4 py-3 font-bold mono">${t.ticker ?? ''}</td>
-          <td class="px-4 py-3 mono">${t.entry_date ?? ''}</td>
-          <td class="px-4 py-3 mono">${isFinite(Number(t.entry_price)) ? Number(t.entry_price).toFixed(2) : ''}</td>
-          <td class="px-4 py-3 mono">${t.exit_date ?? ''}</td>
-          <td class="px-4 py-3 mono">${isFinite(Number(t.exit_price)) ? Number(t.exit_price).toFixed(2) : ''}</td>
-          <td class="px-4 py-3 text-gray-300">${t.exit_reason ?? ''}</td>
-          <td class="px-4 py-3 font-bold ${pnlClass} mono">${isFinite(pnlPct) ? pnlPct.toFixed(2) : ''}%</td>
-          <td class="px-4 py-3 ${pnlClass} mono">${isFinite(pnlDollar) ? pnlDollar.toFixed(2) : ''}</td>
-          <td class="px-4 py-3 text-gray-400 mono">${t.holding_days ?? ''}</td>
-        `;
+        trEl.style.borderTop = '1px solid rgba(255,255,255,0.03)';
+        trEl.innerHTML = '<td style="padding:10px 12px;color:#4b5563;font-family:JetBrains Mono,monospace;">'+(start+i+1)+'</td><td style="padding:10px 12px;font-weight:600;font-family:JetBrains Mono,monospace;">'+(t.ticker||'')+'</td><td style="padding:10px 12px;font-family:JetBrains Mono,monospace;">'+(t.entry_date||'')+'</td><td style="padding:10px 12px;font-family:JetBrains Mono,monospace;">'+(isFinite(Number(t.entry_price))?Number(t.entry_price).toFixed(2):'')+'</td><td style="padding:10px 12px;font-family:JetBrains Mono,monospace;">'+(t.exit_date||'')+'</td><td style="padding:10px 12px;font-family:JetBrains Mono,monospace;">'+(isFinite(Number(t.exit_price))?Number(t.exit_price).toFixed(2):'')+'</td><td style="padding:10px 12px;color:#9ca3af;">'+(t.exit_reason||'')+'</td><td style="padding:10px 12px;font-weight:600;font-family:JetBrains Mono,monospace;color:'+cls+';">'+(isFinite(pnl)?pnl.toFixed(2):'')+'%</td><td style="padding:10px 12px;font-family:JetBrains Mono,monospace;color:'+cls+';">'+(isFinite(pnlD)?pnlD.toFixed(2):'')+'</td><td style="padding:10px 12px;color:#6b7280;font-family:JetBrains Mono,monospace;">'+(t.holding_days||'')+'</td>';
         frag.appendChild(trEl);
       });
-
       tbody.appendChild(frag);
-      pageInfo.textContent = `Page ${page}/${totalPages} · ${intFR.format(total)} trades (affichés ${total ? (start + 1) : 0}-${end})`;
+      pageInfo.textContent = 'Page '+page+'/'+tp+' · '+filtered.length+' trades ('+(start+1)+'-'+end+')';
     }
 
     async function loadTrades() {
-      const loading = document.getElementById('tradesLoading');
-      const errBox = document.getElementById('tradesError');
-
-      try {
-        const r = await fetch(TRADES_URL, { cache: 'no-store' });
-        if (!r.ok) throw new Error(`all_trades.json HTTP ${r.status}`);
-        const data = await r.json();
-
-        allTrades = data;
-        filtered = allTrades.slice();
-
-        loading.classList.add('hidden');
-        applyFilter();
-      } catch (e) {
-        loading.classList.add('hidden');
-        errBox.classList.remove('hidden');
-        errBox.textContent = `Erreur chargement all_trades.json : ${e.message} — vérifie ${TRADES_URL}`;
-      }
+      const r = await fetch(TRADES_URL, { cache: 'no-store' });
+      if (!r.ok) throw new Error('trades HTTP '+r.status);
+      allTrades = await r.json();
+      filtered = allTrades.slice();
+      applyFilter();
     }
 
     document.getElementById('prev').addEventListener('click', () => { page--; render(); });
@@ -569,12 +198,12 @@
         await loadSummary();
         await loadCharts();
         await loadTrades();
-      } catch (e) {
-        showGlobalError(`Erreur initialisation : ${e.message}. Vérifie que ./backtest contient bien les JSON exportés par Colab.`);
-        console.error(e);
+      } catch(e) {
+        const box = document.getElementById('error-box');
+        box.style.display = 'block';
+        box.textContent = 'Erreur : '+e.message;
       }
     })();
   </script>
-
 </body>
 </html>
