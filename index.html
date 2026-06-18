@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Citadel Alpha — Dual Momentum quantitatif. Stratégie validée académiquement. Track record public avec equity curve et détail des trades." />
+  <meta name="description" content="Citadel Alpha — Stratégie Dual Momentum quantitative. Track record public + signaux mensuels. CAGR 32% validé OOS." />
   <title>Citadel Alpha | Dual Momentum Quantitatif</title>
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -12,271 +12,526 @@
   <style>
     html { scroll-behavior: smooth; }
     section[id] { scroll-margin-top: 110px; }
-    .hero-bg { background: linear-gradient(135deg, #07070b 0%, #12121a 100%); }
-    .glow-green { text-shadow: 0 0 25px rgba(0, 212, 170, 0.45); }
-    .mono { font-variant-numeric: tabular-nums; }
-    .card-hover { transition: transform 0.25s, border-color 0.25s; }
-    .card-hover:hover { transform: translateY(-2px); border-color: rgba(0,212,170,0.55); }
-    .logo-mark { filter: drop-shadow(0 0 18px rgba(0, 212, 170, 0.18)); }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+    @keyframes pulse-glow {
+      0%, 100% { box-shadow: 0 0 20px rgba(0, 212, 170, 0.2); }
+      50% { box-shadow: 0 0 40px rgba(0, 212, 170, 0.5); }
+    }
+    @keyframes slide-up {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes count-up {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    .animate-float { animation: float 6s ease-in-out infinite; }
+    .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
+    .animate-slide-up { animation: slide-up 0.8s ease-out forwards; }
+    .delay-1 { animation-delay: 0.2s; opacity: 0; }
+    .delay-2 { animation-delay: 0.4s; opacity: 0; }
+    .delay-3 { animation-delay: 0.6s; opacity: 0; }
+    .delay-4 { animation-delay: 0.8s; opacity: 0; }
+
+    .card-hover { transition: all 0.3s ease; }
+    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3); }
+
+    .gradient-border {
+      position: relative;
+      background: linear-gradient(135deg, rgba(26, 26, 46, 1) 0%, rgba(10, 10, 15, 1) 100%);
+    }
+    .gradient-border::before {
+      content: '';
+      position: absolute;
+      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      background: linear-gradient(135deg, #00d4aa, #00b894, #4a9eff);
+      border-radius: inherit;
+      z-index: -1;
+      opacity: 0.5;
+    }
+
+    .hero-bg {
+      background: linear-gradient(135deg, #07070b 0%, #12121a 50%, #0d0d1a 100%);
+      position: relative;
+      overflow: hidden;
+    }
+    .hero-bg::before {
+      content: '';
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0, 212, 170, 0.08) 0%, transparent 70%);
+      top: -200px; right: -200px;
+      border-radius: 50%;
+    }
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(74, 158, 255, 0.06) 0%, transparent 70%);
+      bottom: -100px; left: -100px;
+      border-radius: 50%;
+    }
+
+    .stat-number { font-variant-numeric: tabular-nums; }
+    .glass-card {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .text-gradient { background: linear-gradient(135deg, #00d4aa, #4a9eff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+
+    .comparison-table td, .comparison-table th { padding: 12px 16px; border-bottom: 1px solid rgba(255,255,255,0.05); }
   </style>
 </head>
 
 <body class="bg-[#0a0a0f] text-gray-200">
 
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/95 backdrop-blur-md border-b border-gray-800">
-    <div class="max-w-7xl mx-auto px-6 py-5 flex justify-between items-center">
+  <!-- ====== NAVBAR ====== -->
+  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/90 backdrop-blur-xl border-b border-gray-800/50">
+    <div class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center">
       <a href="index.html" class="flex items-center gap-3">
-        <svg class="logo-mark" width="34" height="34" viewBox="0 0 64 64" fill="none" aria-label="Logo Citadel Alpha" xmlns="http://www.w3.org/2000/svg">
-          <defs>
-            <linearGradient id="g" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-              <stop stop-color="#00d4aa"/>
-              <stop offset="1" stop-color="#00b894"/>
-            </linearGradient>
-          </defs>
+        <svg width="32" height="32" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <defs><linearGradient id="g" x1="10" y1="8" x2="54" y2="56"><stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/></linearGradient></defs>
           <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/>
           <path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
           <path d="M20 36 L32 48 L44 36" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
           <path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
         </svg>
         <div class="leading-tight">
-          <div class="text-xl md:text-2xl font-bold tracking-tight">CITADEL ALPHA</div>
-          <div class="text-[11px] text-gray-400 -mt-0.5">Research &bull; Quant &bull; Technique</div>
+          <div class="text-lg md:text-xl font-bold tracking-tight">CITADEL ALPHA</div>
+          <div class="text-[10px] text-gray-500 -mt-0.5">Quant &bull; Momentum &bull; Data-Driven</div>
         </div>
       </a>
 
-      <div class="hidden md:flex items-center gap-8 text-sm">
-        <a href="#methode" class="hover:text-[#00d4aa] transition">Notre M&eacute;thode</a>
-        <a href="#services" class="hover:text-[#00d4aa] transition">Services</a>
-        <a href="#track" class="hover:text-[#00d4aa] transition">Track Record</a>
-        <a href="#pricing" class="hover:text-[#00d4aa] transition">Tarifs</a>
-        <a href="contact.html" class="hover:text-[#00d4aa] transition">Contact</a>
+      <div class="hidden md:flex items-center gap-6 text-sm">
+        <a href="#stats" class="hover:text-[#00d4aa] transition text-gray-300">Performance</a>
+        <a href="#methode" class="hover:text-[#00d4aa] transition text-gray-300">M&eacute;thode</a>
+        <a href="#comparatif" class="hover:text-[#00d4aa] transition text-gray-300">Comparatif</a>
+        <a href="#pricing" class="hover:text-[#00d4aa] transition text-gray-300">Tarifs</a>
+        <a href="trackrecord.html" class="hover:text-[#00d4aa] transition text-gray-300">Track Record</a>
       </div>
 
-      <a href="#pricing" class="bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-6 py-2.5 rounded-lg transition">
+      <a href="#pricing" class="bg-[#00d4aa] hover:bg-[#00b894] text-black font-bold px-5 py-2.5 rounded-xl transition text-sm">
         Essai Gratuit 7 jours
       </a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="hero-bg pt-32 pb-20 px-6 relative overflow-hidden">
-    <div class="max-w-6xl mx-auto text-center relative z-10">
-      <div class="inline-flex items-center gap-2 bg-[#141426] border border-[#00d4aa]/25 text-[#00d4aa] text-sm px-6 py-2 rounded-full mb-8">
-        <i class="fas fa-sparkles"></i>
-        Le standard institutionnel en France
-      </div>
+  <!-- ====== HERO ====== -->
+  <section class="hero-bg min-h-screen flex items-center px-6 relative">
+    <div class="max-w-6xl mx-auto w-full relative z-10 pt-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
 
-      <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-tight mb-6 glow-green">
-        Dual Momentum quantitatif,<br />
-        <span class="text-white">pour investisseurs particuliers exigeants.</span>
-      </h1>
+        <!-- Left: Text -->
+        <div>
+          <div class="inline-flex items-center gap-2 bg-[#00d4aa]/10 border border-[#00d4aa]/20 text-[#00d4aa] text-xs px-4 py-2 rounded-full mb-6">
+            <i class="fas fa-flask"></i>
+            Strat&eacute;gie valid&eacute;e acad&eacute;miquement &bull; OOS 2022-2026
+          </div>
 
-      <p class="text-xl md:text-2xl text-gray-300 max-w-3xl mx-auto mb-10">
-        Strat&eacute;gie quantitative valid&eacute;e acad&eacute;miquement (Faber, 2017). Track record public avec equity curve,
-        drawdown et table compl&egrave;te des 450 trades.
-      </p>
+          <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-6">
+            <span class="text-white">Dual Momentum</span><br />
+            <span class="text-gradient">Quantitatif &amp; Data-Driven</span>
+          </h1>
 
-      <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
-        <a href="#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-10 py-4 rounded-2xl hover:bg-white transition flex items-center gap-3">
-          <span>D&eacute;marrer l'essai gratuit 7 jours</span>
-          <i class="fas fa-arrow-right"></i>
-        </a>
-        <a href="trackrecord.html" class="border border-gray-700 font-bold text-lg px-8 py-4 rounded-2xl hover:border-white transition">
-          Voir le Track Record d&eacute;taill&eacute;
-        </a>
-      </div>
+          <p class="text-lg md:text-xl text-gray-400 max-w-xl mb-8 leading-relaxed">
+            Une strat&eacute;gie quantitative bas&eacute;e sur les travaux de <strong class="text-gray-200">Meb Faber (2017)</strong> :
+            classement mensuel des 500 premi&egrave;res capitalisations US par momentum 12 mois,
+            avec filtre march&eacute; pour &eacute;viter les bear markets.
+          </p>
 
-      <p class="text-xs text-gray-500 mt-8 max-w-3xl mx-auto">
-        Contenu &eacute;ducatif. Pas de conseil en investissement personnalis&eacute;. Les performances pass&eacute;es issues de backtests ne pr&eacute;jugent pas des r&eacute;sultats futurs.
-      </p>
-    </div>
-  </section>
+          <div class="flex flex-col sm:flex-row gap-4 mb-12">
+            <a href="#pricing" class="bg-[#00d4aa] text-black font-bold text-lg px-8 py-4 rounded-2xl hover:bg-white transition flex items-center gap-3 text-center justify-center animate-pulse-glow">
+              <span>D&eacute;marrer l'essai gratuit</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <a href="trackrecord.html" class="border border-gray-700 font-bold text-lg px-8 py-4 rounded-2xl hover:border-[#00d4aa] transition flex items-center gap-3 text-center justify-center glass-card">
+              <i class="fas fa-chart-line text-[#00d4aa]"></i>
+              Voir le Track Record
+            </a>
+          </div>
 
-  <!-- NOTRE METHODE -->
-  <section id="methode" class="py-20 px-6">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-6">Notre M&eacute;thode</h2>
-      <p class="text-center text-gray-400 max-w-3xl mx-auto mb-12">
-        Une approche quantitative rigoureuse bas&eacute;e sur le <strong class="text-gray-200">Dual Momentum</strong> (Meb Faber) :
-        classement mensuel des 500 premi&egrave;res capitalisations am&eacute;ricaines par momentum 12 mois,
-        avec filtre absolu SPY 500 &gt; 0 pour &eacute;viter les bear markets.
-      </p>
-
-      <div class="grid md:grid-cols-3 gap-6">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
-          <div class="text-4xl mb-4 font-bold text-[#00d4aa]">3</div>
-          <div class="text-lg font-bold mb-2">Positions concentr&eacute;es</div>
-          <div class="text-sm text-gray-400">
-            Les 3 meilleurs momentum stocks du S&amp;P500, r&eacute;&eacute;quilibr&eacute;s chaque mois. Concentration = performance.
+          <!-- Trust bar -->
+          <div class="flex flex-wrap gap-6 text-xs text-gray-500">
+            <span><i class="fas fa-database text-[#00d4aa] mr-1"></i> 450 trades r&eacute;els</span>
+            <span><i class="fas fa-calendar text-[#00d4aa] mr-1"></i> 9 ans de data</span>
+            <span><i class="fas fa-flask text-[#00d4aa] mr-1"></i> Valid&eacute; OOS</span>
+            <span><i class="fas fa-euro-sign text-[#00d4aa] mr-1"></i> Capital 3000 &euro;</span>
           </div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
-          <div class="text-4xl mb-4 font-bold text-[#00d4aa]">12m</div>
-          <div class="text-lg font-bold mb-2">Momentum 12 mois</div>
-          <div class="text-sm text-gray-400">
-            Classement par performance annualis&eacute;e avec skip de 20 jours pour &eacute;viter les retournements court-terme.
-          </div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-7 card-hover">
-          <div class="text-4xl mb-4 font-bold text-[#00d4aa]">x2</div>
-          <div class="text-lg font-bold mb-2">Anti-martingale</div>
-          <div class="text-sm text-gray-400">
-            La mise double apr&egrave;s un gain, revient &agrave; la mise initiale apr&egrave;s une perte. Amplifie les gains sans risquer la ruine.
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
 
-  <!-- SERVICES -->
-  <section id="services" class="py-20 px-6 bg-[#12121a] border-y border-gray-800">
-    <div class="max-w-6xl mx-auto">
-      <h2 class="text-4xl font-bold text-center mb-6">Services</h2>
-      <p class="text-center text-gray-400 mb-12">Signaux mensuels de la strat&eacute;gie Dual Momentum + analyses pour ex&eacute;cuter avec rigueur.</p>
+        <!-- Right: Hero Card -->
+        <div class="hidden lg:block">
+          <div class="bg-[#1a1a2e]/80 backdrop-blur-xl border border-gray-800/50 rounded-3xl p-8 animate-float card-hover">
+            <div class="flex items-center gap-2 mb-6">
+              <div class="w-3 h-3 rounded-full bg-green-400 animate-pulse"></div>
+              <span class="text-xs text-gray-400">Strat&eacute;gie en temps r&eacute;el &bull; Live</span>
+            </div>
 
-      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Signaux Momentum</div>
-            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
-          </div>
-          <div class="text-sm text-gray-400">Top 3 picks du mois + historique.</div>
-        </div>
+            <div class="grid grid-cols-2 gap-6 mb-6">
+              <div>
+                <div class="text-xs text-gray-500 mb-1">CAGR annualis&eacute;</div>
+                <div class="text-4xl font-bold text-[#00d4aa] stat-number" id="hero_cagr">&mdash;</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Capital final (3k&euro;)</div>
+                <div class="text-4xl font-bold text-white stat-number" id="hero_final">&mdash;</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Max Drawdown</div>
+                <div class="text-2xl font-bold text-orange-400 stat-number" id="hero_dd">&mdash;</div>
+              </div>
+              <div>
+                <div class="text-xs text-gray-500 mb-1">Profit Factor</div>
+                <div class="text-2xl font-bold text-white stat-number" id="hero_pf">&mdash;</div>
+              </div>
+            </div>
 
-        <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Track Record</div>
-            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
-          </div>
-          <div class="text-sm text-gray-400">Equity curve, drawdown, trades en temps r&eacute;el.</div>
-        </div>
+            <div class="border-t border-gray-800 pt-4 mt-2">
+              <div class="flex justify-between text-xs text-gray-500">
+                <span>vs SPY buy-and-hold</span>
+                <span class="text-[#00d4aa] font-bold" id="hero_alpha">&mdash;</span>
+              </div>
+              <div class="w-full bg-gray-800 rounded-full h-1.5 mt-2">
+                <div class="bg-[#00d4aa] h-1.5 rounded-full" style="width: 75%" id="hero_bar"></div>
+              </div>
+            </div>
 
-        <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Portefeuille Mod&egrave;le</div>
-            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
+            <div class="mt-6 pt-4 border-t border-gray-800 text-center">
+              <a href="trackrecord.html" class="text-sm text-[#00d4aa] hover:underline">
+                Voir l'equity curve d&eacute;taill&eacute;e &rarr;
+              </a>
+            </div>
           </div>
-          <div class="text-sm text-gray-400">Suivez la strat&eacute;gie en temps r&eacute;el.</div>
         </div>
 
-        <div class="bg-[#0a0a0f] border border-gray-700 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Macro Brief</div>
-            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
-          </div>
-          <div class="text-sm text-gray-400">Taux, inflation, rotation, risques.</div>
-        </div>
-
-        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Alertes Rebalancement</div>
-            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
-          </div>
-          <div class="text-sm text-gray-400">Notifications aux rebalancements mensuels avec les nouveaux picks.</div>
-        </div>
-
-        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Risk Management</div>
-            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
-          </div>
-          <div class="text-sm text-gray-400">Stress tests, sizing, couverture du portefeuille.</div>
-        </div>
-
-        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Analyse Fondamentale</div>
-            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
-          </div>
-          <div class="text-sm text-gray-400">DCF, qualit&eacute; du bilan, catalyseurs des picks du mois.</div>
-        </div>
-
-        <div class="bg-[#0a0a0f] border border-[#00d4aa]/35 rounded-2xl p-6 card-hover">
-          <div class="flex items-center justify-between mb-3">
-            <div class="font-bold">Communaut&eacute;</div>
-            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
-          </div>
-          <div class="text-sm text-gray-400">Discord/Telegram priv&eacute; pour &eacute;changer sur les trades.</div>
-        </div>
       </div>
     </div>
   </section>
 
-  <!-- TRACK RECORD -->
-  <section id="track" class="py-20 px-6">
+  <!-- ====== STATS BAND (Reassurance) ====== -->
+  <section id="stats" class="py-16 px-6 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto">
-      <div class="text-center">
-        <h2 class="text-4xl font-bold mb-3">Track Record</h2>
-        <p class="text-gray-400 mb-10">
-          Backtest public : equity curve, drawdown et table de trades.
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+
+        <div class="text-center animate-slide-up delay-1">
+          <div class="text-4xl md:text-5xl font-bold text-[#00d4aa] stat-number">32,6</div>
+          <div class="text-xs text-gray-400 mt-2">CAGR annualis&eacute; (%)</div>
+          <div class="text-[10px] text-gray-600">Vs 15,4% pour le SPY</div>
+        </div>
+
+        <div class="text-center animate-slide-up delay-2">
+          <div class="text-4xl md:text-5xl font-bold text-white stat-number">+1.393</div>
+          <div class="text-xs text-gray-400 mt-2">Rendement total (%)</div>
+          <div class="text-[10px] text-gray-600">3 000 &euro; &rarr; 44 813 &euro;</div>
+        </div>
+
+        <div class="text-center animate-slide-up delay-3">
+          <div class="text-4xl md:text-5xl font-bold text-orange-400 stat-number">-17,9</div>
+          <div class="text-xs text-gray-400 mt-2">Drawdown maximum (%)</div>
+          <div class="text-[10px] text-gray-600">Vs -55% pour le SPY</div>
+        </div>
+
+        <div class="text-center animate-slide-up delay-4">
+          <div class="text-4xl md:text-5xl font-bold text-white stat-number">4,31</div>
+          <div class="text-xs text-gray-400 mt-2">Profit Factor</div>
+          <div class="text-[10px] text-gray-600">4,31 &euro; gagn&eacute;s pour 1 &euro; perdu</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== METHODE ====== -->
+  <section id="methode" class="py-24 px-6">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-16">
+        <span class="text-xs text-[#00d4aa] tracking-widest uppercase font-bold">Notre M&eacute;thode</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Comment &ccedil;a marche</h2>
+        <p class="text-gray-400 max-w-3xl mx-auto">
+          Une approche <strong class="text-gray-200">scientifique</strong> du trading : r&egrave;gles explicites, backtest transparent,
+          et validation out-of-sample.
         </p>
       </div>
 
-      <div id="trackError" class="hidden bg-red-500/10 border border-red-500/30 rounded-2xl p-5 text-sm text-red-300 mb-6"></div>
+      <div class="grid md:grid-cols-3 gap-6 mb-16">
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-[#00d4aa]">1</span>
+          </div>
+          <div class="text-xl font-bold mb-3">Filtre March&eacute;</div>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Si le SPY 500 a perdu plus de 0% sur 12 mois glissants, on reste <strong class="text-gray-300">100% en cash</strong>.
+            &Eacute;vite les bear markets (2008, 2022) sans &agrave; coup.
+          </p>
+        </div>
 
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 card-hover">
-          <div class="text-xs text-gray-400">P&eacute;riode</div>
-          <div id="t_period" class="text-sm font-bold mt-2 mono">&mdash;</div>
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-[#00d4aa]">2</span>
+          </div>
+          <div class="text-xl font-bold mb-3">Ranking Momentum</div>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            Chaque mois, on classifie les 500 actions am&eacute;ricaines par leur performance sur <strong class="text-gray-300">12 mois</strong>
+            (avec skip de 20 jours pour &eacute;viter le bruit court-terme).
+          </p>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 card-hover">
-          <div class="text-xs text-gray-400">Capital final</div>
-          <div id="t_final" class="text-xl font-bold text-[#00d4aa] mt-2 mono">&mdash;</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 card-hover">
-          <div class="text-xs text-gray-400">CAGR / Alpha</div>
-          <div id="t_cagr" class="text-xl font-bold mt-2 mono">&mdash;</div>
-          <div id="t_alpha" class="text-xs text-gray-500 mt-1 mono">&mdash;</div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-2xl p-5 card-hover">
-          <div class="text-xs text-gray-400">Max Drawdown</div>
-          <div id="t_dd" class="text-xl font-bold mt-2 mono">&mdash;</div>
-          <div id="t_trades" class="text-xs text-gray-500 mt-1 mono">&mdash;</div>
+
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
+          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5">
+            <span class="text-2xl font-bold text-[#00d4aa]">3</span>
+          </div>
+          <div class="text-xl font-bold mb-3">Position concentr&eacute;e</div>
+          <p class="text-sm text-gray-400 leading-relaxed">
+            On ach&egrave;te les <strong class="text-gray-300">3 meilleurs</strong> momentum stocks en parts &eacute;gales.
+            La mise double automatiquement apr&egrave;s un gain (anti-martingale) pour amplifier la performance.
+          </p>
         </div>
       </div>
 
-      <div class="text-center">
-        <a href="trackrecord.html" class="bg-[#00d4aa] text-black font-bold px-8 py-4 rounded-2xl hover:bg-white transition inline-flex items-center gap-3">
-          Voir le rapport complet
-          <i class="fas fa-arrow-right"></i>
-        </a>
+      <!-- Validation badges -->
+      <div class="grid md:grid-cols-4 gap-4">
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <i class="fas fa-flask text-[#00d4aa] text-2xl mb-2"></i>
+          <div class="text-lg font-bold text-white">Acad&eacute;mique</div>
+          <div class="text-xs text-gray-500">Faber 2013-2017, Jegadeesh 1993</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <i class="fas fa-database text-[#00d4aa] text-2xl mb-2"></i>
+          <div class="text-lg font-bold text-white">504 tickers</div>
+          <div class="text-xs text-gray-500">S&P500 au 04/01/2016, z&eacute;ro survivance</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <i class="fas fa-chart-line text-[#00d4aa] text-2xl mb-2"></i>
+          <div class="text-lg font-bold text-white">Out-of-Sample</div>
+          <div class="text-xs text-gray-500">2022-2026 valid&eacute; sur donn&eacute;es non vues</div>
+        </div>
+        <div class="glass-card rounded-2xl p-5 text-center">
+          <i class="fas fa-shield-halved text-[#00d4aa] text-2xl mb-2"></i>
+          <div class="text-lg font-bold text-white">Slippage 0,1%</div>
+          <div class="text-xs text-gray-500">Stops gap-adjusted, frais inclus</div>
+        </div>
       </div>
 
-      <p class="text-xs text-gray-500 text-center mt-6 max-w-3xl mx-auto">
-        Transparence : logs et exports disponibles sur la page Track Record. Les backtests ont des limites (donn&eacute;es daily, hypoth&egrave;ses d&rsquo;ex&eacute;cution, etc.).
+    </div>
+  </section>
+
+  <!-- ====== COMPARATIF ====== -->
+  <section id="comparatif" class="py-24 px-6 bg-[#12121a] border-y border-gray-800">
+    <div class="max-w-6xl mx-auto">
+
+      <div class="text-center mb-16">
+        <span class="text-xs text-[#00d4aa] tracking-widest uppercase font-bold">Benchmark</span>
+        <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Comparatif des strat&eacute;gies</h2>
+        <p class="text-gray-400 max-w-2xl mx-auto">
+          Dual Momentum vs les alternatives classiques sur la p&eacute;riode 2016-2026.
+        </p>
+      </div>
+
+      <div class="overflow-x-auto rounded-2xl border border-gray-800">
+        <table class="w-full text-sm comparison-table">
+          <thead class="bg-[#0a0a0f]">
+            <tr class="text-gray-400 text-left">
+              <th class="font-bold">Strat&eacute;gie</th>
+              <th class="font-bold">CAGR</th>
+              <th class="font-bold">Capital final (3k&euro;)</th>
+              <th class="font-bold">Drawdown max</th>
+              <th class="font-bold">Win Rate</th>
+              <th class="font-bold">Trades/mois</th>
+            </tr>
+          </thead>
+          <tbody class="divide-y divide-gray-800">
+            <tr class="bg-[#00d4aa]/5 border-l-2 border-l-[#00d4aa]">
+              <td class="font-bold text-[#00d4aa]"><i class="fas fa-crown mr-2"></i>Dual Momentum (nous)</td>
+              <td class="font-bold text-[#00d4aa]">32,6%</td>
+              <td class="font-bold">44 813 &euro;</td>
+              <td class="text-orange-400">-17,9%</td>
+              <td>54,8%</td>
+              <td>~4</td>
+            </tr>
+            <tr>
+              <td>SPY Buy &amp; Hold</td>
+              <td>15,4%</td>
+              <td>12 859 &euro;</td>
+              <td class="text-red-400">-55%</td>
+              <td>&mdash;</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Livret A (moyenne 1,5%)</td>
+              <td>1,5%</td>
+              <td>3 478 &euro;</td>
+              <td>0%</td>
+              <td>100%</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Assurance-vie fonds &euro;</td>
+              <td>~2,5%</td>
+              <td>3 833 &euro;</td>
+              <td>0%</td>
+              <td>100%</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>Pullback strat&eacute;gie (avant correction)</td>
+              <td>4,3%</td>
+              <td>4 548 &euro;</td>
+              <td class="text-red-400">-12%</td>
+              <td>48%</td>
+              <td>~8</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-6 mt-10">
+        <div class="glass-card rounded-2xl p-6 text-center">
+          <div class="text-5xl font-bold text-[#00d4aa] mb-2">+17,2</div>
+          <div class="text-sm text-gray-400">Points d'alpha vs SPY</div>
+          <div class="text-xs text-gray-600">Par an, net de frais</div>
+        </div>
+        <div class="glass-card rounded-2xl p-6 text-center">
+          <div class="text-5xl font-bold text-white mb-2">3,5x</div>
+          <div class="text-sm text-gray-400">Plus de capital que le SPY</div>
+          <div class="text-xs text-gray-600">44 813 &euro; vs 12 859 &euro;</div>
+        </div>
+        <div class="glass-card rounded-2xl p-6 text-center">
+          <div class="text-5xl font-bold text-green-400 mb-2">-67%</div>
+          <div class="text-sm text-gray-400">Moins de drawdown que le SPY</div>
+          <div class="text-xs text-gray-600">-17,9% vs -55%</div>
+        </div>
+      </div>
+
+      <p class="text-xs text-gray-600 text-center mt-8">
+        Les performances pass&eacute;es (backtests) ne pr&eacute;jugent pas des r&eacute;sultats futurs.
+        D&eacute;sactiver le javascript pour d&eacute;sactiver les animations.
       </p>
     </div>
   </section>
 
-  <!-- PRICING -->
-  <section id="pricing" class="py-20 px-6 bg-[#12121a] border-y border-gray-800">
+  <!-- ====== REASSURANCE / TRUST ====== -->
+  <section class="py-16 px-6">
+    <div class="max-w-6xl mx-auto">
+      <div class="grid md:grid-cols-2 gap-8 items-center">
+        <div>
+          <span class="text-xs text-[#00d4aa] tracking-widest uppercase font-bold">Pourquoi nous</span>
+          <h2 class="text-3xl md:text-4xl font-bold mt-3 mb-6">Transparence totale</h2>
+
+          <div class="space-y-5">
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-file-invoice text-[#00d4aa]"></i>
+              </div>
+              <div>
+                <div class="font-bold mb-1">Track Record public</div>
+                <div class="text-sm text-gray-400">Equity curve, drawdown, et les 450 trades en CSV/JSON t&eacute;l&eacute;chargeables.</div>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-code text-[#00d4aa]"></i>
+              </div>
+              <div>
+                <div class="font-bold mb-1">Code source ouvert</div>
+                <div class="text-sm text-gray-400">Le script Python de backtest est disponible. Ex&eacute;cutable, v&eacute;rifiable, reproductible.</div>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-graduation-cap text-[#00d4aa]"></i>
+              </div>
+              <div>
+                <div class="font-bold mb-1">Fondation acad&eacute;mique</div>
+                <div class="text-sm text-gray-400">Bas&eacute; sur Faber (2017) "Dual Momentum" et Jegadeesh &amp; Titman (1993). 30+ ans de recherche.</div>
+              </div>
+            </div>
+            <div class="flex gap-4">
+              <div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-shield text-[#00d4aa]"></i>
+              </div>
+              <div>
+                <div class="font-bold mb-1">Risk Management</div>
+                <div class="text-sm text-gray-400">Slippage 0,1%, stops gap-adjusted, anti-martingale sans risque de ruine. Backtest stress-test&eacute;.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
+          <h3 class="text-xl font-bold mb-4">R&eacute;sum&eacute; ex&eacute;cutif</h3>
+          <div class="space-y-3 text-sm">
+            <div class="flex justify-between">
+              <span class="text-gray-400">Capital minimum</span>
+              <span class="font-bold">2 903 &euro; (jamais sous)</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Dur&eacute;e du backtest</span>
+              <span class="font-bold">9,6 ans</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Plus longue s&eacute;rie de pertes</span>
+              <span class="font-bold">9 trades</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Pire mois</span>
+              <span class="font-bold">-806 &euro;</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Frais &amp; slippage inclus</span>
+              <span class="font-bold text-[#00d4aa]">Oui (0,1%)</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Biais de survivance</span>
+              <span class="font-bold text-[#00d4aa]">&Eacute;limin&eacute;</span>
+            </div>
+            <div class="border-t border-gray-800 my-2"></div>
+            <div class="flex justify-between">
+              <span class="text-gray-400">Look-ahead bias</span>
+              <span class="font-bold text-[#00d4aa]">&Eacute;limin&eacute;</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== PRICING ====== -->
+  <section id="pricing" class="py-24 px-6 bg-[#12121a] border-y border-gray-800">
     <div class="max-w-6xl mx-auto text-center">
-      <h2 class="text-4xl font-bold mb-4">Tarifs</h2>
+      <span class="text-xs text-[#00d4aa] tracking-widest uppercase font-bold">Tarifs</span>
+      <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Abonnements</h2>
       <p class="text-gray-400 mb-12">7 jours d'essai gratuit &bull; Annulation &agrave; tout moment</p>
 
-      <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto text-left">
+      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
 
         <!-- FREE -->
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8 card-hover">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-bold">Gratuit</h3>
-            <span class="text-xs px-2 py-1 rounded bg-green-500/15 text-green-400 border border-green-500/20">PUBLIC</span>
-          </div>
-          <div class="text-5xl font-bold my-4">0&euro;</div>
-          <p class="text-gray-400 text-sm mb-6">Pour d&eacute;couvrir la m&eacute;thode et le track record.</p>
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-3xl p-8 card-hover">
+          <h3 class="text-2xl font-bold">Gratuit</h3>
+          <div class="text-5xl font-bold my-4">0&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
+          <p class="text-gray-400 text-sm mb-6">Pour d&eacute;couvrir la m&eacute;thode.</p>
 
           <ul class="text-sm space-y-3 mb-8">
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Acc&egrave;s Track Record (equity curve + table)</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Signaux momentum du mois</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Portefeuille mod&egrave;le public</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Brief Macro (mensuel)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Track Record complet (equity curve + table)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Signaux momentum publics</li>
             <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Alertes rebalancement</li>
             <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Analyse fondamentale des picks</li>
-            <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Communaut&eacute; (Discord/Telegram)</li>
+            <li class="flex items-start gap-2 text-gray-600"><i class="fas fa-times mt-1"></i> Communaut&eacute; priv&eacute;e</li>
           </ul>
 
-          <a href="trackrecord.html" class="w-full inline-flex justify-center py-4 border border-gray-600 rounded-2xl font-bold hover:border-white transition">
+          <a href="trackrecord.html" class="w-full inline-flex justify-center py-4 border border-gray-700 rounded-2xl font-bold hover:border-white transition">
             Voir le track record
           </a>
         </div>
@@ -286,22 +541,16 @@
           <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1.5 rounded-full">
             LE PLUS CHOISI
           </div>
-
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-bold">Pro</h3>
-            <span class="text-xs px-2 py-1 rounded bg-[#00d4aa]/15 text-[#00d4aa] border border-[#00d4aa]/25">PRO</span>
-          </div>
-
+          <h3 class="text-2xl font-bold">Pro</h3>
           <div class="text-5xl font-bold my-4">39&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <p class="text-gray-400 text-sm mb-6">Pour ex&eacute;cuter avec rigueur et un cadre complet.</p>
+          <p class="text-gray-400 text-sm mb-6">Pour ex&eacute;cuter avec rigueur.</p>
 
           <ul class="text-sm space-y-3 mb-8">
             <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Tout le plan Gratuit</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Alertes rebalancement (notification picks du mois)</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Analyse fondamentale des picks (DCF)</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Risk report mensuel (stress test)</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Sizing recommand&eacute; selon votre capital</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Acc&egrave;s communaut&eacute; (Discord/Telegram)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Alertes rebalancement (picks + sizing)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Analyse fondamentale des picks du mois</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Risk report mensuel</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-[#00d4aa] mt-1"></i> Communaut&eacute; priv&eacute;e (Discord)</li>
           </ul>
 
           <a href="contact.html" class="w-full inline-flex justify-center py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white transition">
@@ -310,54 +559,49 @@
         </div>
 
         <!-- ELITE -->
-        <div class="bg-[#1a1a2e] border border-gray-700 rounded-3xl p-8 card-hover">
-          <div class="flex items-center justify-between">
-            <h3 class="text-2xl font-bold">Elite</h3>
-            <span class="text-xs px-2 py-1 rounded bg-amber-400/15 text-amber-300 border border-amber-400/25">ELITE</span>
-          </div>
-
+        <div class="bg-[#1a1a2e] border border-gray-800 rounded-3xl p-8 card-hover">
+          <h3 class="text-2xl font-bold">Elite</h3>
           <div class="text-5xl font-bold my-4">99&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <p class="text-gray-400 text-sm mb-6">Pour un accompagnement plus personnalis&eacute;.</p>
+          <p class="text-gray-400 text-sm mb-6">Accompagnement personnalis&eacute;.</p>
 
           <ul class="text-sm space-y-3 mb-8">
             <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Tout le plan Pro</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Analyses sur demande (jusqu&rsquo;&agrave; 2/mois)</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Portefeuille &ldquo;Dividendes/Income&rdquo;</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Analyses sur demande (2/mois)</li>
             <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Canal priv&eacute; Elite</li>
-            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Session Q&A / mois (live)</li>
+            <li class="flex items-start gap-2"><i class="fas fa-check text-amber-300 mt-1"></i> Session Q&amp;A live / mois</li>
           </ul>
 
           <a href="contact.html" class="w-full inline-flex justify-center py-4 border border-amber-400 text-amber-300 rounded-2xl font-bold hover:bg-amber-400 hover:text-black transition">
-            Contacter (Elite)
+            Contacter
           </a>
         </div>
       </div>
 
-      <p class="text-xs text-gray-500 mt-10 max-w-4xl mx-auto">
-        Les offres et contenus peuvent &eacute;voluer. Aucune promesse de performance. Tout investissement comporte un risque de perte en capital.
+      <p class="text-xs text-gray-500 mt-10">
+        Les offres peuvent &eacute;voluer. Aucune promesse de performance. Tout investissement comporte un risque de perte en capital.
       </p>
     </div>
   </section>
 
-  <!-- FOOTER -->
+  <!-- ====== SCROLL TO TOP ====== -->
+  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+    class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#00d4aa] text-black shadow-lg hover:bg-white transition z-50 hidden items-center justify-center">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+
+  <!-- ====== FOOTER ====== -->
   <footer class="border-t border-gray-800 py-12 px-6 text-sm text-gray-500">
     <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
       <div>
         <div class="flex items-center gap-3 mb-3">
-          <svg class="logo-mark" width="28" height="28" viewBox="0 0 64 64" fill="none" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <linearGradient id="g2" x1="10" y1="8" x2="54" y2="56" gradientUnits="userSpaceOnUse">
-                <stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/>
-              </linearGradient>
-            </defs>
-            <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g2)" stroke-width="3.5" opacity="0.95"/>
-            <path d="M20 28 L32 16 L44 28" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
-            <path d="M20 36 L32 48 L44 36" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9"/>
-            <path d="M22 32 H42" stroke="url(#g2)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
+          <svg width="24" height="24" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="#00d4aa" stroke-width="3.5" opacity="0.95"/>
+            <path d="M20 28 L32 16 L44 28" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M22 32 H42" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/>
           </svg>
           <div class="font-bold text-gray-200">Citadel Alpha</div>
         </div>
-        <div class="text-gray-500 text-xs leading-relaxed">
+        <div class="text-xs leading-relaxed">
           Contenu &eacute;ducatif &mdash; pas de conseil en investissement personnalis&eacute;.<br />
           Les performances pass&eacute;es (backtests) ne pr&eacute;jugent pas des r&eacute;sultats futurs.
         </div>
@@ -369,12 +613,12 @@
 
       <div>
         <div class="font-bold text-gray-200 mb-3">L&eacute;gal</div>
-        <ul class="space-y-2 text-sm">
+        <ul class="space-y-2">
           <li><a class="hover:text-[#00d4aa] transition" href="mentions-legales.html">Mentions l&eacute;gales</a></li>
           <li><a class="hover:text-[#00d4aa] transition" href="politique-confidentialite.html">Politique de confidentialit&eacute;</a></li>
           <li><a class="hover:text-[#00d4aa] transition" href="politique-cookies.html">Politique cookies</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">Conditions g&eacute;n&eacute;rales d&rsquo;utilisation (CGU)</a></li>
-          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">Conditions g&eacute;n&eacute;rales de vente (CGV)</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgu.html">CGU</a></li>
+          <li><a class="hover:text-[#00d4aa] transition" href="cgv.html">CGV</a></li>
         </ul>
       </div>
 
@@ -383,10 +627,10 @@
         <div class="text-sm leading-relaxed">
           <div><span class="text-gray-400">Soci&eacute;t&eacute; :</span> Opportunity</div>
           <div><span class="text-gray-400">SIREN :</span> 403345317</div>
-          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots, France</div>
-          <div><span class="text-gray-400">T&eacute;l&eacute;phone :</span> <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
-          <div class="mt-2"><span class="text-gray-400">Directeur de la publication :</span> Cyril Rancurel</div>
-          <div><span class="text-gray-400">H&eacute;bergeur :</span> Vercel</div>
+          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots</div>
+          <div><span class="text-gray-400">T&eacute;l :</span> <a class="hover:text-[#00d4aa] transition" href="tel:+33636226987">+33 6 36 22 69 87</a></div>
+          <div class="mt-2"><span class="text-gray-400">Directeur :</span> Cyril Rancurel</div>
+          <div><span class="text-gray-400">H&eacute;bergeur :</span> Vercel Inc.</div>
         </div>
       </div>
     </div>
@@ -397,42 +641,39 @@
     </div>
   </footer>
 
+  <!-- ====== SCRIPTS ====== -->
   <script>
     const SUMMARY_URL = './backtest/summary.json';
-    const moneyUS = new Intl.NumberFormat('en-US', { maximumFractionDigits: 2 });
 
-    function fmtMoney(x) {
-      if (!isFinite(Number(x))) return '&mdash;';
-      return '$' + moneyUS.format(Number(x));
-    }
-    function pct(x, digits) {
-      if (digits === undefined) digits = 2;
-      if (!isFinite(Number(x))) return '&mdash;';
-      return Number(x).toFixed(digits) + '%';
-    }
-
-    (async function loadHomeTrack() {
+    // Carrega dados do summary no hero
+    (async function() {
       try {
         const r = await fetch(SUMMARY_URL, { cache: 'no-store' });
         if (!r.ok) throw new Error('HTTP ' + r.status);
         const s = await r.json();
 
-        const start = s?.period?.start ?? '&mdash;';
-        const end = s?.period?.end ?? '&mdash;';
+        document.getElementById('hero_cagr').textContent = Number(s.cagr_pct).toFixed(1) + '%';
+        document.getElementById('hero_final').textContent = Number(s.final_equity).toLocaleString('fr-FR', {maximumFractionDigits:0}) + ' €';
+        document.getElementById('hero_dd').textContent = Number(s.max_drawdown_pct).toFixed(1) + '%';
+        document.getElementById('hero_pf').textContent = Number(s.profit_factor).toFixed(2);
+        document.getElementById('hero_alpha').textContent = '+' + Number(s.alpha_vs_spy_pts).toFixed(1) + ' pts vs SPY';
 
-        document.getElementById('t_period').textContent = start + ' &rarr; ' + end;
-        document.getElementById('t_final').textContent = fmtMoney(s?.final_equity);
-        document.getElementById('t_cagr').textContent = pct(s?.cagr_pct);
-        document.getElementById('t_alpha').textContent = 'Alpha vs SPY : ' + Number(s?.alpha_vs_spy_pts).toFixed(2) + ' pts';
-        document.getElementById('t_dd').textContent = pct(s?.max_drawdown_pct);
-        document.getElementById('t_trades').textContent = (s?.trades ?? '&mdash;') + ' trades &middot; Win ' + pct(s?.win_rate_pct);
-
-      } catch (e) {
-        const box = document.getElementById('trackError');
-        box.classList.remove('hidden');
-        box.textContent = 'Erreur chargement Track Record : ' + e.message + '. V&eacute;rifie que ./backtest/summary.json existe sur Vercel.';
+      } catch(e) {
+        console.error('Erreur chargement summary.json:', e);
       }
     })();
+
+    // Scroll to top button
+    window.addEventListener('scroll', function() {
+      const btn = document.getElementById('scrollTop');
+      if (window.scrollY > 400) {
+        btn.classList.remove('hidden');
+        btn.classList.add('flex');
+      } else {
+        btn.classList.add('hidden');
+        btn.classList.remove('flex');
+      }
+    });
   </script>
 
 </body>

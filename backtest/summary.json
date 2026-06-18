@@ -1,48 +1,28 @@
 {
-  "strategy": "Dual Momentum (Meb Faber)",
+  "strategy": "Dual Momentum (Meb Faber) N=3",
   "config": {
-    "N": 5,
+    "N": 3,
     "momentum_lookback_days": 252,
     "momentum_skip_days": 20,
     "market_filter": "12m_return",
     "slippage_pct": 0.1,
-    "position_sizing": "equal_weight_1/N"
+    "position_sizing": "anti-martingale x2.0, mise initiale 200 EUR",
+    "capital_initial": 3000,
+    "currency": "EUR"
   },
-  "capital_initial": 100000.0,
-  "trade_value": 5000,
+  "capital_initial": 3000,
+  "trade_value": 1000,
   "period": {
-    "start": "2016-01-04",
-    "end": "2026-06-15"
+    "start": "2017-03-01",
+    "end": "2026-06-01"
   },
-  "trades": 450,
-  "final_equity": 2922287.84,
-  "total_return_pct": 2822.29,
-  "cagr_pct": 38.14,
-  "spy_cagr_pct": 15.35,
-  "alpha_vs_spy_pts": 22.80,
-  "max_drawdown_pct": -46.85,
-  "win_rate_pct": 55.11,
-  "profit_factor": 2.29,
-  "in_sample": {
-    "period": "2016-01-01 to 2021-12-31",
-    "metrics": {
-      "trades": 258,
-      "total_return_pct": 471.37,
-      "cagr_pct": 33.77,
-      "max_drawdown_pct": -46.85,
-      "win_rate_pct": 52.33,
-      "profit_factor": 2.41
-    }
-  },
-  "out_of_sample": {
-    "period": "2022-01-01 to 2026-06-16",
-    "metrics": {
-      "trades": 192,
-      "total_return_pct": 382.04,
-      "cagr_pct": 42.44,
-      "max_drawdown_pct": -30.08,
-      "win_rate_pct": 58.85,
-      "profit_factor": 2.12
-    }
-  }
+  "trades": 420,
+  "final_equity": 44813.22,
+  "total_return_pct": 1393.77,
+  "cagr_pct": 32.61,
+  "spy_cagr_pct": 15.4,
+  "alpha_vs_spy_pts": 17.21,
+  "max_drawdown_pct": -17.95,
+  "win_rate_pct": 54.76,
+  "profit_factor": 4.31
 }
