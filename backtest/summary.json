@@ -14,17 +14,15 @@
     "start": "2016-01-04",
     "end": "2026-06-15"
   },
-  "full_period": {
-    "trades": 450,
-    "final_equity": 2922287.84,
-    "total_return_pct": 2822.29,
-    "cagr_pct": 38.14,
-    "spy_cagr_pct": 15.35,
-    "alpha_vs_spy_pts": 22.8,
-    "max_drawdown_pct": -46.85,
-    "win_rate_pct": 55.11,
-    "profit_factor": 2.29
-  },
+  "trades": 450,
+  "final_equity": 2922287.84,
+  "total_return_pct": 2822.29,
+  "cagr_pct": 38.14,
+  "spy_cagr_pct": 15.35,
+  "alpha_vs_spy_pts": 22.80,
+  "max_drawdown_pct": -46.85,
+  "win_rate_pct": 55.11,
+  "profit_factor": 2.29,
   "in_sample": {
     "period": "2016-01-01 to 2021-12-31",
     "metrics": {
