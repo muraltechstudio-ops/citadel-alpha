@@ -20,10 +20,12 @@
     @keyframes grid-fade { 0% { opacity: 0; } 100% { opacity: 0.07; } }
     @keyframes reveal { 0% { opacity: 0; transform: translateY(12px); } 100% { opacity: 1; transform: translateY(0); } }
     @keyframes ticker-reveal { 0% { opacity: 0; } 100% { opacity: 1; } }
+    @keyframes orb-float { 0%,100% { transform: translate(0,0) scale(1); } 33% { transform: translate(20px,-20px) scale(1.05); } 66% { transform: translate(-15px,15px) scale(0.95); } }
+    @keyframes orb-pulse { 0%,100% { opacity: 0.15; } 50% { opacity: 0.4; } }
     .ticker-wrap { overflow: hidden; width: 100%; }
     .ticker-inner { display: flex; width: max-content; animation: tape-move 60s linear infinite; }
     .ticker-item { white-space: nowrap; padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.06); }
-    .scan-line { position: absolute; left: 20%; right: 20%; height: 1px; background: linear-gradient(90deg, transparent, rgba(34,197,94,0.15), transparent); pointer-events: none; top: 50%; opacity: 0.6; }
+    .scan-line { position: absolute; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, rgba(34,197,94,0.2), transparent); animation: scan 6s linear infinite; pointer-events: none; }
     .count-up { font-variant-numeric: tabular-nums; }
     .card-hover { transition: all 0.35s ease; }
     .card-hover:hover { transform: translateY(-3px); }
@@ -52,7 +54,10 @@
 
   <section style="min-height:100vh;display:flex;align-items:center;background:#050508;position:relative;overflow:hidden;padding-top:72px;">
     <div class="trading-grid" style="position:absolute;inset:0;opacity:0;animation:grid-fade 2s 0.5s forwards;"></div>
-    <div style="position:absolute;top:72px;left:0;right:0;z-index:2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(5,5,8,0.6);backdrop-filter:blur(8px);">
+    <!-- Orbes lumineuses -->
+    <div style="position:absolute;width:500px;height:500px;border-radius:50%;top:-150px;right:-150px;background:radial-gradient(circle,rgba(34,197,94,0.08),transparent 70%);pointer-events:none;animation:orb-float 10s ease-in-out infinite;"></div>
+    <div style="position:absolute;width:350px;height:350px;border-radius:50%;bottom:-80px;left:-80px;background:radial-gradient(circle,rgba(34,197,94,0.05),transparent 70%);pointer-events:none;animation:orb-float 14s ease-in-out infinite reverse;"></div>
+    <!-- Ticker tape -->
       <div class="ticker-wrap">
         <div class="ticker-inner">
           <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">NVDA +3.42%</span>
