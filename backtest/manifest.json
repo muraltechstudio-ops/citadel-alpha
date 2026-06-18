@@ -1,9 +1,0 @@
-{
-  "exports": {
-    "all_trades_json": "all_trades.json",
-    "all_trades_csv": "all_trades.csv",
-    "equity_curve_json": "equity_curve.json",
-    "spy_curve_json": "spy_curve.json",
-    "summary_json": "summary.json"
-  }
-}
