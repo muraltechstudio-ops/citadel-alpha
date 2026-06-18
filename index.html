@@ -13,14 +13,13 @@
     body { font-family: 'Inter', system-ui, sans-serif; background: #050508; color: #e3e3e3; margin: 0; }
     .font-mono { font-family: 'JetBrains Mono', monospace; }
     @keyframes tape-move { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
-    @keyframes float-up { 0% { opacity: 0; transform: translateY(30px); } 100% { opacity: 1; transform: translateY(0); } }
     .ticker-wrap { overflow: hidden; width: 100%; }
     .ticker-inner { display: flex; width: max-content; animation: tape-move 80s linear infinite; }
     .ticker-inner:hover { animation-play-state: paused; }
-    .ticker-item { white-space: nowrap; padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.06); font-size: 12px; }
-    canvas#particles { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
-    ::-webkit-scrollbar { width: 4px; }
-    ::-webkit-scrollbar-track { background: #050508; }
+    .ticker-item { white-space: nowrap; padding: 0 28px; border-right: 1px solid rgba(255,255,255,0.06); font-size: 11px; font-family: 'JetBrains Mono', monospace; }
+    canvas#webgl { position: absolute; inset: 0; pointer-events: none; z-index: 0; width: 100%; height: 100%; }
+    .section-title { font-family: 'Syne', sans-serif; font-size: clamp(2rem,3.5vw,3rem); font-weight: 800; color: #fff; margin: 0 0 12px; }
+    ::-webkit-scrollbar { width: 4px; background: #050508; }
     ::-webkit-scrollbar-thumb { background: #1a1a2e; border-radius: 2px; }
   </style>
 </head>
@@ -32,7 +31,7 @@
         <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:#6b7280;letter-spacing:2px;text-transform:uppercase;border-left:1px solid rgba(255,255,255,0.1);padding-left:10px;">Alpha</span>
       </a>
       <div style="display:flex;align-items:center;gap:20px;font-size:13px;">
-        <a href="#methode" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">M&eacute;thode</a>
+        <a href="#methode" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Methode</a>
         <a href="#comparatif" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Comparatif</a>
         <a href="#pricing" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Tarifs</a>
         <a href="trackrecord.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Track Record</a>
@@ -42,36 +41,37 @@
   </nav>
 
   <section style="min-height:100vh;display:flex;align-items:center;background:#050508;position:relative;overflow:hidden;padding-top:72px;">
-    <canvas id="particles"></canvas>
+    <canvas id="webgl"></canvas>
+
     <div style="position:absolute;top:72px;left:0;right:0;z-index:2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(5,5,8,0.6);backdrop-filter:blur(8px);">
       <div class="ticker-wrap">
         <div class="ticker-inner">
-          <span class="ticker-item font-mono" style="color:#22c55e;">NVDA +3.42%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AAPL +1.18%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">MSFT -0.24%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AMZN +2.07%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">GOOGL +0.85%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">TSLA -1.33%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">META +3.71%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AVGO +2.14%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">BRK-B -0.12%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">JPM +0.67%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">NVDA +3.42%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AAPL +1.18%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">MSFT -0.24%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AMZN +2.07%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">GOOGL +0.85%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">TSLA -1.33%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">META +3.71%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">AVGO +2.14%</span>
-          <span class="ticker-item font-mono" style="color:#ef4444;">BRK-B -0.12%</span>
-          <span class="ticker-item font-mono" style="color:#22c55e;">JPM +0.67%</span>
+          <span style="color:#22c55e;" class="ticker-item">NVDA +3.42%</span>
+          <span style="color:#22c55e;" class="ticker-item">AAPL +1.18%</span>
+          <span style="color:#ef4444;" class="ticker-item">MSFT -0.24%</span>
+          <span style="color:#22c55e;" class="ticker-item">AMZN +2.07%</span>
+          <span style="color:#22c55e;" class="ticker-item">GOOGL +0.85%</span>
+          <span style="color:#ef4444;" class="ticker-item">TSLA -1.33%</span>
+          <span style="color:#22c55e;" class="ticker-item">META +3.71%</span>
+          <span style="color:#22c55e;" class="ticker-item">AVGO +2.14%</span>
+          <span style="color:#ef4444;" class="ticker-item">BRK-B -0.12%</span>
+          <span style="color:#22c55e;" class="ticker-item">JPM +0.67%</span>
+          <span style="color:#22c55e;" class="ticker-item">NVDA +3.42%</span>
+          <span style="color:#22c55e;" class="ticker-item">AAPL +1.18%</span>
+          <span style="color:#ef4444;" class="ticker-item">MSFT -0.24%</span>
+          <span style="color:#22c55e;" class="ticker-item">AMZN +2.07%</span>
+          <span style="color:#22c55e;" class="ticker-item">GOOGL +0.85%</span>
+          <span style="color:#ef4444;" class="ticker-item">TSLA -1.33%</span>
+          <span style="color:#22c55e;" class="ticker-item">META +3.71%</span>
+          <span style="color:#22c55e;" class="ticker-item">AVGO +2.14%</span>
+          <span style="color:#ef4444;" class="ticker-item">BRK-B -0.12%</span>
+          <span style="color:#22c55e;" class="ticker-item">JPM +0.67%</span>
         </div>
       </div>
     </div>
 
     <div style="position:relative;z-index:3;width:100%;max-width:1280px;margin:0 auto;padding:60px 24px 40px;">
-      <div style="display:grid;grid-template-columns:1fr;gap:48px;">
+      <div style="display:grid;grid-template-columns:1fr;gap:40px;">
         <div style="display:inline-grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;max-width:600px;">
           <div style="background:#08080d;padding:14px 16px;text-align:center;">
             <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">CAGR</div>
@@ -96,14 +96,14 @@
             <span style="color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.7);">Dual Momentum</span>
           </h1>
           <p style="font-size:clamp(0.95rem,1.5vw,1.15rem);color:#6b7280;max-width:560px;line-height:1.7;margin:0;">
-            Une m&eacute;thode quantitative valid&eacute;e par <strong style="color:#e3e3e3;">30 ans de recherche acad&eacute;mique</strong>.
-            Classement mensuel des 500 premi&egrave;res capitalisations US par momentum 12 mois.
+            Une methode quantitative validee par <strong style="color:#e3e3e3;">30 ans de recherche academique</strong>.
+            Classement mensuel des 500 premieres capitalisations US par momentum 12 mois.
             Track record public.
           </p>
         </div>
         <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
           <a href="#pricing" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:#050508;font-weight:700;font-size:15px;padding:14px 28px;border-radius:4px;text-decoration:none;">
-            D&eacute;marrer l'essai gratuit
+            Demarrer l'essai gratuit
             <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="#050508" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </a>
           <a href="trackrecord.html" style="display:inline-flex;align-items:center;gap:8px;color:#6b7280;font-weight:500;font-size:14px;padding:14px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:4px;text-decoration:none;">
@@ -131,30 +131,50 @@
   </section>
 
   <section id="methode" style="max-width:1280px;margin:0 auto;padding:80px 24px;">
-    <div style="text-align:center;margin-bottom:48px;">
-      <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">M&eacute;thode</span>
-      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 12px;">Comment &ccedil;a marche</h2>
+    <div style="text-align:center;margin-bottom:40px;">
+      <span style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;">Methode</span>
+      <h2 class="section-title">Comment ca marche</h2>
+      <p style="color:#6b7280;max-width:600px;margin:0 auto;line-height:1.7;">Le Dual Momentum est une strategie quantitative validee par la recherche academique. Voici comment elle fonctionne, etape par etape.</p>
     </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-bottom:40px;">
       <div style="background:#08080d;padding:28px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
         <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:12px;">1</span>
-        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Filtre March&eacute;</div>
-        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0;">Si SPY 12 mois &gt; 0% on investit. Sinon 100% cash.</p>
+        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Filtre Marche Absolu</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0 0 12px;">Chaque mois, on verifie la performance du SPY 500 sur 12 mois glissants (skip 20 jours).</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,255,255,0.02);padding:12px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;color:#6b7280;">
+          <span style="color:#22c55e;">SI</span> SPY_12m > 0% <span style="color:#6b7280;">→ Marche ON</span><br/>
+          <span style="color:#ef4444;">SI</span> SPY_12m ≤ 0% <span style="color:#6b7280;">→ 100% cash</span>
+        </div>
+        <p style="font-size:12px;color:#4b5563;margin-top:8px;">Ce filtre a evite le bear market de 2022 (-19% SPY).</p>
       </div>
       <div style="background:#08080d;padding:28px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
         <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:12px;">2</span>
-        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Momentum 12 mois</div>
-        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0;">Classement S&P500 par perf. 12 mois. Top 3 conserv&eacute;s.</p>
+        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Ranking Momentum 12 mois</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0 0 12px;">Classement des 500 actions S&P500 par performance relative sur 12 mois. Skip 20 jours pour eviter le short-term reversal.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,255,255,0.02);padding:12px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;color:#6b7280;">
+          Momentum = (Close[t-21] / Close[t-273]) - 1
+        </div>
+        <p style="font-size:12px;color:#4b5563;margin-top:8px;">Seules les 3 meilleures actions sont retenues. Facteur documente par Jegadeesh & Titman (1993).</p>
       </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;">
       <div style="background:#08080d;padding:28px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
         <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:12px;">3</span>
-        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Rebalance mensuel</div>
-        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0;">12 rebalancements/an. 3 positions &eacute;galement pond&eacute;r&eacute;es.</p>
+        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Rebalancement mensuel</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0 0 12px;">Le 1er jour de bourse du mois, on reevalue les positions. Les actions hors top 3 sont vendues.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,255,255,0.02);padding:12px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;color:#6b7280;">
+          Mise = Capital / 3 · 3 positions max
+        </div>
+        <p style="font-size:12px;color:#4b5563;margin-top:8px;">12 rebalancements par an. Pas de sur-trading.</p>
       </div>
       <div style="background:#08080d;padding:28px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
         <span style="display:flex;align-items:center;justify-content:center;width:32px;height:32px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:13px;color:#22c55e;margin-bottom:12px;">4</span>
-        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Anti-martingale</div>
-        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0;">Mise x2 apr&egrave;s gain, reset apr&egrave;s perte. Sans risque de ruine.</p>
+        <div style="font-weight:600;font-size:15px;color:#fff;margin-bottom:8px;">Anti-martingale x2</div>
+        <p style="font-size:13px;color:#6b7280;line-height:1.7;margin:0 0 12px;">Apres chaque gain, la mise double (max 50% du capital). Apres une perte, retour a la mise initiale.</p>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:11px;background:rgba(255,255,255,0.02);padding:12px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;color:#6b7280;">
+          <span style="color:#22c55e;">Gain</span> → mise x2 · <span style="color:#ef4444;">Perte</span> → reset
+        </div>
+        <p style="font-size:12px;color:#4b5563;margin-top:8px;">Contrairement a une martingale classique, l'anti-martingale amplifie les gains sans risquer la ruine.</p>
       </div>
     </div>
   </section>
@@ -164,19 +184,25 @@
   <section id="comparatif" style="background:#08080d;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);">
     <div style="max-width:1280px;margin:0 auto;padding:80px 24px;">
       <div style="text-align:center;margin-bottom:40px;">
-        <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Benchmark</span>
-        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 12px;">Comparatif</h2>
+        <span style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;">Benchmark</span>
+        <h2 class="section-title">Comparatif des strategies</h2>
+        <p style="color:#6b7280;max-width:600px;margin:0 auto;">Dual Momentum vs les alternatives sur 2016-2026, capital 3 000 euro.</p>
       </div>
       <div style="overflow-x:auto;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
         <table style="width:100%;font-size:13px;border-collapse:collapse;">
-          <thead><tr style="background:#050508;color:#6b7280;text-align:left;"><th style="padding:14px 16px;">Strat&eacute;gie</th><th style="padding:14px 16px;">CAGR</th><th style="padding:14px 16px;">Final</th><th style="padding:14px 16px;">DD max</th></tr></thead>
+          <thead><tr style="background:#050508;color:#6b7280;text-align:left;"><th style="padding:14px 16px;">Strategie</th><th style="padding:14px 16px;">CAGR</th><th style="padding:14px 16px;">Capital final</th><th style="padding:14px 16px;">DD max</th><th style="padding:14px 16px;">Win Rate</th></tr></thead>
           <tbody>
-          <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(34,197,94,0.02);"><td style="padding:14px 16px;font-weight:600;color:#22c55e;">Dual Momentum</td><td style="padding:14px 16px;color:#22c55e;">32,6%</td><td style="padding:14px 16px;">44 813 &euro;</td><td style="padding:14px 16px;color:#fb923c;">-17,9%</td></tr>
-          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">SPY Buy &amp; Hold</td><td style="padding:14px 16px;">15,4%</td><td style="padding:14px 16px;">12 859 &euro;</td><td style="padding:14px 16px;color:#ef4444;">-55%</td></tr>
-          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Livret A</td><td style="padding:14px 16px;">1,5%</td><td style="padding:14px 16px;">3 478 &euro;</td><td style="padding:14px 16px;">0%</td></tr>
-          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Assurance-vie</td><td style="padding:14px 16px;">~2,5%</td><td style="padding:14px 16px;">3 833 &euro;</td><td style="padding:14px 16px;">0%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(34,197,94,0.02);"><td style="padding:14px 16px;font-weight:600;color:#22c55e;">Dual Momentum (nous)</td><td style="padding:14px 16px;color:#22c55e;">32,6%</td><td style="padding:14px 16px;">44 813 euro</td><td style="padding:14px 16px;color:#fb923c;">-17,9%</td><td style="padding:14px 16px;">54,8%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">SPY Buy & Hold</td><td style="padding:14px 16px;">15,4%</td><td style="padding:14px 16px;">12 859 euro</td><td style="padding:14px 16px;color:#ef4444;">-55%</td><td style="padding:14px 16px;">--</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Livret A (moy. 1,5%)</td><td style="padding:14px 16px;">1,5%</td><td style="padding:14px 16px;">3 478 euro</td><td style="padding:14px 16px;">0%</td><td style="padding:14px 16px;">100%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Assurance-vie fonds euro</td><td style="padding:14px 16px;">~2,5%</td><td style="padding:14px 16px;">3 833 euro</td><td style="padding:14px 16px;">0%</td><td style="padding:14px 16px;">100%</td></tr>
           </tbody>
         </table>
+      </div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:24px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#22c55e;">+17,2</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Alpha vs SPY (pts)</div></div>
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#fff;">3,5x</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Plus que le SPY</div></div>
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#22c55e;">-67%</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Drawdown reduit</div></div>
       </div>
     </div>
   </section>
@@ -185,10 +211,10 @@
 
   <section style="max-width:1280px;margin:0 auto;padding:60px 24px;">
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:4px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
-      <div style="background:#08080d;padding:24px;"><i class="fas fa-file-invoice" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Track Record public</div><div style="font-size:12px;color:#6b7280;">Trades, equity curve, drawdown en CSV/JSON</div></div>
-      <div style="background:#08080d;padding:24px;"><i class="fas fa-code" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Code source ouvert</div><div style="font-size:12px;color:#6b7280;">Script Python backtest sur GitHub</div></div>
-      <div style="background:#08080d;padding:24px;"><i class="fas fa-graduation-cap" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Acad&eacute;mique</div><div style="font-size:12px;color:#6b7280;">Faber 2017, Jegadeesh 1993</div></div>
-      <div style="background:#08080d;padding:24px;"><i class="fas fa-shield" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Risk Management</div><div style="font-size:12px;color:#6b7280;">Slippage 0,1%, stops gap-adjusted</div></div>
+      <div style="background:#08080d;padding:24px;"><i class="fas fa-file-invoice" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Track Record public</div><div style="font-size:12px;color:#6b7280;">Equity curve, drawdown, 420 trades en CSV/JSON. Tout est transparent.</div></div>
+      <div style="background:#08080d;padding:24px;"><i class="fas fa-code" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Code source ouvert</div><div style="font-size:12px;color:#6b7280;">Script Python du backtest sur GitHub. Executable, verifiable, reproductible.</div></div>
+      <div style="background:#08080d;padding:24px;"><i class="fas fa-graduation-cap" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Fondation academique</div><div style="font-size:12px;color:#6b7280;">Base sur Faber (2017) et Jegadeesh & Titman (1993). 30+ ans de recherche.</div></div>
+      <div style="background:#08080d;padding:24px;"><i class="fas fa-shield" style="color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;margin-bottom:4px;">Risk Management</div><div style="font-size:12px;color:#6b7280;">Slippage 0,1%, stops gap-adjusted, anti-martingale sure. Stress-teste.</div></div>
     </div>
   </section>
 
@@ -196,81 +222,162 @@
 
   <section id="pricing" style="max-width:1280px;margin:0 auto;padding:80px 24px;text-align:center;">
     <span style="font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;">Tarifs</span>
-    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:12px 0 8px;">Abonnements</h2>
-    <p style="color:#6b7280;margin-bottom:40px;">7 jours d'essai gratuit</p>
+    <h2 class="section-title">Abonnements</h2>
+    <p style="color:#6b7280;margin-bottom:40px;">7 jours d'essai gratuit. Annulation a tout moment.</p>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2px;max-width:800px;margin:0 auto;text-align:left;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
       <div style="background:#08080d;padding:28px;">
         <div style="font-weight:700;color:#fff;">Gratuit</div>
-        <div style="font-size:36px;font-weight:700;margin:12px 0;">0&euro;<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <div style="font-size:36px;font-weight:700;margin:12px 0;">0€<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
         <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
           <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Track Record complet</li>
-          <li><i class="fas fa-times" style="color:#4b5563;width:18px;"></i> Alertes</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Signaux momentum publics</li>
+          <li><i class="fas fa-times" style="color:#4b5563;width:18px;"></i> Alertes rebalancement</li>
         </ul>
-        <a href="trackrecord.html" style="display:block;text-align:center;padding:10px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-weight:600;color:#e3e3e3;text-decoration:none;">Track Record</a>
+        <a href="trackrecord.html" style="display:block;text-align:center;padding:10px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-weight:600;color:#e3e3e3;text-decoration:none;">Voir le Track Record</a>
       </div>
       <div style="background:#08080d;padding:28px;position:relative;">
         <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#22c55e;"></div>
         <div style="position:absolute;top:8px;right:12px;font-size:9px;color:#22c55e;font-weight:600;text-transform:uppercase;">Populaire</div>
         <div style="font-weight:700;color:#fff;">Pro</div>
-        <div style="font-size:36px;font-weight:700;margin:12px 0;">39&euro;<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <div style="font-size:36px;font-weight:700;margin:12px 0;">39€<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
         <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Tout Gratuit</li>
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Alertes rebalancement</li>
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Communaut&eacute;</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Tout le plan Gratuit</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Alertes rebalancement (picks + sizing)</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Analyse fondamentale des picks du mois</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Communaute privee (Discord)</li>
         </ul>
-        <a href="contact.html" style="display:block;text-align:center;padding:10px;background:#fff;color:#050508;border-radius:4px;font-weight:600;text-decoration:none;">Essai gratuit</a>
+        <a href="contact.html" style="display:block;text-align:center;padding:10px;background:#fff;color:#050508;border-radius:4px;font-weight:600;text-decoration:none;">Essai gratuit 7 jours</a>
       </div>
       <div style="background:#08080d;padding:28px;">
         <div style="font-weight:700;color:#fff;">Elite</div>
-        <div style="font-size:36px;font-weight:700;margin:12px 0;">99&euro;<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <div style="font-size:36px;font-weight:700;margin:12px 0;">99€<span style="font-size:13px;font-weight:400;color:#6b7280;">/mois</span></div>
         <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:8px;margin-bottom:20px;">
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Tout Pro</li>
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Analyses sur demande</li>
-          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Canal priv&eacute;</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Tout le plan Pro</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Analyses sur demande (2/mois)</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Canal prive Elite</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:18px;"></i> Session Q&A live / mois</li>
         </ul>
         <a href="contact.html" style="display:block;text-align:center;padding:10px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-weight:600;color:#e3e3e3;text-decoration:none;">Contacter</a>
       </div>
     </div>
+    <p style="font-size:11px;color:#4b5563;margin-top:24px;">Les offres peuvent evoluer. Aucune promesse de performance. Tout investissement comporte un risque de perte en capital.</p>
   </section>
 
   <footer style="border-top:1px solid rgba(255,255,255,0.04);padding:40px 24px;font-size:12px;color:#6b7280;">
     <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:24px;">
-      <div><div style="font-weight:700;color:#e3e3e3;margin-bottom:8px;">Citadel Alpha</div><div style="line-height:1.6;">Contenu &eacute;ducatif. Les performances pass&eacute;es ne pr&eacute;jugent pas des r&eacute;sultats futurs.</div></div>
-      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">L&eacute;gal</div><a href="mentions-legales.html" style="color:#6b7280;text-decoration:none;display:block;margin-bottom:4px;">Mentions l&eacute;gales</a><a href="cgv.html" style="color:#6b7280;text-decoration:none;">CGV</a></div>
-      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">Contact</div><a href="https://wa.me/33636226987" style="color:#6b7280;text-decoration:none;">WhatsApp</a></div>
+      <div><div style="font-weight:700;color:#e3e3e3;margin-bottom:8px;">Citadel Alpha</div><div style="line-height:1.6;">Contenu educatif. Pas de conseil en investissement personnalise. Les performances passees (backtests) ne prejugent pas des resultats futurs.</div></div>
+      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">Legal</div><a href="mentions-legales.html" style="color:#6b7280;text-decoration:none;display:block;margin-bottom:4px;">Mentions legales</a><a href="cgv.html" style="color:#6b7280;text-decoration:none;display:block;margin-bottom:4px;">CGV</a><a href="cgu.html" style="color:#6b7280;text-decoration:none;">CGU</a></div>
+      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">Contact</div><a href="https://wa.me/33636226987" style="color:#6b7280;text-decoration:none;display:block;">WhatsApp</a><a href="contact.html" style="color:#6b7280;text-decoration:none;">Email</a></div>
+      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">Editeur</div><div style="font-size:11px;line-height:1.6;">Opportunity · SIREN 403345317<br/>4 rue du Labech, 34250 Palavas-les-Flots<br/>+33 6 36 22 69 87</div></div>
     </div>
-    <div style="max-width:1280px;margin:24px auto 0;padding-top:12px;border-top:1px solid rgba(255,255,255,0.04);">&copy; 2026 Opportunity &mdash; Citadel Alpha Research</div>
+    <div style="max-width:1280px;margin:24px auto 0;padding-top:12px;border-top:1px solid rgba(255,255,255,0.04);font-size:11px;display:flex;flex-wrap:wrap;justify-content:space-between;">
+      <div>© 2026 Opportunity — Citadel Alpha Research</div>
+      <div>Hebergeur : Vercel Inc.</div>
+    </div>
   </footer>
 
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollTop" style="position:fixed;bottom:20px;right:20px;width:40px;height:40px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:#fff;cursor:pointer;display:none;z-index:100;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V2M2 8l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+
   <script>
-    // === PARTICLES CANVAS ===
     (function(){
-      const c = document.getElementById('particles');
+      const c = document.getElementById('webgl');
       if (!c) return;
       const ctx = c.getContext('2d');
-      let w, h, p = [];
-      const N = 50;
-      function resize() { w = c.width = window.innerWidth; h = c.height = window.innerHeight; }
-      resize(); window.addEventListener('resize', resize);
-      for (let i = 0; i < N; i++) p.push({ x: Math.random()*w, y: Math.random()*h, vx: (Math.random()-0.5)*0.15, vy: (Math.random()-0.5)*0.15, r: Math.random()*1.5+0.5 });
+      let w, h, particles = [], mouse = {x: -1000, y: -1000};
+      const NUM = 120, CONN_DIST = 160;
+
+      function resize() {
+        w = c.width = window.innerWidth;
+        h = c.height = window.innerHeight;
+        particles = [];
+        for (let i = 0; i < NUM; i++) {
+          particles.push({
+            x: Math.random() * w, y: Math.random() * h,
+            vx: (Math.random() - 0.5) * 0.4,
+            vy: (Math.random() - 0.5) * 0.4,
+            r: Math.random() * 2.5 + 1
+          });
+        }
+      }
+      resize();
+      window.addEventListener('resize', resize);
+      document.addEventListener('mousemove', function(e) {
+        const rect = c.getBoundingClientRect();
+        mouse.x = e.clientX - rect.left;
+        mouse.y = e.clientY - rect.top;
+      });
+      document.addEventListener('mouseleave', function() {
+        mouse.x = -1000; mouse.y = -1000;
+      });
+
       function draw() {
         ctx.clearRect(0, 0, w, h);
-        for (const q of p) {
-          q.x += q.vx; q.y += q.vy;
-          if (q.x < 0) q.x = w; if (q.x > w) q.x = 0; if (q.y < 0) q.y = h; if (q.y > h) q.y = 0;
-          ctx.beginPath(); ctx.arc(q.x, q.y, q.r, 0, Math.PI*2);
-          ctx.fillStyle = 'rgba(34,197,94,0.12)'; ctx.fill();
+        // Draw faint grid lines
+        ctx.strokeStyle = 'rgba(34,197,94,0.03)';
+        ctx.lineWidth = 0.5;
+        for (let x = 0; x < w; x += 60) { ctx.beginPath(); ctx.moveTo(x, 0); ctx.lineTo(x, h); ctx.stroke(); }
+        for (let y = 0; y < h; y += 60) { ctx.beginPath(); ctx.moveTo(0, y); ctx.lineTo(w, y); ctx.stroke(); }
+
+        // Update and draw particles
+        for (const p of particles) {
+          p.x += p.vx; p.y += p.vy;
+          if (p.x < 0) p.x = w; if (p.x > w) p.x = 0;
+          if (p.y < 0) p.y = h; if (p.y > h) p.y = 0;
+
+          // Mouse attraction
+          const dx = mouse.x - p.x, dy = mouse.y - p.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 200) {
+            p.x += dx * 0.005;
+            p.y += dy * 0.005;
+          }
         }
+
+        // Draw connections
+        for (let i = 0; i < particles.length; i++) {
+          for (let j = i + 1; j < particles.length; j++) {
+            const dx = particles[i].x - particles[j].x;
+            const dy = particles[i].y - particles[j].y;
+            const dist = Math.sqrt(dx*dx + dy*dy);
+            if (dist < CONN_DIST) {
+              const alpha = (1 - dist / CONN_DIST) * 0.12;
+              ctx.beginPath();
+              ctx.moveTo(particles[i].x, particles[i].y);
+              ctx.lineTo(particles[j].x, particles[j].y);
+              ctx.strokeStyle = 'rgba(34,197,94,' + alpha + ')';
+              ctx.lineWidth = 0.5;
+              ctx.stroke();
+            }
+          }
+        }
+
+        // Draw particles
+        for (const p of particles) {
+          // Glow
+          const gradient = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 3);
+          gradient.addColorStop(0, 'rgba(34,197,94,0.3)');
+          gradient.addColorStop(1, 'rgba(34,197,94,0)');
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r * 3, 0, Math.PI * 2);
+          ctx.fillStyle = gradient;
+          ctx.fill();
+          // Core
+          ctx.beginPath();
+          ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(34,197,94,0.6)';
+          ctx.fill();
+        }
+
         requestAnimationFrame(draw);
       }
       draw();
     })();
 
-    // LOAD SUMMARY
+    // Load summary
     (async function(){
       try{
-        const r = await fetch('./backtest/summary.json', { cache: 'no-store' });
-        if (!r.ok) throw Error('HTTP '+r.status);
+        const r = await fetch('./backtest/summary.json', {cache:'no-store'});
+        if(!r.ok) throw Error('HTTP '+r.status);
         const s = await r.json();
         document.getElementById('hero_cagr').textContent = Number(s.cagr_pct).toFixed(1)+'%';
         document.getElementById('hero_return').textContent = Number(s.total_return_pct).toFixed(0)+'%';
@@ -279,27 +386,24 @@
       }catch(e){}
     })();
 
-    // COUNT UP
+    // Count up
     document.addEventListener('DOMContentLoaded', function(){
       document.querySelectorAll('[data-target]').forEach(function(el){
         const target = parseFloat(el.dataset.target);
         const obs = new IntersectionObserver(function(entries, obs){
           entries.forEach(function(e){
-            if (e.isIntersecting) {
+            if(e.isIntersecting){
               const start = performance.now();
-              function up(now) {
-                const p = Math.min((now-start)/2000, 1);
-                const eased = 1 - Math.pow(1-p, 3);
-                el.textContent = Number.isInteger(target) ? Math.floor(target*eased).toLocaleString('fr-FR') : (target*eased).toFixed(1);
-                if (p < 1) requestAnimationFrame(up);
-              }
-              requestAnimationFrame(up);
-              obs.unobserve(el);
+              function up(now){const p=Math.min((now-start)/2000,1),eased=1-Math.pow(1-p,3),cur=target*eased;el.textContent=Number.isInteger(target)?Math.floor(cur).toLocaleString('fr-FR'):cur.toFixed(1);if(p<1)requestAnimationFrame(up);}
+              requestAnimationFrame(up);obs.unobserve(el);
             }
           });
-        }, {threshold:0.5}).observe(el);
+        },{threshold:0.5}).observe(el);
       });
     });
+
+    // Scroll top
+    window.addEventListener('scroll', function(){const btn=document.getElementById('scrollTop');btn.style.display=window.scrollY>400?'block':'none';});
   </script>
 </body>
 </html>
