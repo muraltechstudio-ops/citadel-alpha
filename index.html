@@ -158,24 +158,55 @@
     <div style="text-align:center;margin-bottom:56px;">
       <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Notre M&eacute;thode</span>
       <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 12px;">Comment &ccedil;a marche</h2>
-      <p style="color:#6b7280;max-width:560px;margin:0 auto;line-height:1.7;">Une approche scientifique : r&egrave;gles explicites, backtest transparent, validation out-of-sample.</p>
+      <p style="color:#6b7280;max-width:640px;margin:0 auto;line-height:1.7;">Le Dual Momentum est une strat&eacute;gie quantitative valid&eacute;e par la recherche acad&eacute;mique. Voici comment elle fonctionne, &eacute;tape par &eacute;tape.</p>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
-      <div style="background:#08080d;padding:32px;">
-        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">1</span>
-        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Filtre March&eacute;</div>
-        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Si le SPY est en baisse sur 12 mois, on reste en cash. &Eacute;vite les bear markets.</p>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:64px;">
+      <div style="background:#08080d;padding:32px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:16px;">1</span>
+        <h3 style="font-weight:700;font-size:18px;color:#fff;margin:0 0 12px;">Filtre March&eacute; Absolu</h3>
+        <p style="font-size:14px;color:#6b7280;line-height:1.8;margin:0 0 16px;">Chaque mois, on v&eacute;rifie la performance du SPY 500 sur 12 mois glissants (en excluant les 20 derniers jours pour &eacute;viter le bruit court-terme).</p>
+        <div style="background:rgba(255,255,255,0.02);padding:16px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#6b7280;">
+          <span style="color:#22c55e;">SI</span> SPY_12m &gt; 0% <span style="color:#6b7280;">&rarr; March&eacute; ON (investi)</span><br />
+          <span style="color:#ef4444;">SI</span> SPY_12m &le; 0% <span style="color:#6b7280;">&rarr; March&eacute; OFF (100% cash)</span>
+        </div>
+        <p style="font-size:13px;color:#4b5563;margin-top:12px;">Ce filtre a &eacute;vit&eacute; le bear market de 2022 (-19% SPY). Le cash prot&egrave;ge le capital.</p>
       </div>
-      <div style="background:#08080d;padding:32px;">
-        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">2</span>
-        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Ranking Momentum</div>
-        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Classement mensuel des 500 actions US par performance 12 mois.</p>
+      <div style="background:#08080d;padding:32px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:16px;">2</span>
+        <h3 style="font-weight:700;font-size:18px;color:#fff;margin:0 0 12px;">Ranking Momentum 12 mois</h3>
+        <p style="font-size:14px;color:#6b7280;line-height:1.8;margin:0 0 16px;">On classe les 500 actions du S&P500 par leur performance relative sur 12 mois (skip de 20 jours pour &eacute;viter le short-term reversal).</p>
+        <div style="background:rgba(255,255,255,0.02);padding:16px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px;color:#6b7280;">
+          Momentum = (Close[t-21] / Close[t-273]) - 1
+        </div>
+        <p style="font-size:13px;color:#4b5563;margin-top:12px;">Classement descendant. Seules les 3 meilleures actions sont retenues. Le momentum est le facteur le plus document&eacute; acad&eacute;miquement (Jegadeesh &amp; Titman 1993).</p>
       </div>
-      <div style="background:#08080d;padding:32px;">
-        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">3</span>
-        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Positions concentr&eacute;es</div>
-        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Top 3 momentum stocks. Mise anti-martingale : double apr&egrave;s gain, reset apr&egrave;s perte.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;margin-bottom:64px;">
+      <div style="background:#08080d;padding:32px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:16px;">3</span>
+        <h3 style="font-weight:700;font-size:18px;color:#fff;margin:0 0 12px;">Rebalancement mensuel</h3>
+        <p style="font-size:14px;color:#6b7280;line-height:1.8;margin:0 0 16px;">Le premier jour de bourse de chaque mois, on r&eacute;&eacute;value les positions. Les actions sorties du top 3 sont vendues, les nouvelles entrantes sont achet&eacute;es &agrave; parts &eacute;gales.</p>
+        <div style="background:rgba(255,255,255,0.02);padding:16px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;font-size:12px;color:#6b7280;">
+          <span style="color:#22c55e;">Mise = Capital courant / 3</span><br />3 positions simultan&eacute;es maximum
+        </div>
+        <p style="font-size:13px;color:#4b5563;margin-top:12px;">12 rebalancements par an. Pas de sur-trading.</p>
       </div>
+      <div style="background:#08080d;padding:32px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+        <span style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;background:rgba(34,197,94,0.1);border-radius:4px;font-weight:700;font-size:14px;color:#22c55e;margin-bottom:16px;">4</span>
+        <h3 style="font-weight:700;font-size:18px;color:#fff;margin:0 0 12px;">Anti-martingale x2</h3>
+        <p style="font-size:14px;color:#6b7280;line-height:1.8;margin:0 0 16px;">Apr&egrave;s chaque trade gagnant, la mise double (jusqu'&agrave; 50% du capital maximum). Apr&egrave;s une perte, retour &agrave; la mise initiale.</p>
+        <div style="background:rgba(255,255,255,0.02);padding:16px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;font-size:12px;color:#6b7280;">
+          <span style="color:#22c55e;">Gain</span> &rarr; mise x2 (max 50% du capital)<br />
+          <span style="color:#ef4444;">Perte</span> &rarr; retour mise initiale
+        </div>
+        <p style="font-size:13px;color:#4b5563;margin-top:12px;">Contrairement &agrave; une martingale classique, l'anti-martingale amplifie les gains sans risquer la ruine. 9 pertes cons&eacute;cutives n'ont pas mis le capital en danger.</p>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:4px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+      <div style="background:#08080d;padding:20px;text-align:center;"><i class="fas fa-flask" style="font-size:24px;color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;">Acad&eacute;mique</div><div style="font-size:11px;color:#6b7280;">Faber 2017, Jegadeesh 1993</div></div>
+      <div style="background:#08080d;padding:20px;text-align:center;"><i class="fas fa-database" style="font-size:24px;color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;">504 tickers</div><div style="font-size:11px;color:#6b7280;">S&P500 2016, z&eacute;ro survivance</div></div>
+      <div style="background:#08080d;padding:20px;text-align:center;"><i class="fas fa-chart-line" style="font-size:24px;color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;">Out-of-Sample</div><div style="font-size:11px;color:#6b7280;">2022-2026 valid&eacute;</div></div>
+      <div style="background:#08080d;padding:20px;text-align:center;"><i class="fas fa-shield-halved" style="font-size:24px;color:#22c55e;margin-bottom:8px;"></i><div style="font-weight:600;font-size:14px;color:#fff;">Slippage 0,1%</div><div style="font-size:11px;color:#6b7280;">Stops gap-adjusted, frais inclus</div></div>
     </div>
   </section>
 
