@@ -3,398 +3,273 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Citadel Alpha — Stratégie Dual Momentum quantitative. Track record public + signaux mensuels. CAGR 32% validé OOS." />
+  <meta name="description" content="Citadel Alpha — Stratégie Dual Momentum quantitative. CAGR 32% validé OOS. Track record public." />
   <title>Citadel Alpha | Dual Momentum Quantitatif</title>
-
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700;800&family=Syne:wght@700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
   <style>
-    @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
-    @keyframes pulse-glow { 0%,100% { box-shadow: 0 0 20px rgba(0,212,170,0.15); } 50% { box-shadow: 0 0 60px rgba(0,212,170,0.3); } }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-    @keyframes gridMove { 0% { transform: translateY(0); } 100% { transform: translateY(60px); } }
-    @keyframes shimmer { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
-    @keyframes cursor-blink { 0%,100% { opacity: 1; } 50% { opacity: 0; } }
-    @keyframes countIn { from { opacity: 0; } to { opacity: 1; } }
-    .animate-float { animation: float 6s ease-in-out infinite; }
-    .animate-pulse-glow { animation: pulse-glow 3s ease-in-out infinite; }
-    .animate-slide-up { animation: slideUp 0.8s ease-out forwards; }
-    .delay-1 { animation-delay: 0.1s; opacity: 0; }
-    .delay-2 { animation-delay: 0.2s; opacity: 0; }
-    .delay-3 { animation-delay: 0.3s; opacity: 0; }
-    .delay-4 { animation-delay: 0.4s; opacity: 0; }
-    .grid-anim { animation: gridMove 20s linear infinite; }
-    .shimmer-text { background: linear-gradient(135deg, #00d4aa, #4a9eff, #00d4aa, #4a9eff); background-size: 300% 100%; -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; animation: shimmer 5s linear infinite; }
-    .cursor-blink::after { content: ''; display: inline-block; width: 3px; height: 1.2em; background: #00d4aa; margin-left: 4px; vertical-align: text-bottom; animation: cursor-blink 1s step-end infinite; }
-    .card-hover { transition: all 0.3s ease; }
-    .card-hover:hover { transform: translateY(-4px); box-shadow: 0 20px 40px rgba(0,0,0,0.3); }
-    #particles-canvas { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; pointer-events: none; z-index: 0; }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; overflow-x: hidden; background: #050508; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: #050508; color: #e3e3e3; margin: 0; }
+    .font-display { font-family: 'Syne', sans-serif; }
+    .font-mono { font-family: 'JetBrains Mono', monospace; }
+    @keyframes tape-move { 0% { transform: translateX(0); } 100% { transform: translateX(-33.33%); } }
+    @keyframes pulse { 0%,100% { opacity: 0.4; } 50% { opacity: 1; } }
+    @keyframes scan { 0% { top: -10%; } 100% { top: 110%; } }
+    @keyframes grid-fade { 0% { opacity: 0; } 100% { opacity: 0.07; } }
+    @keyframes ticker-reveal { 0% { opacity: 0; } 100% { opacity: 1; } }
+    .ticker-wrap { overflow: hidden; width: 100%; }
+    .ticker-inner { display: flex; width: max-content; animation: tape-move 60s linear infinite; }
+    .ticker-item { white-space: nowrap; padding: 0 32px; border-right: 1px solid rgba(255,255,255,0.06); }
+    .scan-line { position: absolute; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, rgba(0,200,255,0.3), transparent); animation: scan 4s linear infinite; pointer-events: none; }
+    .count-up { font-variant-numeric: tabular-nums; }
+    .card-hover { transition: all 0.35s ease; }
+    .card-hover:hover { transform: translateY(-3px); }
+    .trading-grid { background-image: linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px); background-size: 40px 40px; }
+    ::-webkit-scrollbar { width: 4px; }
+    ::-webkit-scrollbar-track { background: #050508; }
+    ::-webkit-scrollbar-thumb { background: #1a1a2e; border-radius: 2px; }
   </style>
 </head>
-<body class="bg-[#0a0a0f] text-gray-200 overflow-x-hidden">
-
-  <canvas id="particles-canvas"></canvas>
-
-  <!-- NAVBAR -->
-  <nav class="fixed top-0 w-full z-50 bg-[#0a0a0f]/90 backdrop-blur-xl border-b border-gray-800/50" style="padding: 16px 24px;">
-    <div class="max-w-7xl mx-auto flex items-center justify-between">
-      <a href="index.html" class="flex items-center gap-3">
-        <svg width="32" height="32" viewBox="0 0 64 64" fill="none"><defs><linearGradient id="g" x1="10" y1="8" x2="54" y2="56"><stop stop-color="#00d4aa"/><stop offset="1" stop-color="#00b894"/></linearGradient></defs><path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="url(#g)" stroke-width="3.5" opacity="0.95"/><path d="M20 28 L32 16 L44 28" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32 H42" stroke="url(#g)" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/></svg>
-        <div class="leading-tight">
-          <div class="text-lg md:text-xl font-bold tracking-tight">CITADEL ALPHA</div>
-          <div class="text-[10px] text-gray-500 -mt-0.5">Quant &bull; Momentum &bull; Data-Driven</div>
-        </div>
+<body>
+  <nav style="position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(5,5,8,0.85);backdrop-filter:blur(24px);border-bottom:1px solid rgba(255,255,255,0.04);">
+    <div style="max-width:1280px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between;">
+      <a href="#" style="display:flex;align-items:center;gap:10px;text-decoration:none;">
+        <span style="font-family:'Syne',sans-serif;font-size:20px;font-weight:800;letter-spacing:-0.5px;color:#fff;">CITADEL</span>
+        <span style="font-family:'Inter',sans-serif;font-size:11px;font-weight:400;color:#6b7280;letter-spacing:2px;text-transform:uppercase;border-left:1px solid rgba(255,255,255,0.1);padding-left:10px;">Alpha</span>
       </a>
-      <div class="hidden md:flex items-center gap-6 text-sm">
-        <a href="#stats" class="text-gray-300 hover:text-[#00d4aa] transition">Performance</a>
-        <a href="#methode" class="text-gray-300 hover:text-[#00d4aa] transition">M&eacute;thode</a>
-        <a href="#comparatif" class="text-gray-300 hover:text-[#00d4aa] transition">Comparatif</a>
-        <a href="#pricing" class="text-gray-300 hover:text-[#00d4aa] transition">Tarifs</a>
-        <a href="trackrecord.html" class="text-gray-300 hover:text-[#00d4aa] transition">Track Record</a>
+      <div style="display:flex;align-items:center;gap:20px;font-size:13px;">
+        <a href="#methode" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">M&eacute;thode</a>
+        <a href="#comparatif" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Comparatif</a>
+        <a href="#pricing" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Tarifs</a>
+        <a href="trackrecord.html" style="color:#6b7280;text-decoration:none;" onmouseover="this.style.color='#fff'" onmouseout="this.style.color='#6b7280'">Track Record</a>
       </div>
-      <a href="#pricing" class="bg-[#00d4aa] hover:bg-white text-black font-bold px-5 py-2.5 rounded-xl transition text-sm">Essai Gratuit</a>
+      <a href="#pricing" style="background:#fff;color:#050508;font-weight:600;font-size:13px;padding:10px 20px;border-radius:8px;text-decoration:none;">Essai Gratuit</a>
     </div>
   </nav>
 
-  <!-- HERO -->
-  <section class="relative min-h-screen flex items-center bg-[#07070b] overflow-hidden pt-20" style="z-index:1;">
-    <!-- Grid perso -->
-    <div class="absolute inset-0 opacity-[0.04]" style="background-image: linear-gradient(rgba(0,212,170,0.5) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,170,0.5) 1px, transparent 1px); background-size: 60px 60px; transform: perspective(800px) rotateX(10deg); transform-origin: center bottom;" class="grid-anim"></div>
-    <!-- Orbes -->
-    <div class="absolute w-[500px] h-[500px] rounded-full -top-40 -right-40 opacity-20" style="background: radial-gradient(circle, rgba(0,212,170,0.3), transparent 70%); animation: float 8s ease-in-out infinite;"></div>
-    <div class="absolute w-[350px] h-[350px] rounded-full -bottom-20 -left-20 opacity-15" style="background: radial-gradient(circle, rgba(74,158,255,0.2), transparent 70%); animation: float 12s ease-in-out infinite reverse;"></div>
-
-    <div class="relative z-10 w-full max-w-7xl mx-auto px-6 py-16">
-      <div class="lg:grid lg:grid-cols-2 lg:gap-16 items-center">
-
-        <!-- Left -->
-        <div>
-          <div class="inline-flex items-center gap-2 bg-[#00d4aa]/10 border border-[#00d4aa]/20 text-[#00d4aa] text-xs px-4 py-2 rounded-full mb-6 animate-slide-up delay-1">
-            <span class="w-2 h-2 rounded-full bg-[#00d4aa] animate-pulse"></span>
-            Strat&eacute;gie valid&eacute;e &bull; 2016-2026 &bull; OOS 2022-2026
+  <section style="min-height:100vh;display:flex;align-items:center;background:#050508;position:relative;overflow:hidden;padding-top:72px;">
+    <div class="trading-grid" style="position:absolute;inset:0;opacity:0;animation:grid-fade 2s 0.5s forwards;"></div>
+    <div style="position:absolute;top:72px;left:0;right:0;z-index:2;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04);background:rgba(5,5,8,0.6);backdrop-filter:blur(8px);">
+      <div class="ticker-wrap">
+        <div class="ticker-inner">
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">NVDA +3.42%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AAPL +1.18%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">MSFT -0.24%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AMZN +2.07%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">GOOGL +0.85%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">TSLA -1.33%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">META +3.71%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AVGO +2.14%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">BRK-B -0.12%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">JPM +0.67%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">NVDA +3.42%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AAPL +1.18%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">MSFT -0.24%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AMZN +2.07%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">GOOGL +0.85%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">TSLA -1.33%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">META +3.71%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">AVGO +2.14%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#ef4444;">BRK-B -0.12%</span>
+          <span class="ticker-item font-mono" style="font-size:11px;color:#22c55e;">JPM +0.67%</span>
+        </div>
+      </div>
+    </div>
+    <div class="scan-line"></div>
+    <div style="position:relative;z-index:3;width:100%;max-width:1280px;margin:0 auto;padding:60px 24px 40px;">
+      <div style="display:grid;grid-template-columns:1fr;gap:40px;">
+        <div style="display:inline-grid;grid-template-columns:repeat(4,1fr);gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;max-width:600px;">
+          <div style="background:#08080d;padding:14px 16px;text-align:center;">
+            <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">CAGR</div>
+            <div class="font-mono" style="font-size:22px;font-weight:700;color:#22c55e;" id="hero_cagr">&mdash;</div>
           </div>
-
-          <h1 class="text-5xl md:text-7xl font-bold tracking-tighter leading-[1.05] mb-6 animate-slide-up delay-2">
-            <span class="text-white">Dual Momentum</span><br />
-            <span class="shimmer-text">Quantitatif &amp; Data-Driven</span>
-            <span class="cursor-blink"></span>
+          <div style="background:#08080d;padding:14px 16px;text-align:center;">
+            <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Return</div>
+            <div class="font-mono" style="font-size:22px;font-weight:700;color:#fff;" id="hero_return">&mdash;</div>
+          </div>
+          <div style="background:#08080d;padding:14px 16px;text-align:center;">
+            <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">Max DD</div>
+            <div class="font-mono" style="font-size:22px;font-weight:700;color:#fb923c;" id="hero_dd">&mdash;</div>
+          </div>
+          <div style="background:#08080d;padding:14px 16px;text-align:center;">
+            <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px;">PF</div>
+            <div class="font-mono" style="font-size:22px;font-weight:700;color:#fff;" id="hero_pf">&mdash;</div>
+          </div>
+        </div>
+        <div style="max-width:760px;">
+          <h1 style="font-family:'Syne',sans-serif;font-size:clamp(2.8rem,8vw,6rem);font-weight:800;line-height:1.02;letter-spacing:-0.04em;margin:0 0 16px;color:#fff;">
+            Trade the<br />
+            <span style="color:transparent;-webkit-text-stroke:1.5px rgba(255,255,255,0.7);">Dual Momentum</span>
           </h1>
-
-          <p class="text-lg md:text-xl text-gray-400 max-w-xl mb-8 leading-relaxed animate-slide-up delay-3">
-            Une strat&eacute;gie quantitative bas&eacute;e sur les travaux de <strong class="text-gray-200">Meb Faber (2017)</strong> : classement mensuel des 500 premi&egrave;res capitalisations US par momentum 12 mois, avec filtre march&eacute; anti-bear market.
+          <p style="font-size:clamp(0.95rem,1.5vw,1.15rem);color:#6b7280;max-width:560px;line-height:1.7;margin:0;">
+            Une m&eacute;thode quantitative valid&eacute;e par <strong style="color:#e3e3e3;">30 ans de recherche acad&eacute;mique</strong>.
+            Classement mensuel des 500 premi&egrave;res capitalisations US par momentum 12 mois.
+            Track record public.
           </p>
-
-          <div class="flex flex-wrap gap-4 mb-12 animate-slide-up delay-4">
-            <a href="#pricing" class="bg-[#00d4aa] hover:bg-white text-black font-bold text-lg px-8 py-4 rounded-2xl transition flex items-center gap-3 animate-pulse-glow">
-              D&eacute;marrer l'essai gratuit <i class="fas fa-arrow-right"></i>
-            </a>
-            <a href="trackrecord.html" class="border border-gray-700 hover:border-[#00d4aa] text-gray-200 font-bold text-lg px-8 py-4 rounded-2xl transition flex items-center gap-3 bg-white/5 backdrop-blur-sm">
-              <i class="fas fa-chart-line text-[#00d4aa]"></i> Voir le Track Record
-            </a>
-          </div>
-
-          <div class="flex flex-wrap gap-6 text-sm text-gray-500">
-            <span><i class="fas fa-database text-[#00d4aa] mr-1"></i> 420 trades</span>
-            <span><i class="fas fa-calendar text-[#00d4aa] mr-1"></i> 9 ans de data</span>
-            <span><i class="fas fa-flask text-[#00d4aa] mr-1"></i> Valid&eacute; OOS</span>
-            <span><i class="fas fa-euro-sign text-[#00d4aa] mr-1"></i> Capital 3 000 &euro;</span>
-          </div>
         </div>
-
-        <!-- Right Card -->
-        <div class="mt-10 lg:mt-0 animate-float">
-          <div class="bg-[#1a1a2e]/80 backdrop-blur-xl border border-gray-800/50 rounded-3xl p-8 card-hover">
-            <div class="flex items-center gap-2 mb-6">
-              <div class="w-3 h-3 rounded-full bg-green-400" style="animation: pulse-glow 2s infinite;"></div>
-              <span class="text-xs text-gray-400">Strat&eacute;gie en temps r&eacute;el</span>
-            </div>
-            <div class="grid grid-cols-2 gap-6 mb-6">
-              <div><div class="text-xs text-gray-500 mb-1">CAGR annualis&eacute;</div><div class="text-3xl md:text-4xl font-bold text-[#00d4aa] tabular-nums" id="hero_cagr">&mdash;</div></div>
-              <div><div class="text-xs text-gray-500 mb-1">Capital final (3k&euro;)</div><div class="text-3xl md:text-4xl font-bold text-white tabular-nums" id="hero_final">&mdash;</div></div>
-              <div><div class="text-xs text-gray-500 mb-1">Max Drawdown</div><div class="text-2xl font-bold text-orange-400 tabular-nums" id="hero_dd">&mdash;</div></div>
-              <div><div class="text-xs text-gray-500 mb-1">Profit Factor</div><div class="text-2xl font-bold text-white tabular-nums" id="hero_pf">&mdash;</div></div>
-            </div>
-            <div class="border-t border-gray-800 pt-4">
-              <div class="flex justify-between text-xs text-gray-500"><span>vs SPY buy-and-hold</span><span class="text-[#00d4aa] font-bold" id="hero_alpha">&mdash;</span></div>
-              <div class="w-full bg-gray-800 rounded-full h-1.5 mt-2"><div class="bg-gradient-to-r from-[#00d4aa] to-[#4a9eff] h-1.5 rounded-full transition-all duration-1000" id="hero_bar" style="width:0%"></div></div>
-            </div>
-            <div class="mt-6 pt-4 border-t border-gray-800 text-center"><a href="trackrecord.html" class="text-sm text-[#00d4aa] hover:underline">Voir l'equity curve d&eacute;taill&eacute;e &rarr;</a></div>
-          </div>
-        </div>
-
-      </div>
-    </div>
-  </section>
-
-  <!-- STATS -->
-  <section id="stats" class="py-16 px-6 bg-[#12121a] border-y border-gray-800/30">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-        <div class="animate-slide-up delay-1">
-          <div class="text-5xl font-bold text-[#00d4aa] tabular-nums count-up" data-target="32.6">0</div>
-          <div class="text-xs text-gray-400 mt-2">CAGR annualis&eacute; (%)</div>
-          <div class="text-[10px] text-gray-600">Vs 15,4% pour le SPY</div>
-        </div>
-        <div class="animate-slide-up delay-2">
-          <div class="text-5xl font-bold text-white tabular-nums count-up" data-target="1393.7">0</div>
-          <div class="text-xs text-gray-400 mt-2">Rendement total (%)</div>
-          <div class="text-[10px] text-gray-600">3 000 &rarr; 44 813 &euro;</div>
-        </div>
-        <div class="animate-slide-up delay-3">
-          <div class="text-5xl font-bold text-orange-400 tabular-nums count-up" data-target="17.9">0</div>
-          <div class="text-xs text-gray-400 mt-2">Drawdown maximum (%)</div>
-          <div class="text-[10px] text-gray-600">Vs -55% pour le SPY</div>
-        </div>
-        <div class="animate-slide-up delay-4">
-          <div class="text-5xl font-bold text-white tabular-nums count-up" data-target="4.31">0</div>
-          <div class="text-xs text-gray-400 mt-2">Profit Factor</div>
-          <div class="text-[10px] text-gray-600">4,31 &euro; gagn&eacute;s / 1 &euro; perdu</div>
+        <div style="display:flex;flex-wrap:wrap;gap:16px;align-items:center;">
+          <a href="#pricing" style="display:inline-flex;align-items:center;gap:10px;background:#fff;color:#050508;font-weight:700;font-size:15px;padding:14px 28px;border-radius:4px;text-decoration:none;">
+            D&eacute;marrer l'essai gratuit
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M1 8h14M9 2l6 6-6 6" stroke="#050508" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+          <a href="trackrecord.html" style="display:inline-flex;align-items:center;gap:8px;color:#6b7280;font-weight:500;font-size:14px;padding:14px 24px;border:1px solid rgba(255,255,255,0.08);border-radius:4px;text-decoration:none;">
+            Explorer le Track Record
+          </a>
+          <span style="font-family:'JetBrains Mono',monospace;font-size:11px;color:#4b5563;padding:8px 16px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+            420 trades &middot; 9 ans &middot; 504 tickers
+          </span>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- METHODE -->
-  <section id="methode" class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="text-xs text-[#00d4aa] tracking-[2px] uppercase font-bold">Notre M&eacute;thode</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Comment &ccedil;a marche</h2>
-        <p class="text-gray-400 max-w-3xl mx-auto">Une approche scientifique du trading : r&egrave;gles explicites, backtest transparent, et validation out-of-sample.</p>
-      </div>
+  <div style="height:2px;background:linear-gradient(90deg,transparent,rgba(34,197,94,0.2),transparent);"></div>
 
-      <div class="grid md:grid-cols-3 gap-6 mb-16">
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
-          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5"><span class="text-2xl font-bold text-[#00d4aa]">1</span></div>
-          <div class="text-xl font-bold mb-3">Filtre March&eacute;</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Si le SPY 500 est en baisse sur 12 mois, on reste <strong class="text-gray-300">100% en cash</strong>. Le filtre &eacute;vite les bear markets (2008, 2022) sans &agrave;-coups.</p>
+  <section id="stats" style="background:#08080d;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);">
+    <div style="max-width:1280px;margin:0 auto;padding:60px 24px;">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:4px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">CAGR annualis&eacute;</div>
+          <div class="font-mono count-up" style="font-size:36px;font-weight:700;color:#22c55e;" data-target="32.6">0</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;">Vs 15,4% SPY</div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
-          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5"><span class="text-2xl font-bold text-[#00d4aa]">2</span></div>
-          <div class="text-xl font-bold mb-3">Ranking Momentum</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Chaque mois, classement des 500 actions US par performance sur <strong class="text-gray-300">12 mois</strong> (skip de 20 jours pour &eacute;viter le bruit).</p>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Rendement total</div>
+          <div class="font-mono count-up" style="font-size:36px;font-weight:700;color:#fff;" data-target="1393.7">0</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;">3 000 &rarr; 44 813 &euro;</div>
         </div>
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
-          <div class="w-14 h-14 rounded-2xl bg-[#00d4aa]/10 flex items-center justify-center mb-5"><span class="text-2xl font-bold text-[#00d4aa]">3</span></div>
-          <div class="text-xl font-bold mb-3">Positions concentr&eacute;es</div>
-          <p class="text-sm text-gray-400 leading-relaxed">Les <strong class="text-gray-300">3 meilleurs</strong> momentum stocks en parts &eacute;gales. La mise double automatiquement apr&egrave;s un gain (anti-martingale).</p>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Drawdown max</div>
+          <div class="font-mono count-up" style="font-size:36px;font-weight:700;color:#fb923c;" data-target="17.9">0</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;">Vs -55% SPY</div>
         </div>
-      </div>
-
-      <div class="grid md:grid-cols-4 gap-4">
-        <div class="border border-white/5 rounded-2xl p-5 text-center bg-white/[0.02]"><i class="fas fa-flask text-[#00d4aa] text-2xl mb-2"></i><div class="text-lg font-bold">Acad&eacute;mique</div><div class="text-xs text-gray-500">Faber 2017, Jegadeesh 1993</div></div>
-        <div class="border border-white/5 rounded-2xl p-5 text-center bg-white/[0.02]"><i class="fas fa-database text-[#00d4aa] text-2xl mb-2"></i><div class="text-lg font-bold">504 tickers</div><div class="text-xs text-gray-500">S&P500 2016, z&eacute;ro survivance</div></div>
-        <div class="border border-white/5 rounded-2xl p-5 text-center bg-white/[0.02]"><i class="fas fa-chart-line text-[#00d4aa] text-2xl mb-2"></i><div class="text-lg font-bold">Out-of-Sample</div><div class="text-xs text-gray-500">2022-2026 valid&eacute;</div></div>
-        <div class="border border-white/5 rounded-2xl p-5 text-center bg-white/[0.02]"><i class="fas fa-shield-halved text-[#00d4aa] text-2xl mb-2"></i><div class="text-lg font-bold">Slippage 0,1%</div><div class="text-xs text-gray-500">Stops gap-adjusted</div></div>
+        <div style="background:#08080d;padding:24px;text-align:center;">
+          <div style="font-size:10px;color:#6b7280;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px;">Profit Factor</div>
+          <div class="font-mono count-up" style="font-size:36px;font-weight:700;color:#fff;" data-target="4.31">0</div>
+          <div style="font-size:11px;color:#4b5563;margin-top:4px;">4,31 &euro; / 1 &euro; perdu</div>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- COMPARATIF -->
-  <section id="comparatif" class="py-24 px-6 bg-[#12121a] border-y border-gray-800/30">
-    <div class="max-w-6xl mx-auto">
-      <div class="text-center mb-16">
-        <span class="text-xs text-[#00d4aa] tracking-[2px] uppercase font-bold">Benchmark</span>
-        <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Comparatif des strat&eacute;gies</h2>
-        <p class="text-gray-400 max-w-2xl mx-auto">Dual Momentum vs les alternatives classiques sur 2016-2026.</p>
+  <section id="methode" style="max-width:1280px;margin:0 auto;padding:80px 24px;">
+    <div style="text-align:center;margin-bottom:56px;">
+      <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Notre M&eacute;thode</span>
+      <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 12px;">Comment &ccedil;a marche</h2>
+      <p style="color:#6b7280;max-width:560px;margin:0 auto;line-height:1.7;">Une approche scientifique : r&egrave;gles explicites, backtest transparent, validation out-of-sample.</p>
+    </div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:2px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+      <div style="background:#08080d;padding:32px;">
+        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">1</span>
+        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Filtre March&eacute;</div>
+        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Si le SPY est en baisse sur 12 mois, on reste en cash. &Eacute;vite les bear markets.</p>
       </div>
+      <div style="background:#08080d;padding:32px;">
+        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">2</span>
+        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Ranking Momentum</div>
+        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Classement mensuel des 500 actions US par performance 12 mois.</p>
+      </div>
+      <div style="background:#08080d;padding:32px;">
+        <span style="display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;margin-bottom:20px;font-weight:700;color:#22c55e;">3</span>
+        <div style="font-weight:600;margin-bottom:8px;color:#fff;">Positions concentr&eacute;es</div>
+        <p style="font-size:14px;color:#6b7280;line-height:1.7;margin:0;">Top 3 momentum stocks. Mise anti-martingale : double apr&egrave;s gain, reset apr&egrave;s perte.</p>
+      </div>
+    </div>
+  </section>
 
-      <div class="overflow-x-auto border border-gray-800 rounded-2xl">
-        <table class="w-full text-sm border-collapse">
-          <thead><tr class="bg-[#0a0a0f] text-gray-400 text-left"><th class="p-4 font-bold">Strat&eacute;gie</th><th class="p-4 font-bold">CAGR</th><th class="p-4 font-bold">Capital final</th><th class="p-4 font-bold">DD max</th><th class="p-4 font-bold">Win Rate</th></tr></thead>
-          <tbody class="divide-y divide-gray-800/50">
-            <tr class="bg-[#00d4aa]/5 border-l-4 border-l-[#00d4aa]"><td class="p-4 font-bold text-[#00d4aa]"><i class="fas fa-crown mr-2"></i>Dual Momentum (nous)</td><td class="p-4 font-bold text-[#00d4aa]">32,6%</td><td class="p-4 font-bold">44 813 &euro;</td><td class="p-4 text-orange-400">-17,9%</td><td class="p-4">54,8%</td></tr>
-            <tr><td class="p-4">SPY Buy &amp; Hold</td><td class="p-4">15,4%</td><td class="p-4">12 859 &euro;</td><td class="p-4 text-red-400">-55%</td><td class="p-4">&mdash;</td></tr>
-            <tr><td class="p-4">Livret A (moy. 1,5%)</td><td class="p-4">1,5%</td><td class="p-4">3 478 &euro;</td><td class="p-4">0%</td><td class="p-4">100%</td></tr>
-            <tr><td class="p-4">Assurance-vie fonds &euro;</td><td class="p-4">~2,5%</td><td class="p-4">3 833 &euro;</td><td class="p-4">0%</td><td class="p-4">100%</td></tr>
-            <tr><td class="p-4">Pullback strat&eacute;gie</td><td class="p-4">4,3%</td><td class="p-4">4 548 &euro;</td><td class="p-4 text-orange-400">-12%</td><td class="p-4">48%</td></tr>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);"></div>
+
+  <section id="comparatif" style="background:#08080d;border-top:1px solid rgba(255,255,255,0.04);border-bottom:1px solid rgba(255,255,255,0.04);">
+    <div style="max-width:1280px;margin:0 auto;padding:80px 24px;">
+      <div style="text-align:center;margin-bottom:48px;">
+        <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Benchmark</span>
+        <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 12px;">Comparatif</h2>
+        <p style="color:#6b7280;max-width:560px;margin:0 auto;">Dual Momentum vs alternatives sur 2016-2026, capital 3 000 &euro;.</p>
+      </div>
+      <div style="overflow-x:auto;border:1px solid rgba(255,255,255,0.04);border-radius:4px;">
+        <table style="width:100%;font-size:13px;border-collapse:collapse;">
+          <thead><tr style="background:#050508;color:#6b7280;text-align:left;"><th style="padding:14px 16px;font-weight:600;">Strat&eacute;gie</th><th style="padding:14px 16px;font-weight:600;">CAGR</th><th style="padding:14px 16px;font-weight:600;">Capital final</th><th style="padding:14px 16px;font-weight:600;">DD max</th></tr></thead>
+          <tbody>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);background:rgba(34,197,94,0.02);"><td style="padding:14px 16px;font-weight:600;color:#22c55e;">Dual Momentum (nous)</td><td style="padding:14px 16px;color:#22c55e;">32,6%</td><td style="padding:14px 16px;color:#fff;">44 813 &euro;</td><td style="padding:14px 16px;color:#fb923c;">-17,9%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">SPY Buy &amp; Hold</td><td style="padding:14px 16px;">15,4%</td><td style="padding:14px 16px;">12 859 &euro;</td><td style="padding:14px 16px;color:#ef4444;">-55%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Livret A (moy. 1,5%)</td><td style="padding:14px 16px;">1,5%</td><td style="padding:14px 16px;">3 478 &euro;</td><td style="padding:14px 16px;">0%</td></tr>
+          <tr style="border-top:1px solid rgba(255,255,255,0.04);"><td style="padding:14px 16px;">Assurance-vie fonds &euro;</td><td style="padding:14px 16px;">~2,5%</td><td style="padding:14px 16px;">3 833 &euro;</td><td style="padding:14px 16px;">0%</td></tr>
           </tbody>
         </table>
       </div>
-
-      <div class="grid md:grid-cols-3 gap-6 mt-10">
-        <div class="border border-white/5 rounded-2xl p-8 text-center bg-white/[0.02]"><div class="text-5xl font-bold text-[#00d4aa]">+17,2</div><div class="text-sm text-gray-400 mt-2">Points d'alpha vs SPY</div><div class="text-xs text-gray-600">Par an, net de frais</div></div>
-        <div class="border border-white/5 rounded-2xl p-8 text-center bg-white/[0.02]"><div class="text-5xl font-bold text-white">3,5x</div><div class="text-sm text-gray-400 mt-2">Plus que le SPY</div><div class="text-xs text-gray-600">44 813 &euro; vs 12 859 &euro;</div></div>
-        <div class="border border-white/5 rounded-2xl p-8 text-center bg-white/[0.02]"><div class="text-5xl font-bold text-green-400">-67%</div><div class="text-sm text-gray-400 mt-2">Drawdown r&eacute;duit</div><div class="text-xs text-gray-600">-17,9% vs -55% SPY</div></div>
+      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:4px;margin-top:24px;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#22c55e;">+17,2</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Alpha vs SPY (pts)</div></div>
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#fff;">3,5x</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Plus que le SPY</div></div>
+        <div style="background:#08080d;padding:24px;text-align:center;"><div style="font-size:32px;font-weight:700;color:#22c55e;">-67%</div><div style="font-size:12px;color:#6b7280;margin-top:4px;">Drawdown r&eacute;duit</div></div>
       </div>
     </div>
   </section>
 
-  <!-- TRUST -->
-  <section class="py-24 px-6">
-    <div class="max-w-6xl mx-auto">
-      <div class="grid md:grid-cols-2 gap-12 items-center">
-        <div>
-          <span class="text-xs text-[#00d4aa] tracking-[2px] uppercase font-bold">Pourquoi nous</span>
-          <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-6">Transparence totale</h2>
-          <div class="space-y-6">
-            <div class="flex gap-4"><div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center shrink-0"><i class="fas fa-file-invoice text-[#00d4aa]"></i></div><div><div class="font-bold mb-1">Track Record public</div><div class="text-sm text-gray-400">Equity curve, drawdown, 420 trades en CSV/JSON.</div></div></div>
-            <div class="flex gap-4"><div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center shrink-0"><i class="fas fa-code text-[#00d4aa]"></i></div><div><div class="font-bold mb-1">Code source ouvert</div><div class="text-sm text-gray-400">Script Python de backtest disponible, v&eacute;rifiable.</div></div></div>
-            <div class="flex gap-4"><div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center shrink-0"><i class="fas fa-graduation-cap text-[#00d4aa]"></i></div><div><div class="font-bold mb-1">Fondation acad&eacute;mique</div><div class="text-sm text-gray-400">Faber (2017), Jegadeesh &amp; Titman (1993), 30+ ans de recherche.</div></div></div>
-            <div class="flex gap-4"><div class="w-12 h-12 rounded-xl bg-[#00d4aa]/10 flex items-center justify-center shrink-0"><i class="fas fa-shield text-[#00d4aa]"></i></div><div><div class="font-bold mb-1">Risk Management</div><div class="text-sm text-gray-400">Slippage 0,1%, stops gap-adjusted, anti-martingale safe.</div></div></div>
-          </div>
-        </div>
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-2xl p-8 card-hover">
-          <div class="text-xl font-bold mb-6">R&eacute;sum&eacute; ex&eacute;cutif</div>
-          <div class="space-y-3 text-sm">
-            <div class="flex justify-between pb-3 border-b border-gray-800/50"><span class="text-gray-400">Capital minimum</span><span class="font-bold">2 903 &euro; (jamais sous)</span></div>
-            <div class="flex justify-between pb-3 border-b border-gray-800/50"><span class="text-gray-400">Dur&eacute;e du backtest</span><span class="font-bold">9,6 ans</span></div>
-            <div class="flex justify-between pb-3 border-b border-gray-800/50"><span class="text-gray-400">Plus longue s&eacute;rie de pertes</span><span class="font-bold">9 trades</span></div>
-            <div class="flex justify-between pb-3 border-b border-gray-800/50"><span class="text-gray-400">Pire mois</span><span class="font-bold">-806 &euro;</span></div>
-            <div class="flex justify-between pb-3 border-b border-gray-800/50"><span class="text-gray-400">Frais &amp; slippage inclus</span><span class="font-bold text-[#00d4aa]">Oui</span></div>
-            <div class="flex justify-between"><span class="text-gray-400">Biais &eacute;limin&eacute;s</span><span class="font-bold text-[#00d4aa]">Survivance, Look-ahead</span></div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  <div style="height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,0.05),transparent);"></div>
 
-  <!-- PRICING -->
-  <section id="pricing" class="py-24 px-6 bg-[#12121a] border-y border-gray-800/30">
-    <div class="max-w-6xl mx-auto text-center">
-      <span class="text-xs text-[#00d4aa] tracking-[2px] uppercase font-bold">Tarifs</span>
-      <h2 class="text-4xl md:text-5xl font-bold mt-3 mb-4">Abonnements</h2>
-      <p class="text-gray-400 mb-12">7 jours d'essai gratuit &bull; Annulation &agrave; tout moment</p>
-      <div class="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto text-left">
-
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-3xl p-8 card-hover">
-          <div class="text-2xl font-bold">Gratuit</div><div class="text-5xl font-bold my-4">0&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <p class="text-gray-400 text-sm mb-6">Pour d&eacute;couvrir la m&eacute;thode.</p>
-          <ul class="text-sm space-y-3 mb-8">
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Track Record complet</li>
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Signaux momentum publics</li>
-            <li class="text-gray-600"><i class="fas fa-times text-gray-600 w-5"></i> Alertes rebalancement</li>
-            <li class="text-gray-600"><i class="fas fa-times text-gray-600 w-5"></i> Analyse fondamentale</li>
-            <li class="text-gray-600"><i class="fas fa-times text-gray-600 w-5"></i> Communaut&eacute;</li>
-          </ul>
-          <a href="trackrecord.html" class="block text-center py-4 border border-gray-700 rounded-2xl font-bold hover:border-white transition">Voir le track record</a>
-        </div>
-
-        <div class="bg-[#1a1a2e] border-2 border-[#00d4aa] rounded-3xl p-8 relative card-hover">
-          <div class="absolute -top-5 left-1/2 -translate-x-1/2 bg-[#00d4aa] text-black text-xs font-bold px-6 py-1.5 rounded-full">LE PLUS CHOISI</div>
-          <div class="text-2xl font-bold">Pro</div><div class="text-5xl font-bold my-4">39&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <p class="text-gray-400 text-sm mb-6">Pour ex&eacute;cuter avec rigueur.</p>
-          <ul class="text-sm space-y-3 mb-8">
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Tout le plan Gratuit</li>
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Alertes rebalancement</li>
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Analyse fondamentale des picks</li>
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Risk report mensuel</li>
-            <li><i class="fas fa-check text-[#00d4aa] w-5"></i> Communaut&eacute; priv&eacute;e</li>
-          </ul>
-          <a href="contact.html" class="block text-center py-4 bg-[#00d4aa] text-black rounded-2xl font-bold hover:bg-white transition">Essai gratuit 7 jours</a>
-        </div>
-
-        <div class="bg-[#1a1a2e] border border-gray-800 rounded-3xl p-8 card-hover">
-          <div class="text-2xl font-bold">Elite</div><div class="text-5xl font-bold my-4">99&euro;<span class="text-base font-normal text-gray-400">/mois</span></div>
-          <p class="text-gray-400 text-sm mb-6">Accompagnement personnalis&eacute;.</p>
-          <ul class="text-sm space-y-3 mb-8">
-            <li><i class="fas fa-check text-amber-400 w-5"></i> Tout le plan Pro</li>
-            <li><i class="fas fa-check text-amber-400 w-5"></i> Analyses sur demande (2/mois)</li>
-            <li><i class="fas fa-check text-amber-400 w-5"></i> Canal priv&eacute; Elite</li>
-            <li><i class="fas fa-check text-amber-400 w-5"></i> Session Q&amp;A live / mois</li>
-          </ul>
-          <a href="contact.html" class="block text-center py-4 border border-amber-400 text-amber-300 rounded-2xl font-bold hover:bg-amber-400 hover:text-black transition">Contacter</a>
-        </div>
-      </div>
-      <p class="text-xs text-gray-500 mt-10">Les offres peuvent &eacute;voluer. Aucune promesse de performance. Tout investissement comporte un risque de perte en capital.</p>
-    </div>
-  </section>
-
-  <!-- FOOTER -->
-  <footer class="border-t border-gray-800/50 py-12 px-6 text-sm text-gray-500">
-    <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-10">
-      <div>
-        <div class="flex items-center gap-3 mb-3"><svg width="24" height="24" viewBox="0 0 64 64" fill="none"><path d="M32 4 L56 20 L56 44 L32 60 L8 44 L8 20 Z" stroke="#00d4aa" stroke-width="3.5" opacity="0.95"/><path d="M20 28 L32 16 L44 28" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/><path d="M22 32 H42" stroke="#00d4aa" stroke-width="3.5" stroke-linecap="round" opacity="0.85"/></svg><span class="font-bold text-gray-200">Citadel Alpha</span></div>
-        <div class="text-xs leading-relaxed">Contenu &eacute;ducatif. Pas de conseil en investissement personnalis&eacute;. Les performances pass&eacute;es ne pr&eacute;jugent pas des r&eacute;sultats futurs.</div>
-        <div class="flex gap-4 mt-4"><a href="contact.html" class="hover:text-[#00d4aa] transition"><i class="fas fa-envelope"></i></a><a href="https://wa.me/33636226987" class="hover:text-[#00d4aa] transition" target="_blank"><i class="fab fa-whatsapp"></i></a></div>
-      </div>
-      <div>
-        <div class="font-bold text-gray-200 mb-3">L&eacute;gal</div>
-        <ul class="space-y-2">
-          <li><a href="mentions-legales.html" class="hover:text-[#00d4aa] transition">Mentions l&eacute;gales</a></li>
-          <li><a href="politique-confidentialite.html" class="hover:text-[#00d4aa] transition">Politique de confidentialit&eacute;</a></li>
-          <li><a href="politique-cookies.html" class="hover:text-[#00d4aa] transition">Politique cookies</a></li>
-          <li><a href="cgu.html" class="hover:text-[#00d4aa] transition">CGU</a></li>
-          <li><a href="cgv.html" class="hover:text-[#00d4aa] transition">CGV</a></li>
+  <section id="pricing" style="max-width:1280px;margin:0 auto;padding:80px 24px;text-align:center;">
+    <span style="display:inline-block;font-size:11px;color:#6b7280;text-transform:uppercase;letter-spacing:2px;margin-bottom:12px;">Tarifs</span>
+    <h2 style="font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;color:#fff;margin:0 0 8px;">Abonnements</h2>
+    <p style="color:#6b7280;margin-bottom:48px;">7 jours d'essai gratuit &bull; Annulation &agrave; tout moment</p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:2px;max-width:860px;margin:0 auto;text-align:left;border:1px solid rgba(255,255,255,0.04);border-radius:4px;overflow:hidden;">
+      <div style="background:#08080d;padding:32px;">
+        <div style="font-weight:700;color:#fff;margin-bottom:8px;">Gratuit</div>
+        <div style="font-size:40px;font-weight:700;margin:16px 0;">0&euro;<span style="font-size:14px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Track Record complet</li>
+          <li><i class="fas fa-times" style="color:#4b5563;width:20px;"></i> Alertes rebalancement</li>
+          <li><i class="fas fa-times" style="color:#4b5563;width:20px;"></i> Analyse fondamentale</li>
         </ul>
+        <a href="trackrecord.html" style="display:block;text-align:center;padding:12px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-weight:600;color:#e3e3e3;text-decoration:none;">Track Record</a>
       </div>
-      <div>
-        <div class="font-bold text-gray-200 mb-3">&Eacute;diteur</div>
-        <div class="text-sm leading-relaxed">
-          <div><span class="text-gray-400">Soci&eacute;t&eacute; :</span> Opportunity</div>
-          <div><span class="text-gray-400">SIREN :</span> 403345317</div>
-          <div><span class="text-gray-400">Adresse :</span> 4 rue du Labech, 34250 Palavas-les-Flots</div>
-          <div><span class="text-gray-400">T&eacute;l :</span> <a href="tel:+33636226987" class="hover:text-[#00d4aa] transition">+33 6 36 22 69 87</a></div>
-          <div class="mt-2"><span class="text-gray-400">Directeur :</span> Cyril Rancurel</div>
-          <div><span class="text-gray-400">H&eacute;bergeur :</span> Vercel Inc.</div>
-        </div>
+      <div style="background:#08080d;padding:32px;border-left:1px solid rgba(255,255,255,0.04);border-right:1px solid rgba(255,255,255,0.04);position:relative;">
+        <div style="position:absolute;top:0;left:0;right:0;height:2px;background:#22c55e;"></div>
+        <div style="position:absolute;top:8px;right:12px;font-size:10px;color:#22c55e;font-weight:600;text-transform:uppercase;letter-spacing:1px;">Populaire</div>
+        <div style="font-weight:700;color:#fff;margin-bottom:8px;">Pro</div>
+        <div style="font-size:40px;font-weight:700;margin:16px 0;">39&euro;<span style="font-size:14px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Tout le Gratuit</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Alertes rebalancement</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Analyse fondamentale</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Communaut&eacute; priv&eacute;e</li>
+        </ul>
+        <a href="contact.html" style="display:block;text-align:center;padding:12px;background:#fff;color:#050508;border-radius:4px;font-weight:600;text-decoration:none;">Essai gratuit 7 jours</a>
+      </div>
+      <div style="background:#08080d;padding:32px;">
+        <div style="font-weight:700;color:#fff;margin-bottom:8px;">Elite</div>
+        <div style="font-size:40px;font-weight:700;margin:16px 0;">99&euro;<span style="font-size:14px;font-weight:400;color:#6b7280;">/mois</span></div>
+        <ul style="list-style:none;padding:0;font-size:13px;display:flex;flex-direction:column;gap:10px;margin-bottom:24px;">
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Tout le Pro</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Analyses sur demande</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Canal priv&eacute; Elite</li>
+          <li><i class="fas fa-check" style="color:#22c55e;width:20px;"></i> Q&amp;A live / mois</li>
+        </ul>
+        <a href="contact.html" style="display:block;text-align:center;padding:12px;border:1px solid rgba(255,255,255,0.1);border-radius:4px;font-weight:600;color:#e3e3e3;text-decoration:none;">Contacter</a>
       </div>
     </div>
-    <div class="max-w-7xl mx-auto mt-10 pt-6 border-t border-gray-800/50 text-xs flex flex-col md:flex-row gap-2 md:items-center md:justify-between">
+    <p style="font-size:11px;color:#4b5563;margin-top:32px;">Les offres peuvent &eacute;voluer. Aucune promesse de performance. Tout investissement comporte un risque.</p>
+  </section>
+
+  <footer style="border-top:1px solid rgba(255,255,255,0.04);padding:48px 24px;font-size:13px;color:#6b7280;">
+    <div style="max-width:1280px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:32px;">
+      <div><div style="font-weight:700;color:#e3e3e3;margin-bottom:8px;">Citadel Alpha</div><div style="font-size:12px;line-height:1.6;">Contenu &eacute;ducatif. Pas de conseil personnalis&eacute;. Les performances pass&eacute;es ne pr&eacute;jugent pas des r&eacute;sultats futurs.</div></div>
+      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">L&eacute;gal</div><div style="display:flex;flex-direction:column;gap:6px;"><a href="mentions-legales.html" style="color:#6b7280;text-decoration:none;">Mentions l&eacute;gales</a><a href="cgv.html" style="color:#6b7280;text-decoration:none;">CGV</a><a href="cgu.html" style="color:#6b7280;text-decoration:none;">CGU</a></div></div>
+      <div><div style="font-weight:600;color:#e3e3e3;margin-bottom:8px;">Contact</div><div><a href="https://wa.me/33636226987" style="color:#6b7280;text-decoration:none;">WhatsApp</a></div><div><a href="contact.html" style="color:#6b7280;text-decoration:none;">Email</a></div></div>
+    </div>
+    <div style="max-width:1280px;margin:32px auto 0;padding-top:16px;border-top:1px solid rgba(255,255,255,0.04);font-size:12px;display:flex;flex-wrap:wrap;justify-content:space-between;">
       <div>&copy; 2026 Opportunity &mdash; Citadel Alpha Research</div>
-      <div><a href="contact.html" class="hover:text-[#00d4aa] transition">Contact</a></div>
+      <div>H&eacute;bergeur : Vercel Inc.</div>
     </div>
   </footer>
 
-  <button id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-[#00d4aa] text-black shadow-lg hover:bg-white transition z-50 hidden items-center justify-center"><i class="fas fa-arrow-up"></i></button>
+  <button onclick="window.scrollTo({top:0,behavior:'smooth'})" id="scrollTop" style="position:fixed;bottom:20px;right:20px;width:40px;height:40px;border-radius:4px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);color:#fff;cursor:pointer;display:none;z-index:100;"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 14V2M2 8l6-6 6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
 
   <script>
-    // === PARTICLES ===
-    (function(){
-      const c=document.getElementById('particles-canvas'),x=c.getContext('2d');
-      let w,h,p=[];const N=60;
-      function r(){w=c.width=innerWidth;h=c.height=innerHeight}
-      r();window.addEventListener('resize',r);
-      for(let i=0;i<N;i++) p.push({x:Math.random()*w,y:Math.random()*h,vx:(Math.random()-0.5)*0.2,vy:(Math.random()-0.5)*0.2,r:Math.random()*2+0.5,a:Math.random()*0.4+0.1});
-      function d(){
-        x.clearRect(0,0,w,h);
-        for(let i=0;i<N;i++){
-          const q=p[i];q.x+=q.vx;q.y+=q.vy;
-          if(q.x<0)q.x=w;if(q.x>w)q.x=0;if(q.y<0)q.y=h;if(q.y>h)q.y=0;
-          x.beginPath();x.arc(q.x,q.y,q.r,0,Math.PI*2);x.fillStyle='rgba(0,212,170,'+q.a+')';x.fill();
-          for(let j=i+1;j<N;j++){const p2=p[j];const dx=q.x-p2.x,dy=q.y-p2.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<150){x.beginPath();x.moveTo(q.x,q.y);x.lineTo(p2.x,p2.y);x.strokeStyle='rgba(0,212,170,'+(0.06*(1-dist/150))+')';x.stroke();}}
-        }
-        requestAnimationFrame(d);
-      }
-      d();
-    })();
-
-    // LOAD SUMMARY
-    (async function(){
-      try{
-        const r=await fetch('./backtest/summary.json',{cache:'no-store'});
-        if(!r.ok)throw Error('HTTP '+r.status);
-        const s=await r.json();
-        document.getElementById('hero_cagr').textContent=Number(s.cagr_pct).toFixed(1)+'%';
-        document.getElementById('hero_final').textContent=Number(s.final_equity).toLocaleString('fr-FR',{maximumFractionDigits:0})+' €';
-        document.getElementById('hero_dd').textContent='-'+Math.abs(Number(s.max_drawdown_pct)).toFixed(1)+'%';
-        document.getElementById('hero_pf').textContent=Number(s.profit_factor).toFixed(2);
-        document.getElementById('hero_alpha').textContent=(Number(s.alpha_vs_spy_pts)>0?'+':'')+Number(s.alpha_vs_spy_pts).toFixed(1)+' pts vs SPY';
-        document.getElementById('hero_bar').style.width='78%';
-      }catch(e){}
-    })();
-
-    // COUNT UP
-    document.addEventListener('DOMContentLoaded',function(){
-      document.querySelectorAll('.count-up').forEach(function(el){
-        const target=parseFloat(el.dataset.target),isInt=Number.isInteger(target);
-        const obs=new IntersectionObserver(function(entries){
-          entries.forEach(function(e){
-            if(e.isIntersecting){
-              const start=performance.now();
-              function up(now){const p=Math.min((now-start)/2000,1),eased=1-Math.pow(1-p,3),cur=target*eased;el.textContent=isInt?Math.floor(cur).toLocaleString('fr-FR'):cur.toFixed(target<10?1:0);if(p<1)requestAnimationFrame(up);}
-              requestAnimationFrame(up);obs.unobserve(el);
-            }
-          });
-        },{threshold:0.5});
-        obs.observe(el);
-      });
-    });
-
-    // SCROLL TOP
-    window.addEventListener('scroll',function(){const btn=document.getElementById('scrollTop');btn.style.display=window.scrollY>400?'flex':'none';});
+    (async function(){try{const r=await fetch('./backtest/summary.json',{cache:'no-store'});if(!r.ok)throw Error('HTTP '+r.status);const s=await r.json();document.getElementById('hero_cagr').textContent=Number(s.cagr_pct).toFixed(1)+'%';document.getElementById('hero_return').textContent=Number(s.total_return_pct).toFixed(0)+'%';document.getElementById('hero_dd').textContent='-'+Math.abs(Number(s.max_drawdown_pct)).toFixed(1)+'%';document.getElementById('hero_pf').textContent=Number(s.profit_factor).toFixed(2);}catch(e){}})();
+    document.addEventListener('DOMContentLoaded',function(){document.querySelectorAll('.count-up').forEach(function(el){const target=parseFloat(el.dataset.target),isInt=Number.isInteger(target);new IntersectionObserver(function(entries,obs){entries.forEach(function(e){if(e.isIntersecting){const start=performance.now();(function up(now){const p=Math.min((now-start)/2000,1),eased=1-Math.pow(1-p,3),cur=target*eased;el.textContent=isInt?Math.floor(cur).toLocaleString('fr-FR'):cur.toFixed(target<10?1:0);if(p<1)requestAnimationFrame(up)})(start);obs.unobserve(el)}});},{threshold:0.5}).observe(el)});});
+    window.addEventListener('scroll',function(){const btn=document.getElementById('scrollTop');btn.style.display=window.scrollY>400?'block':'none';});
   </script>
-
 </body>
 </html>
